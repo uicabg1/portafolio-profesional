@@ -22,3 +22,43 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# ── Extensiones para el flujo de trabajo de Gadiel ──────────
+
+# Astro & Build
+dist/
+.astro/
+
+# Dependencias
+node_modules/
+
+# Entorno local (Seguridad de API Keys)
+.env
+.env.local
+.env.production
+.env.development
+
+# macOS (Específico para tu MacBook Air)
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Editor & IDE (Cursor / VS Code)
+.vscode/settings.json
+.vscode/tasks.json
+.vscode/launch.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

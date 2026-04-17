@@ -1,17 +1,24 @@
 ---
-
+import Layout from '../layouts/Layout.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="Gadiel | Portafolio de Ingeniería">
+	<main class="flex flex-col items-center justify-center min-h-screen p-4 text-center">
+		<h1 class="text-6xl font-serif text-brand-indigo leading-tight">
+			Ingeniería de Software <br /> & Criptografía
+		</h1>
+		
+		<p class="mt-6 font-mono text-sm uppercase tracking-widest opacity-60">
+			Sprint 0: Setup Local Finalizado
+		</p>
+
+		<div class="mt-10 flex gap-4">
+			<div class="h-3 w-12 bg-brand-indigo rounded-full"></div>
+			<div class="h-3 w-12 bg-brand-green rounded-full"></div>
+		</div>
+
+		<footer class="absolute bottom-8 text-xs opacity-40">
+			UADY · TIDE Fellows 2026
+		</footer>
+	</main>
+</Layout>

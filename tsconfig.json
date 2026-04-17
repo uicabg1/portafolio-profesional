@@ -1,5 +1,24 @@
 {
   "extends": "astro/tsconfigs/strict",
-  "include": [".astro/types.d.ts", "**/*"],
-  "exclude": ["dist"]
+  "include": [
+    ".astro/types.d.ts",
+    "**/*"
+  ],
+  "exclude": [
+    "dist"
+  ],
+  "compilerOptions": {
+    /* Configuración para Preact */
+    "jsx": "react-jsx",
+    "jsxImportSource": "preact",
+    
+    /* Configuración de Paths moderna (Sin baseUrl) */
+    "paths": {
+      "@components/*": ["./src/components/*"],
+      "@layouts/*":    ["./src/layouts/*"],
+      "@styles/*":     ["./src/styles/*"],
+      "@content/*":    ["./src/content/*"],
+      "@islands/*":    ["./src/components/islands/*"]
+    }
+  } 
 }

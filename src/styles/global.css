@@ -1,0 +1,171 @@
+/* ── 1. Importar tipografías de Google Fonts ──────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500&family=Geist+Mono:wght@400&family=Instrument+Serif:ital@0;1&display=swap');
+/* ── 2. Importar Tailwind v4 ─────────────────────────────────────── */
+@import "tailwindcss";
+
+
+/* ── 3. Tokens del sistema de diseño via @theme ───────────────────── */
+@theme {
+  /* Tipografía */
+  --font-display: 'Instrument Serif', Georgia, serif;
+  --font-body:    'Geist', system-ui, sans-serif;
+  --font-mono:    'Geist Mono', 'Fira Code', monospace;
+
+  /* Escala tipográfica */
+  --text-xs:   0.75rem;
+  --text-sm:   0.875rem;
+  --text-base: 1rem;
+  --text-lg:   1.125rem;
+  --text-xl:   1.25rem;
+  --text-2xl:  1.5rem;
+  --text-4xl:  2.25rem;
+  --text-6xl:  3.75rem;
+
+  /* Espaciado */
+  --space-1:  0.25rem;
+  --space-2:  0.5rem;
+  --space-3:  0.75rem;
+  --space-4:  1rem;
+  --space-6:  1.5rem;
+  --space-8:  2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-24: 6rem;
+
+  /* Layout y Bordes */
+  --container-max:   1200px;
+  --container-prose: 720px;
+  --radius-sm:   6px;
+  --radius-md:   10px;
+  --radius-lg:   16px;
+  --radius-full: 9999px;
+
+  /* Paleta Modo Claro */
+  --color-bg:               #FAFAFA;
+  --color-bg-subtle:        #F4F4F5;
+  --color-bg-muted:         #E4E4E7;
+  --color-text-primary:     #09090B;
+  --color-text-secondary:   #71717A;
+  --color-text-muted:       #A1A1AA;
+  --color-accent:            #1D4ED8;
+  --color-accent-hover:      #1E40AF;
+  --color-accent-subtle:     #DBEAFE;
+  --color-accent-text:       #1E40AF;
+  --color-whatsapp:          #25D366;
+  --color-whatsapp-hover:    #1DAA52;
+  --color-whatsapp-text:     #FFFFFF;
+  --color-success:           #16A34A;
+  --color-error:             #DC2626;
+}
+
+/* ── 4. Modo oscuro via [data-theme="dark"] ───────────────────────── */
+[data-theme="dark"] {
+  --color-bg:               #09090B;
+  --color-bg-subtle:        #18181B;
+  --color-bg-muted:         #27272A;
+  --color-text-primary:     #FAFAFA;
+  --color-text-secondary:   #A1A1AA;
+  --color-text-muted:       #52525B;
+  --color-accent:            #60A5FA;
+  --color-accent-hover:      #93C5FD;
+  --color-accent-subtle:     #1E3A5F;
+  --color-accent-text:       #93C5FD;
+}
+
+/* ── 5. Reset y estilos base ─────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.7;
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── 6. Tipografía global ─────────────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--color-text-primary);
+}
+
+p {
+  font-family: var(--font-body);
+  color: var(--color-text-primary);
+  max-width: var(--container-prose);
+}
+
+code, pre, kbd {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+}
+
+pre {
+  background: var(--color-bg-subtle);
+  border: 1px solid var(--color-bg-muted);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  overflow-x: auto;
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: color 150ms ease;
+}
+
+a:hover {
+  color: var(--color-accent-hover);
+}
+
+/* ── 7. Clases de utilidad personalizadas ────────────────────────── */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--space-6);
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+}
+
+@media (min-width: 640px) {
+  .projects-grid { grid-template-columns: repeat(2, 1fr); }
+  .container { padding-inline: var(--space-8); }
+}
+
+@media (min-width: 1024px) {
+  .projects-grid { grid-template-columns: repeat(3, 1fr); }
+  .container { padding-inline: var(--space-12); }
+}
+
+/* Accesibilidad */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

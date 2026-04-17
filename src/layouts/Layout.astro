@@ -1,0 +1,104 @@
+---
+// src/layouts/Layout.astro
+// Layout base que envuelve todas las páginas del sitio.
+// Gestiona: <head>, fuentes, meta tags SEO, script de tema, y accesibilidad.
+
+import '../styles/global.css'; // <--- AÑADE ESTA LÍNEA AQUÍ
+
+interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
+  canonicalUrl?: string;
+}
+
+const {
+  title,
+  description = 'Desarrollador de Software especializado en soluciones web para PYMES. Estudiante de Ingeniería de Software en UADY, becario TIDE Fellows.',
+  ogImage = '/og-default.jpg',
+  canonicalUrl = Astro.url.href,
+} = Astro.props as Props;
+
+const fullTitle = title === 'Home'
+  ? 'Gadiel | Desarrollador de Software'
+  : `${title} · Gadiel`;
+---
+
+<!doctype html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO básico -->
+  <title>{fullTitle}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonicalUrl} />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="Gadiel" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content={fullTitle} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={new URL(ogImage, Astro.site)} />
+  <meta property="og:url" content={canonicalUrl} />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="es_MX" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={fullTitle} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={new URL(ogImage, Astro.site)} />
+
+  <!-- Fuentes Google — preconnect para reducir latencia [RNF-04 FCP] -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <!--
+    En producción, Astro procesa y optimiza este import automáticamente.
+    El output en dist/ será un archivo CSS minificado con solo las clases usadas.
+  -->
+
+  <!--
+    Script inline de tema — debe ejecutarse antes del render para evitar
+    flash of wrong theme (FOWT). Se coloca en <head> antes del body.
+    Lee la preferencia del sistema y la del usuario guardada en localStorage.
+  -->
+  <script is:inline>
+    (function() {
+      const stored = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const theme = stored ?? (prefersDark ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+</head>
+
+<body>
+  <!-- Skip link — accesibilidad [RNF-09]: permite saltar al contenido principal con teclado -->
+  <a
+    href="#main-content"
+    style="
+      position: absolute;
+      top: -100%;
+      left: 0;
+      padding: 0.5rem 1rem;
+      background: var(--color-accent);
+      color: white;
+      z-index: 9999;
+      border-radius: 0 0 var(--radius-md) 0;
+    "
+    class="focus:top-0"
+  >
+    Saltar al contenido
+  </a>
+
+  <main id="main-content">
+    <slot />
+  </main>
+</body>
+</html>
