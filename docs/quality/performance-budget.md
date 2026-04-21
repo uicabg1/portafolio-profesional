@@ -13,6 +13,14 @@
 - `CLS` objetivo: `<= 0.1`
 - JavaScript de cliente: solo el necesario para islas puntuales
 
+## Evidencia reciente
+
+Fecha: 2026-04-21
+
+- Lighthouse home: Performance `99`, LCP `1.7 s`, TBT `0 ms`, CLS `0.001`
+- Lighthouse `/proyectos/portafolio-m4/`: Performance `97` en rerun estable, LCP `2.5 s`, TBT `0 ms`, CLS `0.029`
+- Accessibility, Best Practices y SEO quedaron en `100` para home y página de proyecto
+
 ## Riesgos frecuentes
 
 - aumentar el número de islas sin necesidad real

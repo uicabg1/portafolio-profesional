@@ -1,0 +1,238 @@
+---
+// Footer del portafolio. Cubre RF-03 (links externos verificables).
+//
+// Contenido:
+// - Copyright + año dinámico
+// - Links a GitHub, LinkedIn, correo electrónico
+// - Link a #infraestructura dentro de la home
+// - Nota de stack tecnológico (señal de credibilidad técnica)
+
+const currentYear = new Date().getFullYear();
+
+const socialLinks = [
+  {
+    href: 'https://github.com/uicabg1',
+    label: 'GitHub',
+    // Ícono SVG de GitHub
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>`,
+  },
+  {
+    href: 'https://www.linkedin.com/in/gadiel-uicab/',
+    label: 'LinkedIn',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>`,
+  },
+  {
+    href: 'mailto:uicabgadiel67@correo.com',
+    label: 'Email',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>`,
+  },
+];
+---
+
+<footer class="site-footer" role="contentinfo">
+  <div class="footer-inner container">
+    <!-- Columna izquierda: identidad + descripción corta -->
+    <div class="footer-brand">
+      <a href="/" class="footer-logo">
+        Gadiel
+      </a>
+      <p class="footer-tagline">
+        Desarrollo web · UADY · TIDE Fellows
+      </p>
+      <!--
+        El stack técnico en el footer es una señal sutil para el tech lead.
+        No es texto de marketing, es metadata técnica.
+      -->
+      <p class="footer-stack">
+        Astro · Tailwind v4 · Salida estatica lista para evolucionar a VPS propio
+      </p>
+    </div>
+
+    <!-- Columna derecha: links -->
+    <div class="footer-links">
+      <!-- Links sociales (RF-03) -->
+      <div class="footer-social">
+        <span class="footer-section-label">Contacto</span>
+        <ul role="list" class="social-list">
+          {socialLinks.map(({ href, label, icon }) => (
+            <li>
+              <a
+                href={href}
+                class="social-link"
+                target={href.startsWith('mailto:') ? undefined : '_blank'}
+                rel={href.startsWith('mailto:') ? undefined : 'noopener noreferrer'}
+              >
+                <span set:html={icon} />
+                <span>{label}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Links del sitio -->
+      <div class="footer-nav">
+        <span class="footer-section-label">Sitio</span>
+        <ul role="list" class="footer-nav-list">
+          <li><a href="/#proyectos" class="footer-nav-link">Proyectos</a></li>
+          <li><a href="/#servicios" class="footer-nav-link">Servicios</a></li>
+          <li><a href="/#sobre-mi" class="footer-nav-link">Sobre mí</a></li>
+          <li><a href="/#infraestructura" class="footer-nav-link">Infraestructura</a></li>
+          <li><a href="/#contacto" class="footer-nav-link">Contacto</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Barra de copyright -->
+  <div class="footer-bottom">
+    <div class="container footer-bottom-inner">
+      <p class="footer-copyright">
+        © {currentYear} Gadiel Uicab. Hecho en Mérida, México.
+      </p>
+      <p class="footer-legal">
+        Código disponible en <a href="https://github.com/uicabg1/portafolio" target="_blank" rel="noopener noreferrer" class="footer-code-link">GitHub</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  /* ── Footer principal ─────────────────────────────────────────────── */
+  .site-footer {
+    border-top: 1px solid var(--color-bg-muted);
+    background: var(--color-bg-subtle);
+    padding-top: var(--space-16);
+  }
+
+  /* ── Layout interno ───────────────────────────────────────────────── */
+  .footer-inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-12);
+    padding-bottom: var(--space-12);
+  }
+
+  @media (min-width: 768px) {
+    .footer-inner {
+      grid-template-columns: 1fr 1fr;
+      align-items: start;
+    }
+  }
+
+  /* ── Marca ────────────────────────────────────────────────────────── */
+  .footer-logo {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    color: var(--color-text-primary);
+    text-decoration: none;
+    margin-bottom: var(--space-3);
+    transition: opacity 150ms ease;
+  }
+
+  .footer-logo:hover {
+    opacity: 0.75;
+  }
+
+  .footer-tagline {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-2);
+    max-width: 100%;
+  }
+
+  .footer-stack {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-text-secondary);
+  }
+
+  /* ── Links ────────────────────────────────────────────────────────── */
+  .footer-links {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-8);
+  }
+
+  .footer-section-label {
+    display: block;
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: var(--space-4);
+  }
+
+  .social-list,
+  .footer-nav-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .social-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    transition: color 150ms ease;
+    min-height: 32px;         /* Área táctil adecuada */
+  }
+
+  .social-link:hover {
+    color: var(--color-accent);
+  }
+
+  .footer-nav-link {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    transition: color 150ms ease;
+    display: inline-block;
+    min-height: 32px;
+    line-height: 32px;
+  }
+
+  .footer-nav-link:hover {
+    color: var(--color-text-primary);
+  }
+
+  /* ── Barra de copyright ───────────────────────────────────────────── */
+  .footer-bottom {
+    border-top: 1px solid var(--color-bg-muted);
+    padding: var(--space-6) 0;
+  }
+
+  .footer-bottom-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+  }
+
+  .footer-copyright,
+  .footer-legal {
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    color: var(--color-text-secondary);
+  }
+
+  .footer-code-link {
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+
+  .footer-code-link:hover {
+    text-decoration: underline;
+  }
+</style>

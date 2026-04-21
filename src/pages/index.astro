@@ -1,24 +1,50 @@
 ---
+// Pagina principal del portafolio. Estructura one-page con anclas.
+//
+// Este archivo solo orquesta las secciones. La logica y los estilos
+// de cada seccion viven en sus componentes respectivos.
+//
+// Sprint 1: Hero + Nav + Footer + WhatsApp button.
+// Sprints 2-4: secciones #sobre-mi, #servicios, #proyectos, #contacto.
+
 import Layout from '../layouts/Layout.astro';
+import Nav from '../components/astro/Nav.astro';
+import Footer from '../components/astro/Footer.astro';
+import Hero from '../components/astro/Hero.astro';
+import About from '../components/astro/About.astro';
+import Services from '../components/astro/Services.astro';
+import Contact from '../components/astro/Contact.astro';
+import Infrastructure from '../components/astro/Infrastructure.astro';
+import ProjectFilter from '../components/islands/ProjectFilter.tsx';
+import WhatsAppButton from '../components/islands/WhatsAppButton.tsx';
+import { getProjectsForNavigation } from '../lib/projects.server';
+
+const projects = await getProjectsForNavigation();
 ---
 
-<Layout title="Gadiel | Portafolio de Ingeniería">
-	<main class="flex flex-col items-center justify-center min-h-screen p-4 text-center">
-		<h1 class="text-6xl font-serif text-brand-indigo leading-tight">
-			Ingeniería de Software <br /> & Criptografía
-		</h1>
-		
-		<p class="mt-6 font-mono text-sm uppercase tracking-widest opacity-60">
-			Sprint 0: Setup Local Finalizado
-		</p>
+<Layout
+	title="Home"
+	description="Gadiel Uicab · Desarrollo sitios web, landing pages y portafolios profesionales para negocio, con una base técnica en crecimiento desde UADY y TIDE Fellows."
+>
+	<!-- Navegacion sticky en la parte superior -->
+	<Nav />
 
-		<div class="mt-10 flex gap-4">
-			<div class="h-3 w-12 bg-brand-indigo rounded-full"></div>
-			<div class="h-3 w-12 bg-brand-green rounded-full"></div>
-		</div>
+	<!-- Home reordenada para priorizar oferta, prueba y profundidad tecnica -->
+	<Hero />
+	<Services />
+	<ProjectFilter client:visible projects={projects} />
+	<About />
+	<Infrastructure />
+	<Contact />
 
-		<footer class="absolute bottom-8 text-xs opacity-40">
-			UADY · TIDE Fellows 2026
-		</footer>
-	</main>
+	<!-- Footer con links sociales (RF-03) -->
+	<Footer />
+
+	<!--
+		Boton flotante de WhatsApp.
+		client:load -> se hidrata inmediatamente al cargar la pagina.
+		Justificacion: el boton debe estar disponible desde el frame 0,
+		antes de que el usuario haga scroll (HU-03, HU-06, RF-12).
+	-->
+	<WhatsAppButton client:load />
 </Layout>

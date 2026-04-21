@@ -1,25 +1,23 @@
 ---
-title: "Cifrador RSA implementado en C"
-slug: "rsa-en-c"
-category: "Cybersecurity"
-summary: "Implementación de RSA en C con GMP para generar llaves y cifrar/descifrar mensajes, con foco en aritmética modular y seguridad de memoria."
-problem: "Comprender e implementar criptografía asimétrica sin abstracciones de alto nivel, partiendo únicamente de operaciones matemáticas fundamentales sobre enteros de precisión arbitraria."
-solution: "Implementación en C con la librería GMP para aritmética de enteros grandes. El sistema genera pares de llaves, cifra y descifra bloques de texto usando exponenciación modular rápida."
-result: "Sistema funcional capaz de cifrar mensajes de hasta 2048 bits. El código incluye tests unitarios con CUnit y documentación completa del proceso matemático."
-stack: ["C", "GMP Library", "Makefile", "CUnit"]
-githubUrl: "https://github.com/tu-usuario/rsa-en-c"
+title: "RSA en C"
+summary: "Implementación matemática de RSA en C usando GMP."
+category: "Ciberseguridad"
+problem: "Implementar criptografía asimétrica desde fundamentos matemáticos en C, controlando precisión de enteros grandes y seguridad en memoria."
+solution: "Se desarrolló un módulo RSA en C usando GMP para generación de claves, cifrado y descifrado con exponenciación modular eficiente."
+result: "Se obtuvo una implementación funcional de RSA con pruebas de cifrado/descifrado y una base sólida para demostraciones interactivas."
+stack: ["C", "GMP", "Criptografía"]
+ogImage: "/og/projects/rsa-en-c.svg"
 hasInteractiveComponent: true
+interactiveDemo: "rsa-simulator"
+navigationOrder: 40
+publishedAt: 2026-04-18
 featured: true
-publishedAt: 2024-09-15
 ---
-
-import RSASimulator from '../../islands/RSASimulator.tsx';
 
 ## El algoritmo
 
-El contenido detallado del caso de estudio va aquí en formato Markdown.
-Puedes importar componentes Preact directamente:
+La demostración interactiva del flujo RSA aparece antes de este contenido para separar la evidencia operativa del detalle narrativo.
 
-<RSASimulator client:visible />
+En el caso de estudio completo, la implementación en C se apoya en GMP para trabajar con enteros grandes, mientras que la simulación visual usa números pequeños para hacer trazable cada paso del algoritmo.
 
-El texto continúa después del componente interactivo...
+El valor técnico de este proyecto está en conectar la matemática, la implementación y la posibilidad de verificar el comportamiento de cifrado y descifrado en una interfaz controlada.

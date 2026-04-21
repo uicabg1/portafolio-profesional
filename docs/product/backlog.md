@@ -40,12 +40,17 @@ Este documento resume el estado funcional del portafolio con foco en trabajo pen
 - Assets Open Graph versionados y validados por prueba automatizada para evitar despliegues incompletos
 - Validación no destructiva de rollback desde backup generado por el workflow
 - Documentación operativa curada para cierre de Sprint 6
+- QA final de Sprint 7 ejecutado y documentado
+- Lighthouse local con Accessibility, Best Practices y SEO en `100` para home y página de proyecto
+- Responsive validado en mobile, tablet y desktop amplio
+- Revisión cross-browser ejecutada con Chromium/Chrome, WebKit y Firefox
+- Release base listo para publicación desde `main`
 
 ### En progreso
 
 - Documentación canónica del proyecto y separación de histórico
 - Organización de la evidencia LACNIC/TIDE dentro de la documentación canónica
-- QA final de release en Sprint 7
+- Planeación del siguiente ciclo visual/comercial
 
 ### Pendiente
 
@@ -56,14 +61,14 @@ Este documento resume el estado funcional del portafolio con foco en trabajo pen
 
 ## Próximas prioridades
 
-1. Ejecutar Sprint 7: QA final, accesibilidad, responsive, performance y cierre de release.
-2. Corregir los hints de Zod en `src/content.config.ts` si se decide limpiar deuda técnica menor.
+1. Publicar el release base desde GitHub Actions y confirmar producción.
+2. Planear el sprint posterior de rediseño UI completo.
 3. Versionar configuración de servidor o plantillas asociadas.
-4. Planear el sprint posterior de rediseño UI completo.
+4. Profundizar observabilidad con monitoreo externo si el proyecto lo requiere.
 
 ## Relación con requisitos
 
 - Fuente de requisitos: [requisitos.md](requisitos.md)
-- Sprint activo: [../sprints/sprint-7-qa-release-y-cierre.md](../sprints/sprint-7-qa-release-y-cierre.md)
+- Último sprint cerrado: [../sprints/sprint-7-qa-release-y-cierre.md](../sprints/sprint-7-qa-release-y-cierre.md)
 - Sprint anterior cerrado: [../sprints/sprint-6-cicd-operacion-y-servicios-complementarios.md](../sprints/sprint-6-cicd-operacion-y-servicios-complementarios.md)
 - El backlog debe mantenerse alineado con el estado del código, no con los runbooks históricos.

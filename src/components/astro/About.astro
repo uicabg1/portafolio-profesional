@@ -1,0 +1,225 @@
+---
+import { Award, BadgeCheck, GraduationCap, Network } from 'lucide-preact';
+
+const profileSignals = [
+	{
+		title: 'UADY',
+		status: 'En formacion',
+		description: 'Segundo semestre de Ingenieria de Software, con foco en estructura, claridad y bases tecnicas solidas.',
+		icon: GraduationCap,
+	},
+	{
+		title: 'TIDE Fellows 2026',
+		status: 'Activo',
+		description: 'Entorno de alto desempeño que fortalece criterio tecnico, disciplina de trabajo y proyeccion profesional.',
+		icon: Award,
+	},
+	{
+		title: 'IPv6 basico',
+		status: 'Certificado',
+		description: 'Certificacion obtenida en LACNIC como base formal para direccionamiento, autoconfiguracion y transicion.',
+		icon: BadgeCheck,
+	},
+	{
+		title: 'LACNIC en progreso',
+		status: 'En curso',
+		description: 'IPv6 avanzado y gestion de redes como capacidad en progreso con evidencia, no como especializacion cerrada.',
+		icon: Network,
+	},
+];
+---
+
+<section
+	id="sobre-mi"
+	aria-labelledby="about-heading"
+	class="about-section"
+>
+	<div class="container about-shell">
+		<div class="about-copy">
+			<p class="about-eyebrow">Sobre mi</p>
+
+				<h2 id="about-heading" class="about-title">
+					Trabajo web con una base tecnica en crecimiento que ayuda a construir con mas criterio.
+				</h2>
+
+			<div class="about-text">
+				<p>
+					Hoy me enfoco en construir sitios web claros, rapidos y mantenibles para negocio.
+					No intento vender una consultoria mas grande de la que puedo sostener: mi propuesta actual
+					es web-first, con una capa tecnica que respalda mejor cada decision.
+				</p>
+
+					<p>
+						Esa base viene de estudiar Ingenieria de Software en la UADY, participar en TIDE Fellows 2026
+						y complementar la parte web con formacion LACNIC en IPv6 y gestion de redes. El objetivo no es
+						llenar la pagina de jerga, sino construir mejor hoy y preparar con honestidad la parte de VPS
+						y despliegue administrado que llegara cuando exista infraestructura real documentada.
+					</p>
+			</div>
+		</div>
+
+		<aside class="about-panel" aria-labelledby="about-panel-title">
+			<div class="about-panel-header">
+				<p class="about-panel-label">Evidencia actual</p>
+				<h3 id="about-panel-title" class="about-panel-title">
+					Señales concretas de aprendizaje y criterio.
+				</h3>
+			</div>
+
+			<div class="about-signal-list">
+				{profileSignals.map(({ title, status, description, icon: Icon }) => (
+					<article class="about-signal">
+						<div class="about-signal-icon">
+							<Icon size={18} />
+						</div>
+
+						<div class="about-signal-body">
+							<div class="about-signal-top">
+								<p class="about-signal-title">{title}</p>
+								<span class="about-signal-status">{status}</span>
+							</div>
+
+							<p class="about-signal-description">{description}</p>
+						</div>
+					</article>
+				))}
+			</div>
+		</aside>
+	</div>
+</section>
+
+<style>
+	.about-section {
+		border-top: 1px solid var(--color-bg-muted);
+		padding: var(--space-24) 0;
+		background: var(--color-bg);
+	}
+
+	.about-shell {
+		display: grid;
+		gap: var(--space-12);
+		align-items: start;
+	}
+
+	.about-copy,
+	.about-panel {
+		display: grid;
+		gap: var(--space-6);
+	}
+
+	.about-eyebrow,
+	.about-panel-label {
+		font-family: var(--font-mono);
+		font-size: var(--text-xs);
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		color: var(--color-text-secondary);
+	}
+
+	.about-title {
+		max-width: 13ch;
+		font-size: var(--text-4xl);
+		line-height: 1.05;
+	}
+
+	.about-text {
+		display: grid;
+		gap: var(--space-6);
+	}
+
+	.about-text p {
+		max-width: 58ch;
+		font-size: var(--text-lg);
+		line-height: 1.85;
+		color: var(--color-text-secondary);
+	}
+
+	.about-panel {
+		padding: var(--space-8);
+		border: 1px solid var(--color-bg-muted);
+		border-radius: var(--radius-lg);
+		background: var(--color-bg-subtle);
+	}
+
+	.about-panel-title {
+		font-size: var(--text-2xl);
+		line-height: 1.15;
+	}
+
+	.about-signal-list {
+		display: grid;
+		gap: var(--space-5);
+	}
+
+	.about-signal {
+		display: grid;
+		grid-template-columns: auto 1fr;
+		gap: var(--space-4);
+		align-items: start;
+		padding-top: var(--space-5);
+		border-top: 1px solid color-mix(in srgb, var(--color-bg-muted) 78%, transparent);
+	}
+
+	.about-signal:first-child {
+		padding-top: 0;
+		border-top: none;
+	}
+
+	.about-signal-icon {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 40px;
+		height: 40px;
+		border-radius: var(--radius-md);
+		background: var(--color-accent-subtle);
+		color: var(--color-accent-text);
+	}
+
+	.about-signal-body {
+		display: grid;
+		gap: var(--space-3);
+	}
+
+	.about-signal-top {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-3);
+		align-items: center;
+	}
+
+	.about-signal-title {
+		font-size: var(--text-base);
+		font-weight: 500;
+		color: var(--color-text-primary);
+	}
+
+	.about-signal-status {
+		display: inline-flex;
+		align-items: center;
+		min-height: 28px;
+		padding: 0 var(--space-3);
+		border-radius: var(--radius-full);
+		background: var(--color-bg);
+		border: 1px solid var(--color-bg-muted);
+		font-family: var(--font-mono);
+		font-size: var(--text-xs);
+		color: var(--color-text-secondary);
+	}
+
+	.about-signal-description {
+		max-width: 42ch;
+		line-height: 1.8;
+		color: var(--color-text-secondary);
+	}
+
+	@media (min-width: 960px) {
+		.about-shell {
+			grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+		}
+
+		.about-title {
+			font-size: var(--text-6xl);
+		}
+	}
+</style>

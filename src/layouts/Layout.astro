@@ -3,25 +3,41 @@
 // Layout base que envuelve todas las páginas del sitio.
 // Gestiona: <head>, fuentes, meta tags SEO, script de tema, y accesibilidad.
 
-import '../styles/global.css'; // <--- AÑADE ESTA LÍNEA AQUÍ
+import '../styles/global.css';
 
 interface Props {
   title: string;
   description?: string;
   ogImage?: string;
   canonicalUrl?: string;
+  ogType?: string;
+  structuredData?: Record<string, unknown> | Array<Record<string, unknown>>;
 }
 
 const {
   title,
-  description = 'Desarrollador de Software especializado en soluciones web para PYMES. Estudiante de Ingeniería de Software en UADY, becario TIDE Fellows.',
-  ogImage = '/og-default.jpg',
+  description = 'Gadiel Uicab · Ingeniero De Software especializado en soluciones web para PYMES. Estudiante de Ingeniería de Software en UADY, becario TIDE Fellows.',
+  ogImage = '/og/default.svg',
   canonicalUrl = Astro.url.href,
+  ogType = 'website',
+  structuredData,
 } = Astro.props as Props;
 
 const fullTitle = title === 'Home'
-  ? 'Gadiel | Desarrollador de Software'
+  ? 'Gadiel Uicab | Ingeniero De Software'
   : `${title} · Gadiel`;
+
+const resolvedOgImage = ogImage.startsWith('http')
+  ? ogImage
+  : Astro.site
+    ? new URL(ogImage, Astro.site).toString()
+    : ogImage;
+
+const structuredDataEntries = structuredData
+  ? Array.isArray(structuredData)
+    ? structuredData
+    : [structuredData]
+  : [];
 ---
 
 <!doctype html>
@@ -30,30 +46,58 @@ const fullTitle = title === 'Home'
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <!--
+    TEMA: este script DEBE ir primero, antes del CSS.
+    Al ejecutarse síncronamente bloquea el render hasta que el atributo
+    data-theme esté correcto, eliminando el FOWT.
+    is:inline = Astro no lo procesa ni lo defer-ea.
+  -->
+  <script is:inline>
+    (function () {
+      const stored = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const theme = stored ?? (prefersDark ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+
   <!-- SEO básico -->
   <title>{fullTitle}</title>
   <meta name="description" content={description} />
   <link rel="canonical" href={canonicalUrl} />
   <meta name="robots" content="index, follow" />
-  <meta name="author" content="Gadiel" />
+  <meta name="author" content="Gadiel Uicab" />
 
-  <!-- Open Graph -->
+  <!-- Open Graph (WhatsApp, LinkedIn y redes usan estos tags al compartir el link) -->
   <meta property="og:title" content={fullTitle} />
   <meta property="og:description" content={description} />
-  <meta property="og:image" content={new URL(ogImage, Astro.site)} />
+  <meta property="og:image" content={resolvedOgImage} />
   <meta property="og:url" content={canonicalUrl} />
-  <meta property="og:type" content="website" />
+  <meta property="og:type" content={ogType} />
+  <meta property="og:site_name" content="Gadiel Uicab" />
   <meta property="og:locale" content="es_MX" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content={fullTitle} />
   <meta name="twitter:description" content={description} />
-  <meta name="twitter:image" content={new URL(ogImage, Astro.site)} />
+  <meta name="twitter:image" content={resolvedOgImage} />
+
+  {structuredDataEntries.map((entry) => (
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify(entry)}
+    />
+  ))}
 
   <!-- Fuentes Google — preconnect para reducir latencia [RNF-04 FCP] -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500&family=Geist+Mono:wght@400&family=Instrument+Serif:ital@0;1&display=swap"
+    rel="stylesheet"
+  />
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -62,42 +106,32 @@ const fullTitle = title === 'Home'
     En producción, Astro procesa y optimiza este import automáticamente.
     El output en dist/ será un archivo CSS minificado con solo las clases usadas.
   -->
-
-  <!--
-    Script inline de tema — debe ejecutarse antes del render para evitar
-    flash of wrong theme (FOWT). Se coloca en <head> antes del body.
-    Lee la preferencia del sistema y la del usuario guardada en localStorage.
-  -->
-  <script is:inline>
-    (function() {
-      const stored = localStorage.getItem('theme');
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      const theme = stored ?? (prefersDark ? 'dark' : 'light');
-      document.documentElement.setAttribute('data-theme', theme);
-    })();
-  </script>
 </head>
 
 <body>
-  <!-- Skip link — accesibilidad [RNF-09]: permite saltar al contenido principal con teclado -->
+  <!--
+    SKIP LINK: requerido por WCAG 2.1 §2.4.1 (RNF-09).
+    Invisible hasta que recibe foco por teclado (Tab).
+    Permite a usuarios de teclado y lectores de pantalla saltar la
+    navegación repetitiva e ir directo al contenido principal.
+    La clase focus:top-0 lo muestra cuando recibe foco.
+  -->
   <a
     href="#main-content"
-    style="
-      position: absolute;
-      top: -100%;
-      left: 0;
-      padding: 0.5rem 1rem;
-      background: var(--color-accent);
-      color: white;
-      z-index: 9999;
-      border-radius: 0 0 var(--radius-md) 0;
-    "
-    class="focus:top-0"
+    class="skip-link"
   >
-    Saltar al contenido
+    Saltar al contenido principal
   </a>
 
-  <main id="main-content">
+  <div class="theme-fade theme-fade--from" aria-hidden="true"></div>
+  <div class="theme-fade theme-fade--to" aria-hidden="true"></div>
+
+  <!--
+    Por ahora este layout usa solo el slot predeterminado.
+    Los named slots quedarían reservados para variaciones futuras del header o footer.
+  -->
+
+  <main id="main-content" class="page-shell">
     <slot />
   </main>
 </body>

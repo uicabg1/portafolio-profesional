@@ -1,0 +1,288 @@
+---
+import { ArrowRight, Gauge, Globe, PanelsTopLeft, Server } from 'lucide-preact';
+
+const services = [
+	{
+		number: '01',
+		title: 'Sitios web para negocio',
+		icon: Globe,
+		description:
+			'Sitios claros, ligeros y orientados a que tu negocio se vea serio, explique bien su oferta y tenga un canal de contacto directo.',
+		idealFor: 'Negocios pequenos o medianos que necesitan presencia web profesional sin complejidad innecesaria.',
+		deliverables: [
+			'Arquitectura one-page o multipagina segun el alcance',
+			'Copy estructurado para explicar servicios con claridad',
+			'CTA visibles para WhatsApp, correo o formulario',
+		],
+	},
+	{
+		number: '02',
+		title: 'Landing pages y portafolios profesionales',
+		icon: PanelsTopLeft,
+		description:
+			'Paginas enfocadas en una accion concreta: presentar un servicio, lanzar una idea o mostrar trabajo real con una narrativa mas ordenada.',
+		idealFor: 'Profesionales, estudiantes o proyectos que necesitan una pagina publica mas creible y mejor presentada.',
+		deliverables: [
+			'Jerarquia visual clara para desktop y mobile',
+			'Casos de estudio o muestras de trabajo bien integradas',
+			'SEO tecnico base y metadata lista para compartir',
+		],
+	},
+		{
+			number: '03',
+			title: 'Mejora tecnica y publicacion',
+			icon: Gauge,
+			description:
+				'Refuerzo tecnico para sitios estaticos: estructura, rendimiento, contenido, mantenimiento y una ruta de publicacion mas limpia.',
+			idealFor: 'Sitios ya existentes que necesitan verse mejor, cargar rapido o quedar listos para publicarse con menos friccion.',
+			deliverables: [
+				'Revision de estructura, contenido y navegacion',
+				'Ajustes de performance, semantica y experiencia movil',
+				'Preparacion para publicacion estatica y documentacion base para la siguiente etapa tecnica',
+			],
+		},
+];
+---
+
+<section
+	id="servicios"
+	aria-labelledby="services-heading"
+	class="services-section"
+>
+	<div class="container services-shell">
+		<div class="services-intro">
+			<p class="services-eyebrow">Servicios activos</p>
+
+				<h2 id="services-heading" class="services-title">
+					Servicios web que ya puedo sostener hoy, con una base tecnica que aumenta la confianza.
+				</h2>
+
+				<p class="services-description">
+					La prioridad actual es resolver presencia web, claridad de mensaje y una salida publica mas
+					profesional. La parte de servidor propio sigue en ruta, pero no se presenta como servicio activo
+					hasta estar ejecutada y documentada con evidencia real.
+				</p>
+		</div>
+
+		<div class="services-list">
+			{services.map(({ number, title, icon: Icon, description, idealFor, deliverables }) => (
+				<article class="service-row">
+					<div class="service-main">
+						<div class="service-header">
+							<span class="service-number">{number}</span>
+							<div class="service-icon">
+								<Icon size={18} />
+							</div>
+						</div>
+
+						<div class="service-copy">
+							<h3 class="service-title">{title}</h3>
+							<p class="service-description">{description}</p>
+						</div>
+					</div>
+
+					<div class="service-aside">
+						<p class="service-aside-label">Ideal para</p>
+						<p class="service-aside-copy">{idealFor}</p>
+
+						<ul class="service-deliverables" role="list">
+							{deliverables.map((item) => (
+								<li>{item}</li>
+							))}
+						</ul>
+
+							<a
+								href="/#contacto"
+								class="service-link"
+							>
+								Llevar este servicio a contacto
+								<ArrowRight size={16} />
+							</a>
+					</div>
+				</article>
+			))}
+		</div>
+
+		<aside class="services-roadmap" aria-label="Capa tecnica en progreso">
+			<div class="services-roadmap-icon">
+				<Server size={18} />
+			</div>
+
+			<div class="services-roadmap-copy">
+					<p class="services-roadmap-label">Post-Sprint 4</p>
+					<h3 class="services-roadmap-title">La siguiente capa tecnica se habilita cuando exista el VPS real.</h3>
+					<p class="services-roadmap-text">
+						Despliegue tecnico administrado, hosting propio en VPS y sitios web con setup tecnico solido
+						entraran a la oferta solo cuando el Droplet de DigitalOcean, IPv6, SSL y el flujo de deploy
+						esten configurados y documentados con evidencia real.
+					</p>
+			</div>
+		</aside>
+	</div>
+</section>
+
+<style>
+	.services-section {
+		border-top: 1px solid var(--color-bg-muted);
+		padding: var(--space-24) 0;
+		background: linear-gradient(180deg, var(--color-bg) 0%, var(--color-bg-subtle) 100%);
+	}
+
+	.services-shell,
+	.services-intro,
+	.services-list {
+		display: grid;
+		gap: var(--space-12);
+	}
+
+	.services-eyebrow,
+	.service-number,
+	.service-aside-label,
+	.services-roadmap-label {
+		font-family: var(--font-mono);
+		font-size: var(--text-xs);
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		color: var(--color-text-secondary);
+	}
+
+	.services-title {
+		max-width: 13ch;
+		font-size: var(--text-4xl);
+		line-height: 1.05;
+	}
+
+	.services-description {
+		max-width: 58ch;
+		font-size: var(--text-lg);
+		line-height: 1.85;
+		color: var(--color-text-secondary);
+	}
+
+	.service-row {
+		display: grid;
+		gap: var(--space-8);
+		padding: var(--space-8) 0;
+		border-top: 1px solid var(--color-bg-muted);
+	}
+
+	.service-main,
+	.service-copy,
+	.service-aside {
+		display: grid;
+		gap: var(--space-4);
+	}
+
+	.service-header {
+		display: flex;
+		align-items: center;
+		gap: var(--space-4);
+	}
+
+	.service-icon {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 38px;
+		height: 38px;
+		border-radius: var(--radius-md);
+		background: var(--color-accent-subtle);
+		color: var(--color-accent-text);
+	}
+
+	.service-title {
+		font-size: var(--text-2xl);
+		line-height: 1.1;
+	}
+
+	.service-description,
+	.service-aside-copy {
+		max-width: 40ch;
+		line-height: 1.8;
+		color: var(--color-text-secondary);
+	}
+
+	.service-deliverables {
+		list-style: none;
+		display: grid;
+		gap: var(--space-3);
+	}
+
+	.service-deliverables li {
+		padding-left: var(--space-4);
+		position: relative;
+		line-height: 1.75;
+		color: var(--color-text-secondary);
+	}
+
+	.service-deliverables li::before {
+		content: '';
+		position: absolute;
+		top: 0.7rem;
+		left: 0;
+		width: 6px;
+		height: 6px;
+		border-radius: 50%;
+		background: var(--color-accent);
+	}
+
+	.service-link {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--space-2);
+		font-size: var(--text-sm);
+		font-weight: 500;
+	}
+
+	.services-roadmap {
+		display: grid;
+		gap: var(--space-6);
+		padding: var(--space-8);
+		border: 1px solid var(--color-bg-muted);
+		border-radius: var(--radius-lg);
+		background: color-mix(in srgb, var(--color-bg) 82%, transparent);
+	}
+
+	.services-roadmap-icon {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 42px;
+		height: 42px;
+		border-radius: var(--radius-md);
+		background: var(--color-accent-subtle);
+		color: var(--color-accent-text);
+	}
+
+	.services-roadmap-copy {
+		display: grid;
+		gap: var(--space-3);
+	}
+
+	.services-roadmap-title {
+		font-size: var(--text-2xl);
+		line-height: 1.15;
+	}
+
+	.services-roadmap-text {
+		max-width: 58ch;
+		line-height: 1.8;
+		color: var(--color-text-secondary);
+	}
+
+	@media (min-width: 960px) {
+		.services-title {
+			font-size: var(--text-6xl);
+		}
+
+		.service-row {
+			grid-template-columns: minmax(0, 1.1fr) minmax(260px, 0.9fr);
+			align-items: start;
+		}
+
+		.services-roadmap {
+			grid-template-columns: auto 1fr;
+			align-items: start;
+		}
+	}
+</style>

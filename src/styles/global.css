@@ -4,6 +4,33 @@
 @import "tailwindcss";
 
 
+/* ── Skip Link — accesibilidad [RNF-09] ────────────────────────────
+  El skip link es el primer elemento enfocable del DOM.
+  En estado normal está fuera de la pantalla (no oculto con display:none
+  porque eso lo elimina del flujo de teclado).
+  Al recibir foco, aparece en la esquina superior izquierda.
+*/
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  padding: var(--space-3) var(--space-6);
+  background: var(--color-accent);
+  color: var(--color-accent-contrast);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  z-index: 9999;
+  border-radius: 0 0 var(--radius-md) 0;
+  text-decoration: none;
+  transition: top 150ms ease;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+
 /* ── 3. Tokens del sistema de diseño via @theme ───────────────────── */
 @theme {
   /* Tipografía */
@@ -31,6 +58,7 @@
   --space-12: 3rem;
   --space-16: 4rem;
   --space-24: 6rem;
+  --space-28: 7rem;
 
   /* Layout y Bordes */
   --container-max:   1200px;
@@ -49,11 +77,12 @@
   --color-text-muted:       #A1A1AA;
   --color-accent:            #1D4ED8;
   --color-accent-hover:      #1E40AF;
+  --color-accent-contrast:   #FFFFFF;
   --color-accent-subtle:     #DBEAFE;
   --color-accent-text:       #1E40AF;
   --color-whatsapp:          #25D366;
   --color-whatsapp-hover:    #1DAA52;
-  --color-whatsapp-text:     #FFFFFF;
+  --color-whatsapp-text:     #062A14;
   --color-success:           #16A34A;
   --color-error:             #DC2626;
 }
@@ -68,6 +97,7 @@
   --color-text-muted:       #52525B;
   --color-accent:            #60A5FA;
   --color-accent-hover:      #93C5FD;
+  --color-accent-contrast:   #08111F;
   --color-accent-subtle:     #1E3A5F;
   --color-accent-text:       #93C5FD;
 }
@@ -86,6 +116,80 @@ html {
   background-color: var(--color-bg);
   color: var(--color-text-primary);
   scroll-behavior: smooth;
+  scroll-padding-top: calc(60px + var(--space-6));
+}
+
+section[id] {
+  scroll-margin-top: calc(60px + var(--space-6));
+}
+
+/*
+  Capas de crossfade para el cambio de tema.
+  .theme-fade--from muestra el color actual y se desvanece.
+  .theme-fade--to muestra el color destino y aparece al mismo tiempo.
+*/
+.theme-fade {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  pointer-events: none;
+  background-color: transparent;
+  opacity: 0;
+  transition: opacity 900ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity;
+}
+
+.theme-fade--from {
+  z-index: 9998;
+}
+
+.theme-fade--to {
+  z-index: 9999;
+}
+
+html.theme-transitioning .theme-fade--from {
+  opacity: 1;
+}
+
+html.theme-transitioning .theme-fade--to {
+  opacity: 0;
+}
+
+html.theme-transitioning.theme-transitioning--exit .theme-fade--from {
+  opacity: 0;
+}
+
+html.theme-transitioning.theme-transitioning--exit .theme-fade--to {
+  opacity: 1;
+}
+
+.page-shell {
+  opacity: 1;
+  transition: opacity 320ms ease;
+}
+
+html.theme-transitioning .page-shell {
+  opacity: 0;
+}
+
+html.theme-transitioning.theme-transitioning--exit .page-shell {
+  opacity: 1;
+}
+
+html.theme-transitioning .theme-fade--from {
+  opacity: 1;
+}
+
+html.theme-transitioning .theme-fade--to {
+  opacity: 1;
+}
+
+html.theme-transitioning.theme-transitioning--exit .theme-fade--from {
+  opacity: 0;
+}
+
+html.theme-transitioning.theme-transitioning--exit .theme-fade--to {
+  opacity: 0;
 }
 
 body {
@@ -163,6 +267,10 @@ a:hover {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .theme-fade {
+    transition: none;
+  }
+
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;

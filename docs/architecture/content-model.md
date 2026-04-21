@@ -87,4 +87,4 @@ npm run build
 - `githubUrl` y `demoUrl` usan `z.string().url()`, lo que hoy genera hints de deprecación desde Zod en `astro check`.
 - Un `slug` manual inconsistente puede romper enlaces esperados entre la home y la ruta dinámica.
 - Un `navigationOrder` mal asignado puede alterar la continuidad editorial del detalle de proyectos.
-- Mientras `astro.config.mjs` use un dominio placeholder en `site`, canonical y `og:url` seguirán saliendo con esa base.
+- `astro.config.mjs` ya usa el dominio real `https://uicabgadiel.com`, por lo que canonical y `og:url` salen con la base pública final.

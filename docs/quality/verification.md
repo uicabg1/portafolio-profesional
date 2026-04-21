@@ -40,3 +40,14 @@ Revisar manualmente:
 - resultado de salida
 - revisión manual realizada
 - riesgos conocidos o huecos pendientes
+
+## Evidencia Sprint 7
+
+Fecha: 2026-04-21
+
+- `npm test`: 5/5
+- `npm run astro -- check`: 0 errores, 0 warnings, 0 hints
+- `npm run build`: 6 páginas generadas
+- Lighthouse home: `99 / 100 / 100 / 100`
+- Lighthouse proyecto: `97 / 100 / 100 / 100`
+- producción pendiente de publicar desde `main` después del commit de Sprint 7

@@ -6,7 +6,7 @@ import tailwindcss from '@tailwindcss/vite';
 // https://astro.build/config
 export default defineConfig({
   output: 'static',          // RNF-19: HTML estático puro, sin runtime de Node en VPS
-  site: 'https://tudominio.com', // Reemplazar con el dominio real — necesario para sitemap y canonical URLs
+  site: 'https://uicabgadiel.com', // Dominio real para sitemap y canonical URLs
 
   integrations: [
     preact(),                // ADR-04: Islas interactivas (~3 KB runtime)

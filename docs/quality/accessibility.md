@@ -10,6 +10,18 @@ Mantener una base razonable de accesibilidad en navegación, estructura semánti
 - foco visible y navegación por teclado básica
 - uso de headings semánticos en secciones principales
 - contenido estático disponible sin depender del filtro interactivo
+- contraste corregido para botones de acento en modo oscuro
+- nombres accesibles alineados con el texto visible en CTAs principales
+- separación táctil reforzada en filtros de proyecto
+
+## Evidencia reciente
+
+Fecha: 2026-04-21
+
+- Lighthouse Accessibility home: `100`
+- Lighthouse Accessibility `/proyectos/portafolio-m4/`: `100`
+- revisión responsive visual en `375px`, `390px`, `768px` y desktop amplio
+- revisión cross-browser con Chromium/Chrome, WebKit y Firefox mediante Playwright
 
 ## Verificación manual sugerida
 

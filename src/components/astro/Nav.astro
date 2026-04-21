@@ -1,0 +1,631 @@
+---
+// Navegación principal del portafolio.
+// Sin framework de UI: usa JS inline para menú móvil y toggle de tema.
+//
+// Links de navegación: todos los anclas (#) llevan a secciones de la home.
+//
+// Decisiones:
+// - Logo = nombre completo en Instrument Serif. No un ícono anónimo.
+// - Links en Geist 400. El peso visual pertenece al contenido, no a la nav.
+// - El único CTA de color en la nav es "Contacto" con acento índigo.
+//   Principio: una sola llamada a la acción por área visual.
+// - Toggle de tema: ícono de sol/luna. Sin texto para ahorrar espacio en mobile.
+// - Mobile: hamburger menu. El menú se despliega debajo del header.
+
+const navLinks = [
+  { href: '/#servicios',      label: 'Servicios' },
+  { href: '/#proyectos',      label: 'Proyectos' },
+  { href: '/#infraestructura', label: 'Infraestructura' },
+];
+
+// Usamos Astro.url.pathname para marcar el link activo.
+// En la home, los links ancla (#) se consideran "no activos".
+const currentPath = Astro.url.pathname;
+---
+
+<header class="nav-header" role="banner">
+  <nav
+    class="nav-inner container"
+    aria-label="Navegación principal"
+  >
+    <!-- Logo / nombre -->
+    <!--
+      El logo es tu nombre. Esto cumple dos funciones:
+      1. Brand recognition: el visitante sabe inmediatamente quién eres.
+      2. SEO: el link del logo lleva a / y refuerza la URL canónica.
+      Usa Instrument Serif para distinguirlo del cuerpo del texto (Geist).
+    -->
+    <a
+      href="/"
+      class="nav-logo"
+      aria-label="Ir al inicio — Gadiel Uicab, Ingeniero De Software"
+    >
+      Gadiel
+    </a>
+
+    <!-- Links desktop: visibles en md+ -->
+    <ul
+      class="nav-links"
+      role="list"
+      aria-label="Links de navegación"
+    >
+      {navLinks.map(({ href, label }) => (
+        <li>
+          <a
+            href={href}
+            class={`nav-link ${currentPath === href ? 'nav-link--active' : ''}`}
+            aria-current={currentPath === href ? 'page' : undefined}
+          >
+            {label}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <!-- Acciones: toggle de tema + CTA de contacto -->
+    <div class="nav-actions">
+      <!--
+        Toggle de tema: accesible por teclado, con aria-label dinámico.
+        El label cambia con JS según el tema actual.
+        Los íconos de sol/luna son SVG inline y su visibilidad se controla con CSS.
+      -->
+      <button
+        id="theme-toggle"
+        class="theme-toggle"
+        aria-label="Cambiar a modo claro"
+        title="Cambiar tema"
+        type="button"
+      >
+        <!-- Sol (modo claro) -->
+        <svg
+          class="icon-sun"
+          xmlns="http://www.w3.org/2000/svg"
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <circle cx="12" cy="12" r="4"/>
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+        </svg>
+        <!-- Luna (modo oscuro) -->
+        <svg
+          class="icon-moon"
+          xmlns="http://www.w3.org/2000/svg"
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+
+      <!--
+        CTA principal de la nav: lleva al modulo de contacto.
+        Usa el color de acento índigo (--color-accent), no WhatsApp green.
+        En mobile este botón se mantiene visible incluso con menú cerrado
+        porque es la acción más importante de la nav.
+      -->
+      <a
+        href="/#contacto"
+        class="nav-cta"
+        aria-label="Ir a contacto"
+      >
+        Contacto
+      </a>
+
+      <!--
+        Hamburger: solo visible en mobile (< md).
+        aria-expanded se actualiza con JS cuando el menú se abre/cierra.
+        aria-controls apunta al id del menú móvil.
+      -->
+      <button
+        id="mobile-menu-toggle"
+        class="hamburger"
+        aria-label="Abrir menú de navegación"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        type="button"
+      >
+        <span class="hamburger-line" aria-hidden="true"></span>
+        <span class="hamburger-line" aria-hidden="true"></span>
+        <span class="hamburger-line" aria-hidden="true"></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Menú móvil: oculto por defecto, se activa con JS -->
+  <!--
+    Se usa aria-hidden="true" en estado cerrado para que lectores de
+    pantalla no lean los links cuando el menú no está visible.
+    El id="mobile-menu" conecta con aria-controls del hamburger.
+  -->
+  <div
+    id="mobile-menu"
+    class="mobile-menu"
+    aria-hidden="true"
+    role="dialog"
+    aria-label="Menú de navegación móvil"
+  >
+    <ul role="list" class="mobile-menu-links">
+      {navLinks.map(({ href, label }) => (
+        <li>
+          <a
+            href={href}
+            class="mobile-menu-link"
+            aria-current={currentPath === href ? 'page' : undefined}
+          >
+            {label}
+          </a>
+        </li>
+      ))}
+      <!-- En mobile también se muestra el CTA dentro del menú -->
+      <li>
+        <a href="/#contacto" class="mobile-menu-link mobile-menu-link--cta">
+          Contacto
+        </a>
+      </li>
+    </ul>
+  </div>
+</header>
+
+<!--
+  Estilos escopados al componente Nav.
+  Tailwind se usa para utilidades puntuales.
+  Los estilos estructurales (layout de la nav) van en <style> para
+  mantener la legibilidad y el aislamiento del componente.
+-->
+<style>
+  /* ── Header ─────────────────────────────────────────────────────── */
+  .nav-header {
+    position: sticky;       /* Se queda en la parte superior al hacer scroll */
+    top: 0;
+    z-index: 40;
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-bg-muted);
+    /*
+      backdrop-filter: blur() crea el efecto "frosted glass" de macOS.
+      Solo funciona si el fondo tiene algo de transparencia.
+      El efecto es sutil — no cambia la opacidad del texto.
+    */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  /* ── Fila interior de la nav ─────────────────────────────────────── */
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;           /* Altura fija. El contenido no desplaza el layout. */
+  }
+
+  /* ── Logo ────────────────────────────────────────────────────────── */
+  .nav-logo {
+    font-family: var(--font-display);   /* Instrument Serif */
+    font-size: var(--text-xl);          /* 20px */
+    font-weight: 400;
+    color: var(--color-text-primary);
+    text-decoration: none;
+    letter-spacing: -0.01em;
+    transition: opacity 150ms ease;
+    flex-shrink: 0;                     /* No se comprime en pantallas pequeñas */
+  }
+
+  .nav-logo:hover {
+    opacity: 0.75;
+  }
+
+  /* ── Links desktop ───────────────────────────────────────────────── */
+  .nav-links {
+    display: none;          /* Oculto en mobile */
+    list-style: none;
+    gap: var(--space-8);
+    align-items: center;
+  }
+
+  @media (min-width: 768px) {
+    .nav-links {
+      display: flex;
+    }
+  }
+
+  .nav-link {
+    font-family: var(--font-body);      /* Geist */
+    font-size: var(--text-sm);          /* 14px */
+    font-weight: 400;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    padding: var(--space-2) 0;
+    position: relative;
+    transition: color 150ms ease;
+  }
+
+  /* Subrayado animado en hover — reemplaza el subrayado nativo */
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--color-accent);
+    transition: width 200ms ease;
+  }
+
+  .nav-link:hover {
+    color: var(--color-text-primary);
+  }
+
+  .nav-link:hover::after,
+  .nav-link--active::after {
+    width: 100%;
+  }
+
+  .nav-link--active {
+    color: var(--color-text-primary);
+  }
+
+  /* ── Acciones (toggle + CTA) ─────────────────────────────────────── */
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  /* ── Toggle de tema ──────────────────────────────────────────────── */
+  .theme-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--color-bg-muted);
+    border-radius: var(--radius-md);
+    background: transparent;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    transition: color 150ms ease, border-color 150ms ease;
+    flex-shrink: 0;
+  }
+
+  .theme-toggle:hover {
+    color: var(--color-text-primary);
+    border-color: var(--color-text-muted);
+  }
+
+  .theme-toggle:disabled {
+    opacity: 0.55;
+    cursor: wait;
+  }
+
+  /*
+    Control de visibilidad de íconos según el tema activo.
+    El script de detección de tema en Layout.astro pone data-theme="dark"
+    o data-theme="light" en el <html>. Estos selectores leen ese atributo.
+  */
+  [data-theme="dark"] .icon-moon {
+    display: none;          /* En modo oscuro: muestra el sol (para cambiar a claro) */
+  }
+
+  [data-theme="light"] .icon-sun {
+    display: none;          /* En modo claro: muestra la luna (para cambiar a oscuro) */
+  }
+
+  /* ── CTA de contacto ─────────────────────────────────────────────── */
+  .nav-cta {
+    display: inline-flex;
+    align-items: center;
+    padding: var(--space-2) var(--space-4);
+    background: var(--color-accent);
+    color: var(--color-accent-contrast);
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    transition: background 150ms ease;
+    /*
+      min-height: 36px garantiza área táctil suficiente.
+      WCAG 2.5.5 recomienda 44px pero 36px en desktop es aceptable
+      ya que el usuario tiene cursor, no dedo.
+    */
+    min-height: 36px;
+  }
+
+  .nav-cta:hover {
+    background: var(--color-accent-hover);
+  }
+
+  /* ── Hamburger (mobile) ──────────────────────────────────────────── */
+  .hamburger {
+    display: flex;          /* Visible solo en mobile */
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 44px;            /* Mínimo táctil HU-06: ≥ 44×44 px */
+    height: 44px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    padding: var(--space-2);
+    border-radius: var(--radius-md);
+    transition: background 150ms ease;
+  }
+
+  .hamburger:hover {
+    background: var(--color-bg-subtle);
+  }
+
+  @media (min-width: 768px) {
+    .hamburger {
+      display: none;
+    }
+  }
+
+  .hamburger-line {
+    display: block;
+    width: 22px;
+    height: 1.5px;
+    background: var(--color-text-primary);
+    border-radius: 2px;
+    transition: transform 200ms ease, opacity 200ms ease;
+    transform-origin: center;
+  }
+
+  /* Animación hamburger → X cuando el menú está abierto */
+  .hamburger[aria-expanded="true"] .hamburger-line:nth-child(1) {
+    transform: translateY(6.5px) rotate(45deg);
+  }
+
+  .hamburger[aria-expanded="true"] .hamburger-line:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger[aria-expanded="true"] .hamburger-line:nth-child(3) {
+    transform: translateY(-6.5px) rotate(-45deg);
+  }
+
+  /* ── Menú móvil ──────────────────────────────────────────────────── */
+  .mobile-menu {
+    display: none;
+    border-top: 1px solid var(--color-bg-muted);
+    background: var(--color-bg);
+    padding: var(--space-4) 0 var(--space-6);
+  }
+
+  /*
+    El menú se activa con la clase .mobile-menu--open que agrega JS.
+    No usamos visibility ni opacity para que el browser pueda
+    optimizar el repaint correctamente.
+  */
+  .mobile-menu.mobile-menu--open {
+    display: block;
+  }
+
+  @media (min-width: 768px) {
+    .mobile-menu {
+      display: none !important;   /* Siempre oculto en desktop */
+    }
+  }
+
+  .mobile-menu-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mobile-menu-link {
+    display: block;
+    padding: var(--space-4) var(--space-6);
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    border-bottom: 1px solid var(--color-bg-muted);
+    min-height: 48px;           /* Área táctil HU-06: ≥ 44px (usamos 48 para holgura) */
+    display: flex;
+    align-items: center;
+    transition: color 150ms ease, background 150ms ease;
+  }
+
+  .mobile-menu-link:hover {
+    color: var(--color-text-primary);
+    background: var(--color-bg-subtle);
+  }
+
+  /* El CTA dentro del menú mobile tiene acento */
+  .mobile-menu-link--cta {
+    color: var(--color-accent);
+    font-weight: 500;
+  }
+
+  .mobile-menu-link--cta:hover {
+    color: var(--color-accent-hover);
+  }
+</style>
+
+<!--
+  JavaScript del componente Nav.
+  Se encarga de:
+  1. Toggle del menú móvil (hamburger)
+  2. Cerrar el menú al hacer clic en un link (navegación one-page)
+  3. Toggle de tema (dark/light)
+
+  No se usa Preact porque la lógica es trivial — 3 operaciones de DOM.
+  Agregar una isla de Preact aquí aumentaría el JS bundle en ~3 KB sin
+  ningún beneficio real.
+-->
+<script>
+  // ── Toggle de menú móvil ──────────────────────────────────────────
+  const hamburger = document.getElementById('mobile-menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  hamburger?.addEventListener('click', () => {
+    const isOpen = hamburger.getAttribute('aria-expanded') === 'true';
+    const nextState = !isOpen;
+
+    hamburger.setAttribute('aria-expanded', String(nextState));
+    hamburger.setAttribute(
+      'aria-label',
+      nextState ? 'Cerrar menú de navegación' : 'Abrir menú de navegación'
+    );
+    mobileMenu?.setAttribute('aria-hidden', String(!nextState));
+    mobileMenu?.classList.toggle('mobile-menu--open', nextState);
+  });
+
+  // Cerrar el menú al hacer clic en cualquier link del menú móvil.
+  // En un sitio one-page esto es crítico: el ancla cambia el hash
+  // pero el menú quedaría abierto tapando el contenido.
+  mobileMenu?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      hamburger?.setAttribute('aria-expanded', 'false');
+      hamburger?.setAttribute('aria-label', 'Abrir menú de navegación');
+      mobileMenu.setAttribute('aria-hidden', 'true');
+      mobileMenu.classList.remove('mobile-menu--open');
+    });
+  });
+
+  // ── Toggle de tema ────────────────────────────────────────────────
+  const themeToggle = document.getElementById('theme-toggle') as HTMLButtonElement | null;
+  type ThemeName = keyof typeof THEME_COLORS;
+
+  const THEME_COLORS = {
+    light: '#FAFAFA',
+    dark: '#09090B',
+  };
+
+  const CONTENT_FADE_OUT_MS = 320;
+  const BACKGROUND_MIX_MS = 900;
+  const CONTENT_FADE_IN_MS = 900;
+  const overlayFrom = document.querySelector('.theme-fade--from') as HTMLDivElement | null;
+  const overlayTo = document.querySelector('.theme-fade--to') as HTMLDivElement | null;
+  const pageShell = document.querySelector('.page-shell') as HTMLElement | null;
+
+  const getNextTheme = (): ThemeName => {
+    const current = document.documentElement.getAttribute('data-theme');
+    return current === 'dark' ? 'light' : 'dark';
+  };
+
+  const resetOverlayState = () => {
+    document.documentElement.classList.remove('theme-transitioning');
+    document.documentElement.classList.remove('theme-transitioning--exit');
+
+    if (overlayFrom) {
+      overlayFrom.style.opacity = '0';
+      overlayFrom.style.backgroundColor = 'transparent';
+    }
+
+    if (overlayTo) {
+      overlayTo.style.opacity = '0';
+      overlayTo.style.backgroundColor = 'transparent';
+    }
+
+    if (pageShell) {
+      pageShell.style.opacity = '1';
+    }
+
+    if (themeToggle) {
+      themeToggle.disabled = false;
+      themeToggle.setAttribute('aria-disabled', 'false');
+    }
+  };
+
+  const startThemeTransition = () => {
+    const html = document.documentElement;
+    const current = (html.getAttribute('data-theme') ?? 'dark') as ThemeName;
+    const next = getNextTheme();
+    const currentColor = THEME_COLORS[current];
+    const nextColor = THEME_COLORS[next];
+
+    if (themeToggle?.disabled) {
+      return;
+    }
+
+    if (!overlayFrom || !overlayTo) {
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+      themeToggle?.setAttribute(
+        'aria-label',
+        next === 'dark' ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'
+      );
+      return;
+    }
+
+    html.classList.add('theme-transitioning');
+
+    if (themeToggle) {
+      themeToggle.disabled = true;
+      themeToggle.setAttribute('aria-disabled', 'true');
+    }
+
+    if (pageShell) {
+      pageShell.style.opacity = '0';
+    }
+
+    overlayFrom.style.backgroundColor = currentColor;
+    overlayTo.style.backgroundColor = nextColor;
+    overlayFrom.style.opacity = '1';
+    overlayTo.style.opacity = '0';
+
+    window.setTimeout(() => {
+      if (overlayFrom) {
+        overlayFrom.style.opacity = '0';
+      }
+
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+
+      if (overlayTo) {
+        overlayTo.style.backgroundColor = nextColor;
+        overlayTo.style.opacity = '1';
+      }
+
+      window.setTimeout(() => {
+        html.classList.add('theme-transitioning--exit');
+
+        if (overlayTo) {
+          overlayTo.style.opacity = '0';
+        }
+
+        if (pageShell) {
+          pageShell.style.opacity = '1';
+        }
+      }, CONTENT_FADE_IN_MS);
+
+      themeToggle?.setAttribute(
+        'aria-label',
+        next === 'dark' ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'
+      );
+
+      window.setTimeout(() => {
+        resetOverlayState();
+      }, CONTENT_FADE_OUT_MS + BACKGROUND_MIX_MS + CONTENT_FADE_IN_MS);
+    }, CONTENT_FADE_OUT_MS);
+  };
+
+  themeToggle?.addEventListener('click', () => {
+    startThemeTransition();
+  });
+
+  // Sincronizar el aria-label con el tema que cargó el script inline de Layout.
+  // Esto corre después del render, cuando el DOM está disponible.
+  const initialTheme = document.documentElement.getAttribute('data-theme');
+  if (themeToggle && initialTheme) {
+    themeToggle.setAttribute(
+      'aria-label',
+      initialTheme === 'dark' ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'
+    );
+  }
+</script>
