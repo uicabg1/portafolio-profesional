@@ -1,0 +1,128 @@
+name: Deploy portfolio to VPS
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: production-deploy
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+env:
+  NODE_VERSION: '22'
+  PRODUCTION_URL: https://uicabgadiel.com
+  PROJECT_SMOKE_PATH: /proyectos/portafolio-m4/
+  OG_IMAGE_PATH: /og/default.svg
+
+jobs:
+  deploy:
+    name: Build and deploy static site
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run unit tests
+        run: npm test
+
+      - name: Run Astro checks
+        run: npm run astro -- check
+
+      - name: Build static site
+        run: npm run build
+
+      - name: Validate deployment secrets
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+          VPS_TARGET_DIR: ${{ secrets.VPS_TARGET_DIR }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        run: |
+          set -euo pipefail
+
+          for required_secret in VPS_HOST VPS_USER VPS_TARGET_DIR VPS_SSH_KEY; do
+            if [ -z "${!required_secret}" ]; then
+              echo "::error::Missing required secret: ${required_secret}"
+              exit 1
+            fi
+          done
+
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        run: |
+          set -euo pipefail
+
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/portfolio_deploy_key
+          chmod 600 ~/.ssh/portfolio_deploy_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Backup current production files
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+          VPS_TARGET_DIR: ${{ secrets.VPS_TARGET_DIR }}
+        run: |
+          set -euo pipefail
+
+          BACKUP_NAME="portafolio-${GITHUB_SHA::7}-$(date -u +%Y%m%dT%H%M%SZ).tar.gz"
+
+          ssh -i ~/.ssh/portfolio_deploy_key \
+            -o IdentitiesOnly=yes \
+            "$VPS_USER@$VPS_HOST" \
+            "mkdir -p ~/portafolio-backups && tar -czf ~/portafolio-backups/$BACKUP_NAME -C '$VPS_TARGET_DIR' . && ls -1t ~/portafolio-backups/portafolio-*.tar.gz | tail -n +6 | xargs -r rm -f"
+
+      - name: Deploy dist with rsync
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+          VPS_TARGET_DIR: ${{ secrets.VPS_TARGET_DIR }}
+        run: |
+          set -euo pipefail
+
+          rsync -az --delete-after --delay-updates \
+            -e "ssh -i ~/.ssh/portfolio_deploy_key -o IdentitiesOnly=yes" \
+            dist/ "$VPS_USER@$VPS_HOST:$VPS_TARGET_DIR/"
+
+      - name: Verify deployed files on VPS
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+          VPS_TARGET_DIR: ${{ secrets.VPS_TARGET_DIR }}
+        run: |
+          set -euo pipefail
+
+          ssh -i ~/.ssh/portfolio_deploy_key \
+            -o IdentitiesOnly=yes \
+            "$VPS_USER@$VPS_HOST" \
+            "test -f '$VPS_TARGET_DIR/index.html' && test -f '$VPS_TARGET_DIR/og/default.svg'"
+
+      - name: Verify public production endpoints
+        run: |
+          set -euo pipefail
+
+          curl --fail --location --silent --show-error --max-time 20 "$PRODUCTION_URL" >/dev/null
+          curl --fail --location --silent --show-error --max-time 20 "$PRODUCTION_URL$PROJECT_SMOKE_PATH" >/dev/null
+          curl --fail --location --silent --show-error --max-time 20 "$PRODUCTION_URL$OG_IMAGE_PATH" >/dev/null
+          curl -4 --fail --location --silent --show-error --max-time 20 "$PRODUCTION_URL" >/dev/null
+
+          if ! curl -6 --fail --location --silent --show-error --max-time 20 "$PRODUCTION_URL" >/dev/null; then
+            echo "::warning::IPv6 public check failed from the GitHub runner. Verify manually from a network with IPv6 support."
+          fi
