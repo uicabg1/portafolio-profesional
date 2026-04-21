@@ -1,0 +1,14 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#0B1220"/>
+  <rect x="44" y="44" width="1112" height="542" rx="28" fill="#111A2B" stroke="#243249"/>
+  <rect x="86" y="112" width="236" height="40" rx="20" fill="#163A63"/>
+  <text x="116" y="138" fill="#BFE3FF" font-size="20" font-family="Geist Mono, monospace" letter-spacing="2">CIBERSEGURIDAD</text>
+  <text x="86" y="256" fill="#F5F7FA" font-size="78" font-family="Geist, Arial, sans-serif" font-weight="700">RSA en C</text>
+  <text x="86" y="340" fill="#B8C7D9" font-size="34" font-family="Geist, Arial, sans-serif">Criptografia asimetrica desde fundamentos matematicos y GMP.</text>
+  <text x="86" y="460" fill="#8FB6D9" font-size="24" font-family="Geist Mono, monospace" letter-spacing="3">C / GMP / CRIPTOGRAFIA</text>
+  <rect x="940" y="104" width="130" height="156" rx="24" fill="#163A63"/>
+  <path d="M972 166C972 136.072 996.072 112 1026 112C1055.93 112 1080 136.072 1080 166V192H972V166Z" stroke="#BFE3FF" stroke-width="16"/>
+  <rect x="970" y="188" width="112" height="112" rx="18" fill="#64B5F6"/>
+  <circle cx="1026" cy="236" r="14" fill="#0B1220"/>
+  <path d="M1026 250V270" stroke="#0B1220" stroke-width="12" stroke-linecap="round"/>
+</svg>

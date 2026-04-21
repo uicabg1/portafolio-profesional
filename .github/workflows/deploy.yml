@@ -112,7 +112,14 @@ jobs:
           ssh -i ~/.ssh/portfolio_deploy_key \
             -o IdentitiesOnly=yes \
             "$VPS_USER@$VPS_HOST" \
-            "test -f '$VPS_TARGET_DIR/index.html' && test -f '$VPS_TARGET_DIR/og/default.svg'"
+            "for deployed_file in '$VPS_TARGET_DIR/index.html' '$VPS_TARGET_DIR/og/default.svg'; do
+              if [ ! -f \"\$deployed_file\" ]; then
+                echo \"Missing deployed file: \$deployed_file\" >&2
+                exit 1
+              fi
+
+              printf 'Found deployed file: %s\n' \"\$deployed_file\"
+            done"
 
       - name: Verify public production endpoints
         run: |

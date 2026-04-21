@@ -1,0 +1,12 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#0B1220"/>
+  <rect x="44" y="44" width="1112" height="542" rx="28" fill="#111A2B" stroke="#243249"/>
+  <rect x="86" y="112" width="180" height="40" rx="20" fill="#163A63"/>
+  <text x="116" y="138" fill="#BFE3FF" font-size="20" font-family="Geist Mono, monospace" letter-spacing="2">WEB DEV</text>
+  <text x="86" y="256" fill="#F5F7FA" font-size="78" font-family="Geist, Arial, sans-serif" font-weight="700">Portafolio M4</text>
+  <text x="86" y="340" fill="#B8C7D9" font-size="34" font-family="Geist, Arial, sans-serif">Sitio profesional static-first con filtros, contenido MDX y enfoque de conversión.</text>
+  <text x="86" y="460" fill="#8FB6D9" font-size="24" font-family="Geist Mono, monospace" letter-spacing="3">ASTRO / TYPESCRIPT / CSS</text>
+  <circle cx="1030" cy="170" r="92" fill="#123A67"/>
+  <path d="M988 170H1072" stroke="#BFE3FF" stroke-width="18" stroke-linecap="round"/>
+  <path d="M1030 128V212" stroke="#BFE3FF" stroke-width="18" stroke-linecap="round"/>
+</svg>

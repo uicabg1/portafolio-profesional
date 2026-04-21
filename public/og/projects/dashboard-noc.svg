@@ -1,0 +1,13 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#0B1220"/>
+  <rect x="44" y="44" width="1112" height="542" rx="28" fill="#111A2B" stroke="#243249"/>
+  <rect x="86" y="112" width="248" height="40" rx="20" fill="#163A63"/>
+  <text x="116" y="138" fill="#BFE3FF" font-size="20" font-family="Geist Mono, monospace" letter-spacing="2">GESTION DE REDES</text>
+  <text x="86" y="256" fill="#F5F7FA" font-size="78" font-family="Geist, Arial, sans-serif" font-weight="700">Dashboard NOC</text>
+  <text x="86" y="340" fill="#B8C7D9" font-size="34" font-family="Geist, Arial, sans-serif">Visibilidad operativa para alertas, capacidad y estado de servicios críticos.</text>
+  <text x="86" y="460" fill="#8FB6D9" font-size="24" font-family="Geist Mono, monospace" letter-spacing="3">MONITORING / DASHBOARDS / NETWORK OPS</text>
+  <rect x="918" y="108" width="180" height="124" rx="18" fill="#163A63"/>
+  <rect x="948" y="144" width="30" height="52" rx="8" fill="#BFE3FF"/>
+  <rect x="992" y="126" width="30" height="70" rx="8" fill="#8FD2FF"/>
+  <rect x="1036" y="162" width="30" height="34" rx="8" fill="#64B5F6"/>
+</svg>
