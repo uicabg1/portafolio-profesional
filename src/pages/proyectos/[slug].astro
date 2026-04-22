@@ -127,7 +127,7 @@ const formattedDate = new Intl.DateTimeFormat('es-MX', {
     </nav>
 
     <!-- Header del caso de estudio -->
-    <header class="reveal" style="margin-bottom: var(--space-24);">
+    <header class="project-hero reveal" style="margin-bottom: var(--space-24);">
       <div style="max-width: var(--container-prose); margin: 0 auto;">
         <!-- Category and Interactive Badge -->
         <div style="display: flex; gap: var(--space-2); align-items: center; margin-bottom: var(--space-8);">
@@ -238,7 +238,7 @@ const formattedDate = new Intl.DateTimeFormat('es-MX', {
     </header>
 
     <!-- Estructura del caso de estudio -->
-
+    <div class="project-story">
       <section class="reveal reveal-1 narrative-section" style="margin-top: var(--space-16);">
         <h2 class="narrative-title">Contexto y problema</h2>
         <p>{problem}</p>
@@ -248,6 +248,7 @@ const formattedDate = new Intl.DateTimeFormat('es-MX', {
         <h2 class="narrative-title">Enfoque y solución</h2>
         <p>{solution}</p>
       </section>
+    </div>
 
       {hasInteractiveComponent && interactiveDefinition && (
         <ProjectInteractiveSection
@@ -269,7 +270,7 @@ const formattedDate = new Intl.DateTimeFormat('es-MX', {
         </div>
       </div>
 
-      <section class="reveal reveal-3 narrative-section narrative-section--divided" style="margin-top: var(--space-16);">
+      <section class="project-outcome reveal reveal-3 narrative-section narrative-section--divided" style="margin-top: var(--space-16);">
         <h2 class="narrative-title">Resultados y aprendizaje</h2>
         <p>{result}</p>
       </section>
@@ -432,6 +433,32 @@ const formattedDate = new Intl.DateTimeFormat('es-MX', {
   .narrative-section {
     max-width: var(--container-prose);
     margin-inline: auto;
+  }
+
+  .project-hero {
+    padding: var(--space-8);
+    border: 1px solid var(--color-bg-muted);
+    border-radius: var(--radius-lg);
+    background:
+      radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--color-signal-cyan) 16%, transparent), transparent 34%),
+      color-mix(in srgb, var(--color-surface) 88%, transparent);
+    box-shadow: 0 24px 90px color-mix(in srgb, var(--color-text-primary) 8%, transparent);
+  }
+
+  .project-story {
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  .project-outcome {
+    padding: var(--space-8);
+    border-left: 4px solid var(--color-signal-green);
+    background: color-mix(in srgb, var(--color-surface-strong) 62%, transparent);
+  }
+
+  .project-outcome p {
+    font-size: var(--text-lg);
+    color: var(--color-ink-soft);
   }
 
   .narrative-section--divided {

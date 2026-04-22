@@ -914,7 +914,7 @@ Expected:
 - Modify: `src/components/astro/ProjectInteractiveSection.astro`
 - Test: `tests/sprint-8-visual-contract.test.mjs`
 
-- [ ] **Step 1: Refactor project page markers**
+- [x] **Step 1: Refactor project page markers**
 
 In `src/pages/proyectos/[slug].astro`:
 
@@ -925,7 +925,7 @@ In `src/pages/proyectos/[slug].astro`:
 - keep canonical, Open Graph and structured data props in `<Layout />`
 - keep previous/next navigation
 
-- [ ] **Step 2: Improve project narrative layout**
+- [x] **Step 2: Improve project narrative layout**
 
 Implement:
 
@@ -935,7 +935,7 @@ Implement:
 - MDX content remains constrained and readable
 - external links remain available when `githubUrl` or `demoUrl` exists
 
-- [ ] **Step 3: Refactor interactive section**
+- [x] **Step 3: Refactor interactive section**
 
 In `src/components/astro/ProjectInteractiveSection.astro`:
 
@@ -945,7 +945,7 @@ In `src/components/astro/ProjectInteractiveSection.astro`:
 - keep the note readable and secondary
 - preserve the existing slot API
 
-- [ ] **Step 4: Run focused contract**
+- [x] **Step 4: Run focused contract**
 
 Run:
 
@@ -960,7 +960,7 @@ Expected:
 # fail 0
 ```
 
-- [ ] **Step 5: Run Astro validation**
+- [x] **Step 5: Run Astro validation**
 
 Run:
 
@@ -976,7 +976,7 @@ Expected:
 - 0 hints
 ```
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 
 Run:
 

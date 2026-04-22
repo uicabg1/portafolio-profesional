@@ -16,7 +16,7 @@ const {
 } = Astro.props as Props;
 ---
 
-<section class="interactive-shell" aria-labelledby={sectionId}>
+<section class="interactive-proof interactive-shell" aria-labelledby={sectionId}>
   <div class="interactive-copy">
     <p class="interactive-eyebrow">{eyebrow}</p>
     <h2 id={sectionId} class="interactive-title">{title}</h2>
@@ -32,7 +32,7 @@ const {
 
 <style>
   .interactive-shell {
-    max-width: var(--container-prose);
+    max-width: min(var(--container-max), 100%);
     margin: var(--space-24) auto 0;
     padding-top: var(--space-16);
     border-top: 1px solid var(--color-bg-muted);
@@ -43,6 +43,8 @@ const {
   .interactive-copy {
     display: grid;
     gap: var(--space-3);
+    max-width: var(--container-prose);
+    margin-inline: auto;
   }
 
   .interactive-eyebrow {
@@ -73,8 +75,16 @@ const {
   }
 
   .interactive-note {
+    max-width: var(--container-prose);
+    margin-inline: auto;
     color: var(--color-text-muted);
     line-height: 1.8;
     font-size: var(--text-sm);
+  }
+
+  @media (min-width: 900px) {
+    .interactive-canvas {
+      padding: var(--space-8);
+    }
   }
 </style>
