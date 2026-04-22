@@ -45,31 +45,35 @@ Este documento resume el estado funcional del portafolio con foco en trabajo pen
 - Responsive validado en mobile, tablet y desktop amplio
 - Revisión cross-browser ejecutada con Chromium/Chrome, WebKit y Firefox
 - Release base listo para publicación desde `main`
+- Sprint 8 de refactor visual UI ejecutado con dirección `portfolio editorial técnico + laboratorio interactivo`
+- Home rediseñada con hero técnico editorial, servicios web-first, proyectos como evidencia, infraestructura como flujo operacional y contacto como brief profesional
+- Páginas de proyecto reforzadas como casos editoriales con outcome destacado y demos interactivas más visibles
+- Contratos visuales automatizados para hero, proyectos, infraestructura, contacto, detalle de proyecto y demos RSA/IPv6
+- Lighthouse Sprint 8 en local: home y `/proyectos/portafolio-m4/` con Performance, Accessibility, Best Practices y SEO en `100`
 
 ### En progreso
 
 - Documentación canónica del proyecto y separación de histórico
 - Organización de la evidencia LACNIC/TIDE dentro de la documentación canónica
-- Planeación del Sprint 8 de refactor visual UI y evidencia interactiva
 
 ### Pendiente
 
 - Versionado de configuración de servidor o plantillas asociadas
 - Decidir si se realiza una prueba destructiva/controlada de restore real en producción
 - Profundizar observabilidad con monitoreo externo si el proyecto lo requiere
-- Ejecutar el rediseño visual mayor definido para Sprint 8
+- Preparar capturas finales post Sprint 8 para PR, README o publicación pública
+- Evaluar self-hosting de fuentes si se quiere eliminar dependencia externa de Google Fonts
 
 ## Próximas prioridades
 
 1. Publicar el release base desde GitHub Actions y confirmar producción.
-2. Ejecutar Sprint 8: refactor visual UI y evidencia interactiva.
+2. Preparar capturas finales post Sprint 8 para PR, README o publicación pública.
 3. Versionar configuración de servidor o plantillas asociadas.
 4. Profundizar observabilidad con monitoreo externo si el proyecto lo requiere.
 
 ## Relación con requisitos
 
 - Fuente de requisitos: [requisitos.md](requisitos.md)
-- Último sprint cerrado: [../sprints/sprint-7-qa-release-y-cierre.md](../sprints/sprint-7-qa-release-y-cierre.md)
-- Sprint anterior cerrado: [../sprints/sprint-6-cicd-operacion-y-servicios-complementarios.md](../sprints/sprint-6-cicd-operacion-y-servicios-complementarios.md)
-- Sprint visual planeado: [../sprints/sprint-8-refactor-visual-ui.md](../sprints/sprint-8-refactor-visual-ui.md)
+- Último sprint cerrado: [../sprints/sprint-8-refactor-visual-ui.md](../sprints/sprint-8-refactor-visual-ui.md)
+- Sprint anterior cerrado: [../sprints/sprint-7-qa-release-y-cierre.md](../sprints/sprint-7-qa-release-y-cierre.md)
 - El backlog debe mantenerse alineado con el estado del código, no con los runbooks históricos.

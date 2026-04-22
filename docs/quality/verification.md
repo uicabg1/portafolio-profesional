@@ -41,6 +41,13 @@ Revisar manualmente:
 - revisión manual realizada
 - riesgos conocidos o huecos pendientes
 
+Para Sprint 8, registrar también:
+
+- breakpoints revisados
+- páginas de proyecto revisadas
+- resultado de interacción en RSA e IPv6
+- resultado Lighthouse de home y una página de proyecto
+
 ## Evidencia Sprint 7
 
 Fecha: 2026-04-21

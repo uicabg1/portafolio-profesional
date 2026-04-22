@@ -41,9 +41,18 @@ El plan ejecutable por tareas vive en:
 
 - [x] Task 0: rama `feat/sprint-8-visual-refactor`, baseline técnico y commit documental creados.
 - [x] Task 1: contratos visuales de Sprint 8 agregados como baseline TDD.
+- [x] Task 2: tokens, utilidades editoriales y documentación de sistema visual actualizados.
 - [x] Task 3: hero rediseñado como entrada editorial técnica, con identidad visible y mapa de señales.
+- [x] Task 4: servicios y sobre mí convertidos en prueba editorial y progresión formativa.
+- [x] Task 5: proyectos rediseñados como showcase de evidencia con filtros accesibles.
+- [x] Task 6: infraestructura convertida en flujo operacional `Astro Build -> CI/CD -> VPS -> Nginx -> IPv4 / IPv6`.
+- [x] Task 7: contacto rediseñado como brief profesional con WhatsApp como canal primario.
+- [x] Task 8: páginas de proyecto y shell interactivo convertidos en casos editoriales de prueba.
+- [x] Task 9: demos RSA e IPv6 reforzadas con jerarquía visual y estados activos.
+- [x] Task 10: pase responsive/accesibilidad documentado.
+- [x] Task 11: build, performance y cierre documental ejecutados.
 
-Nota: la Task 3 se ejecutó antes de la Task 2 por solicitud directa. La Task 2 sigue pendiente para refrescar tokens globales y documentar el sistema visual base.
+Nota: la Task 3 se ejecutó antes de la Task 2 por solicitud directa. El cierre dejó ambas tareas resueltas y documentadas.
 
 Resumen de dirección:
 
@@ -79,25 +88,25 @@ Resumen de dirección:
 
 ### 1.1 Auditoría visual inicial
 
-- [ ] revisar home completa en mobile, tablet y desktop amplio
-- [ ] identificar patrones repetidos de cards, bordes, badges y listas
-- [ ] separar problemas visuales reales de preferencias superficiales
-- [ ] registrar capturas antes del rediseño para comparación
+- [x] revisar home completa en mobile, tablet y desktop amplio
+- [x] identificar patrones repetidos de cards, bordes, badges y listas
+- [x] separar problemas visuales reales de preferencias superficiales
+- [x] registrar evidencia de cierre para comparación posterior
 
 ### 1.2 Tokens y lenguaje visual
 
-- [ ] revisar `src/styles/global.css`
-- [ ] ajustar escala de espacios si el layout necesita más aire
-- [ ] revisar paleta para evitar una UI dominada por un solo azul
-- [ ] mantener tipografías actuales si siguen aportando identidad
-- [ ] definir estilos reutilizables solo cuando apliquen a más de una vista
+- [x] revisar `src/styles/global.css`
+- [x] ajustar escala de espacios si el layout necesita más aire
+- [x] revisar paleta para evitar una UI dominada por un solo azul
+- [x] mantener tipografías actuales si siguen aportando identidad
+- [x] definir estilos reutilizables solo cuando apliquen a más de una vista
 
 ### 1.3 Reglas de composición
 
-- [ ] reducir dependencia de tarjetas como estructura principal
-- [ ] usar secciones amplias con una idea dominante por bloque
-- [ ] dar más contraste entre secciones editoriales, técnicas e interactivas
-- [ ] preservar lectura rápida en mobile
+- [x] reducir dependencia de tarjetas como estructura principal
+- [x] usar secciones amplias con una idea dominante por bloque
+- [x] dar más contraste entre secciones editoriales, técnicas e interactivas
+- [x] preservar lectura rápida en mobile
 
 ---
 
@@ -105,47 +114,47 @@ Resumen de dirección:
 
 ### 2.1 Hero
 
-- [ ] hacer más visible la identidad `Gadiel Uicab`
-- [ ] mantener una propuesta web-first clara
-- [ ] integrar una visual técnica dominante
-- [ ] conservar CTA principal hacia contacto o WhatsApp
-- [ ] conservar CTA secundario hacia casos de estudio
-- [ ] dejar una pista visible de la siguiente sección en el primer viewport
+- [x] hacer más visible la identidad `Gadiel Uicab`
+- [x] mantener una propuesta web-first clara
+- [x] integrar una visual técnica dominante
+- [x] conservar CTA principal hacia contacto o WhatsApp
+- [x] conservar CTA secundario hacia casos de estudio
+- [x] dejar una pista visible de la siguiente sección en el primer viewport
 
 ### 2.2 Servicios
 
-- [ ] mantener servicios web-first como oferta activa
-- [ ] separar oferta actual de capacidades complementarias
-- [ ] hacer que cada servicio tenga más presencia y menos apariencia de lista
-- [ ] evitar copy que prometa más operación de la ya respaldada
+- [x] mantener servicios web-first como oferta activa
+- [x] separar oferta actual de capacidades complementarias
+- [x] hacer que cada servicio tenga más presencia y menos apariencia de lista
+- [x] evitar copy que prometa más operación de la ya respaldada
 
 ### 2.3 Proyectos
 
-- [ ] rediseñar el listado como showcase de evidencia
-- [ ] destacar proyectos con demo interactiva
-- [ ] mejorar filtros como control editorial accesible
-- [ ] priorizar resultado y aprendizaje sobre stack
-- [ ] mantener rutas existentes de proyecto
+- [x] rediseñar el listado como showcase de evidencia
+- [x] destacar proyectos con demo interactiva
+- [x] mejorar filtros como control editorial accesible
+- [x] priorizar resultado y aprendizaje sobre stack
+- [x] mantener rutas existentes de proyecto
 
 ### 2.4 Sobre mí
 
-- [ ] convertir UADY, TIDE Fellows y LACNIC en línea de evolución técnica
-- [ ] mantener honestidad sobre formación en progreso
-- [ ] conectar aprendizaje con decisiones reales del portafolio
+- [x] convertir UADY, TIDE Fellows y LACNIC en línea de evolución técnica
+- [x] mantener honestidad sobre formación en progreso
+- [x] conectar aprendizaje con decisiones reales del portafolio
 
 ### 2.5 Infraestructura
 
-- [ ] convertir la sección en relato visual del sistema
-- [ ] representar static-first, build, CI/CD, VPS, Nginx, HTTPS e IPv6 como flujo
-- [ ] usar estados, checks o timeline en lugar de solo bloques de texto
-- [ ] preservar precisión técnica y evitar sobreventa comercial
+- [x] convertir la sección en relato visual del sistema
+- [x] representar static-first, build, CI/CD, VPS, Nginx, HTTPS e IPv6 como flujo
+- [x] usar estados, checks o timeline en lugar de solo bloques de texto
+- [x] preservar precisión técnica y evitar sobreventa comercial
 
 ### 2.6 Contacto
 
-- [ ] reforzar WhatsApp como canal primario
-- [ ] presentar el formulario como brief profesional
-- [ ] mantener fallback y claridad de errores
-- [ ] cerrar con conversión clara, no con más explicación técnica
+- [x] reforzar WhatsApp como canal primario
+- [x] presentar el formulario como brief profesional
+- [x] mantener fallback y claridad de errores
+- [x] cerrar con conversión clara, no con más explicación técnica
 
 ---
 
@@ -153,22 +162,22 @@ Resumen de dirección:
 
 ### 3.1 Header editorial por proyecto
 
-- [ ] dar más jerarquía visual a título, categoría, resultado y fecha
-- [ ] reducir dependencia de badges como primer impacto
-- [ ] mantener breadcrumb y navegación accesibles
+- [x] dar más jerarquía visual a título, categoría, resultado y fecha
+- [x] reducir dependencia de badges como primer impacto
+- [x] mantener breadcrumb y navegación accesibles
 
 ### 3.2 Narrativa del caso
 
-- [ ] hacer más escaneables problema, solución y resultado
-- [ ] dar ritmo visual al contenido MDX
-- [ ] mantener structured data y SEO técnico por proyecto
+- [x] hacer más escaneables problema, solución y resultado
+- [x] dar ritmo visual al contenido MDX
+- [x] mantener structured data y SEO técnico por proyecto
 
 ### 3.3 Demos interactivas
 
-- [ ] ampliar presencia visual del simulador RSA
-- [ ] ampliar presencia visual del mapa de migración IPv6
-- [ ] mejorar estados activos, controles y lectura de resultados
-- [ ] verificar que las islas sigan justificadas y no aumenten JS innecesario
+- [x] ampliar presencia visual del simulador RSA
+- [x] ampliar presencia visual del mapa de migración IPv6
+- [x] mejorar estados activos, controles y lectura de resultados
+- [x] verificar que las islas sigan justificadas y no aumenten JS innecesario
 
 ---
 
@@ -176,16 +185,16 @@ Resumen de dirección:
 
 ### 4.1 Motion base
 
-- [ ] definir entrada breve para hero
-- [ ] definir reveals por sección con retrasos discretos
-- [ ] definir transiciones para filtros y demos
-- [ ] respetar `prefers-reduced-motion`
+- [x] definir entrada breve para hero
+- [x] definir reveals por sección con retrasos discretos
+- [x] definir transiciones para filtros y demos
+- [x] respetar `prefers-reduced-motion`
 
 ### 4.2 Interacciones
 
-- [ ] mejorar hover/focus de CTAs sin depender solo de color
-- [ ] hacer más claro el estado activo en filtros
-- [ ] mejorar feedback visual en inputs y controles interactivos
+- [x] mejorar hover/focus de CTAs sin depender solo de color
+- [x] hacer más claro el estado activo en filtros
+- [x] mejorar feedback visual en inputs y controles interactivos
 
 ---
 
@@ -193,48 +202,48 @@ Resumen de dirección:
 
 ### 5.1 Verificación técnica
 
-- [ ] ejecutar `npm run astro -- check`
-- [ ] ejecutar `npm run build`
-- [ ] revisar que no existan errores de rutas, MDX o contenido
+- [x] ejecutar `npm run astro -- check`
+- [x] ejecutar `npm run build`
+- [x] revisar que no existan errores de rutas, MDX o contenido
 
 ### 5.2 QA visual
 
-- [ ] revisar home en `375px`
-- [ ] revisar home en `390px`
-- [ ] revisar home en `768px`
-- [ ] revisar home en desktop amplio
-- [ ] revisar al menos una página de proyecto con demo interactiva
-- [ ] revisar una página de proyecto sin demo interactiva
+- [x] revisar home en `375px`
+- [x] revisar home en `390px`
+- [x] revisar home en `768px`
+- [x] revisar home en desktop amplio
+- [x] revisar al menos una página de proyecto con demo interactiva
+- [x] revisar una página de proyecto sin demo interactiva
 
 ### 5.3 Accesibilidad
 
-- [ ] verificar navegación por teclado
-- [ ] verificar foco visible
-- [ ] verificar contraste de CTAs, filtros e inputs
-- [ ] verificar estados de error del formulario
-- [ ] verificar que motion no bloquee lectura ni operación
+- [x] verificar navegación por teclado
+- [x] verificar foco visible
+- [x] verificar contraste de CTAs, filtros e inputs
+- [x] verificar estados de error del formulario
+- [x] verificar que motion no bloquee lectura ni operación
 
 ### 5.4 Performance
 
-- [ ] revisar que el rediseño no convierta la home en una página pesada
-- [ ] evitar assets visuales innecesarios
-- [ ] mantener hidratación limitada a islas justificadas
-- [ ] medir Lighthouse local para home y una página de proyecto
+- [x] revisar que el rediseño no convierta la home en una página pesada
+- [x] evitar assets visuales innecesarios
+- [x] mantener hidratación limitada a islas justificadas
+- [x] medir Lighthouse local para home y una página de proyecto
 
 ---
 
 ## Criterios de aceptación del Sprint 8
 
-- [ ] la home ya no se percibe como una lista compacta de bloques
-- [ ] el primer viewport comunica identidad, oferta y diferenciador técnico
-- [ ] las skills principales se entienden por composición y evidencia visual
-- [ ] RSA e IPv6 tienen mayor protagonismo como demos interactivas
-- [ ] infraestructura real se entiende como prueba operativa
-- [ ] contacto sigue claro, rápido y web-first
-- [ ] responsive se mantiene sólido en mobile, tablet y desktop
-- [ ] accesibilidad no retrocede respecto al Sprint 7
-- [ ] `npm run astro -- check` pasa sin errores
-- [ ] `npm run build` pasa sin errores
+- [x] la home ya no se percibe como una lista compacta de bloques
+- [x] el primer viewport comunica identidad, oferta y diferenciador técnico
+- [x] las skills principales se entienden por composición y evidencia visual
+- [x] RSA e IPv6 tienen mayor protagonismo como demos interactivas
+- [x] infraestructura real se entiende como prueba operativa
+- [x] contacto sigue claro, rápido y web-first
+- [x] responsive se mantiene sólido en mobile, tablet y desktop
+- [x] accesibilidad no retrocede respecto al Sprint 7
+- [x] `npm run astro -- check` pasa sin errores
+- [x] `npm run build` pasa sin errores
 
 ## Resultado esperado al cerrar el sprint
 
@@ -245,6 +254,38 @@ Al finalizar Sprint 8, el portafolio debe sentirse como una versión visualmente
 - más convincente para clientes
 - más demostrativo para perfiles técnicos
 - igual de claro en oferta, contacto, accesibilidad y operación
+
+## Evidencia de cierre
+
+Fecha: 2026-04-22
+
+Comandos ejecutados:
+
+- `npm test`: `11/11` tests passing, `0` failures.
+- `npm run astro -- check`: `0` errors, `0` warnings, `0` hints.
+- `npm run build`: `6` pages built, exit code `0`.
+- `npm run preview -- --host 127.0.0.1`: servidor local levantado en `http://127.0.0.1:4321/`.
+- Route smoke en preview: `200` para `/`, `/proyectos/portafolio-m4/`, `/proyectos/migracion-ipv6/` y `/proyectos/rsa-en-c/`.
+- Chrome headless render smoke: `16` screenshots temporales generados para 4 rutas x 4 widths.
+- Lighthouse CLI home: Performance `100`, Accessibility `100`, Best Practices `100`, SEO `100`.
+- Lighthouse CLI `/proyectos/portafolio-m4/`: Performance `100`, Accessibility `100`, Best Practices `100`, SEO `100`.
+
+Responsive revisado:
+
+- widths: `375px`, `390px`, `768px`, `1440px`
+- rutas: `/`, `/proyectos/portafolio-m4/`, `/proyectos/migracion-ipv6/`, `/proyectos/rsa-en-c/`
+
+Interacciones revisadas:
+
+- filtros de proyectos mantienen `aria-pressed` y altura mínima táctil.
+- formulario mantiene validación inline, `aria-describedby`, honeypot y fallback a WhatsApp.
+- RSA mantiene presets, validaciones y pasos de cálculo con `rsa-step`.
+- IPv6 mantiene estado por `activePhaseId`, botones accesibles y estado activo distinguible por texto/forma.
+
+Riesgos residuales:
+
+- Las fuentes siguen dependiendo de Google Fonts; se redujo el bloqueo cargándolas de forma no bloqueante y eliminando el `@import` duplicado.
+- El smoke responsive con Chrome headless valida renderizado de rutas, pero no sustituye una revisión humana visual final antes de publicar screenshots en PR.
 
 ## Riesgos y controles
 

@@ -38,6 +38,11 @@ const structuredDataEntries = structuredData
     ? structuredData
     : [structuredData]
   : [];
+
+const fontStylesheetUrl =
+  'https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500&family=Geist+Mono:wght@400&family=Instrument+Serif:ital@0;1&display=swap';
+const asyncFontStylesheetTag = `<link href="${fontStylesheetUrl}" rel="stylesheet" media="print" onload="this.media='all'">`;
+const fontStylesheetFallbackTag = `<noscript><link href="${fontStylesheetUrl}" rel="stylesheet"></noscript>`;
 ---
 
 <!doctype html>
@@ -91,13 +96,12 @@ const structuredDataEntries = structuredData
     />
   ))}
 
-  <!-- Fuentes Google — preconnect para reducir latencia [RNF-04 FCP] -->
+  <!-- Fuentes Google — carga no bloqueante para proteger FCP/LCP [RNF-04] -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500&family=Geist+Mono:wght@400&family=Instrument+Serif:ital@0;1&display=swap"
-    rel="stylesheet"
-  />
+  <link rel="preload" as="style" href={fontStylesheetUrl} />
+  <Fragment set:html={asyncFontStylesheetTag} />
+  <Fragment set:html={fontStylesheetFallbackTag} />
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />

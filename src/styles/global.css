@@ -1,6 +1,4 @@
-/* ── 1. Importar tipografías de Google Fonts ──────────────────────── */
-@import url('https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500&family=Geist+Mono:wght@400&family=Instrument+Serif:ital@0;1&display=swap');
-/* ── 2. Importar Tailwind v4 ─────────────────────────────────────── */
+/* ── 1. Importar Tailwind v4 ─────────────────────────────────────── */
 @import "tailwindcss";
 
 

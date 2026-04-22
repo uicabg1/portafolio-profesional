@@ -23,6 +23,24 @@ Fecha: 2026-04-21
 - revisión responsive visual en `375px`, `390px`, `768px` y desktop amplio
 - revisión cross-browser con Chromium/Chrome, WebKit y Firefox mediante Playwright
 
+## Sprint 8 visual refactor review
+
+Checks required before closing Sprint 8:
+
+- keyboard navigation through nav, project filters, project links and contact form
+- visible focus on buttons, links, filter controls and form fields
+- contrast review for primary CTA, secondary CTA, filters, form errors and technical signal colors
+- `prefers-reduced-motion` review for hero, section reveals and demo transitions
+- mobile review at `375px` and `390px`
+
+Evidencia registrada el `2026-04-22`:
+
+- Lighthouse Accessibility home: `100`
+- Lighthouse Accessibility `/proyectos/portafolio-m4/`: `100`
+- Chrome headless render smoke en `/`, `/proyectos/portafolio-m4/`, `/proyectos/migracion-ipv6/` y `/proyectos/rsa-en-c/`
+- widths renderizados: `375px`, `390px`, `768px`, `1440px`
+- `skip-link`, `:focus-visible`, botones de filtro con `aria-pressed` y campos de formulario con `aria-describedby` revisados en código
+
 ## Verificación manual sugerida
 
 1. Navegar con teclado desde el inicio de la página.

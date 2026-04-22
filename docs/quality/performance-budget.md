@@ -21,6 +21,18 @@ Fecha: 2026-04-21
 - Lighthouse `/proyectos/portafolio-m4/`: Performance `97` en rerun estable, LCP `2.5 s`, TBT `0 ms`, CLS `0.029`
 - Accessibility, Best Practices y SEO quedaron en `100` para home y página de proyecto
 
+## Evidencia Sprint 8
+
+Fecha: 2026-04-22
+
+- Lighthouse home: Performance `100`, Accessibility `100`, Best Practices `100`, SEO `100`.
+- Lighthouse home metrics: LCP `1.7 s`, TBT `0 ms`, CLS `0.002`.
+- Lighthouse proyecto `/proyectos/portafolio-m4/`: Performance `100`, Accessibility `100`, Best Practices `100`, SEO `100`.
+- Lighthouse proyecto metrics: LCP `1.5 s`, TBT `0 ms`, CLS `0.032`.
+- JavaScript de cliente se mantiene limitado a islas justificadas: filtros, contacto, WhatsApp, RSA e IPv6.
+- No se agregaron librerías pesadas de animación.
+- La fuente externa se carga de forma no bloqueante y se eliminó el `@import` duplicado de Google Fonts en `global.css`.
+
 ## Riesgos frecuentes
 
 - aumentar el número de islas sin necesidad real

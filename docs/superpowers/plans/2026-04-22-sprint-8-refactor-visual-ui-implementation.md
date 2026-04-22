@@ -1073,7 +1073,7 @@ Expected:
 - Modify: `docs/quality/accessibility.md`
 - Modify: `docs/quality/verification.md`
 
-- [ ] **Step 1: Start local dev server**
+- [x] **Step 1: Start local dev server**
 
 Run:
 
@@ -1089,7 +1089,7 @@ Local
 
 Use the shown local URL, normally `http://localhost:4321/`.
 
-- [ ] **Step 2: Review responsive breakpoints**
+- [x] **Step 2: Review responsive breakpoints**
 
 Manually review:
 
@@ -1118,7 +1118,7 @@ Acceptance:
 - RSA and IPv6 demos remain readable
 - contact form fields fit mobile width
 
-- [ ] **Step 3: Review keyboard flow**
+- [x] **Step 3: Review keyboard flow**
 
 Manual acceptance:
 
@@ -1129,7 +1129,7 @@ Manual acceptance:
 - submit button is reachable
 - project navigation links are reachable
 
-- [ ] **Step 4: Update accessibility documentation**
+- [x] **Step 4: Update accessibility documentation**
 
 In `docs/quality/accessibility.md`, add a section named `## Sprint 8 visual refactor review` with:
 
@@ -1145,7 +1145,7 @@ Checks required before closing Sprint 8:
 - mobile review at `375px` and `390px`
 ```
 
-- [ ] **Step 5: Update verification documentation**
+- [x] **Step 5: Update verification documentation**
 
 In `docs/quality/verification.md`, add under `## Evidencia mínima que conviene registrar en PR o entrega`:
 
@@ -1158,7 +1158,7 @@ Para Sprint 8, registrar también:
 - resultado Lighthouse de home y una página de proyecto
 ```
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 
 Run:
 
@@ -1184,7 +1184,7 @@ Stop the dev server before moving to the next task.
 - Modify: `docs/quality/performance-budget.md`
 - Modify: `docs/product/backlog.md`
 
-- [ ] **Step 1: Run full test suite**
+- [x] **Step 1: Run full test suite**
 
 Run:
 
@@ -1198,7 +1198,7 @@ Expected:
 # fail 0
 ```
 
-- [ ] **Step 2: Run Astro validation**
+- [x] **Step 2: Run Astro validation**
 
 Run:
 
@@ -1214,7 +1214,7 @@ Expected:
 - 0 hints
 ```
 
-- [ ] **Step 3: Run production build**
+- [x] **Step 3: Run production build**
 
 Run:
 
@@ -1230,7 +1230,7 @@ completed in
 
 The command must exit with code `0`.
 
-- [ ] **Step 4: Run local preview**
+- [x] **Step 4: Run local preview**
 
 Run:
 
@@ -1253,7 +1253,7 @@ Review:
 /proyectos/rsa-en-c/
 ```
 
-- [ ] **Step 5: Run Lighthouse manually**
+- [x] **Step 5: Run Lighthouse manually**
 
 Run Lighthouse in browser DevTools for:
 
@@ -1270,7 +1270,7 @@ Acceptance:
 - Performance: `>= 95` for home
 - Performance: `>= 90` for project page
 
-- [ ] **Step 6: Update performance budget**
+- [x] **Step 6: Update performance budget**
 
 In `docs/quality/performance-budget.md`, add a section named `## Evidencia Sprint 8` with:
 
@@ -1285,7 +1285,7 @@ Fecha: 2026-04-22
 - No se agregaron librerías pesadas de animación.
 ```
 
-- [ ] **Step 7: Update Sprint 8 checklist**
+- [x] **Step 7: Update Sprint 8 checklist**
 
 In `docs/sprints/sprint-8-refactor-visual-ui.md`:
 
@@ -1296,7 +1296,7 @@ In `docs/sprints/sprint-8-refactor-visual-ui.md`:
 - include responsive pages and widths reviewed
 - include residual risks if any
 
-- [ ] **Step 8: Update backlog**
+- [x] **Step 8: Update backlog**
 
 In `docs/product/backlog.md`:
 
@@ -1304,7 +1304,7 @@ In `docs/product/backlog.md`:
 - move execution of rediseño visual out of `Pendiente`
 - add any new visual follow-up under `Pendiente`
 
-- [ ] **Step 9: Commit closure docs**
+- [x] **Step 9: Commit closure docs**
 
 Run:
 
