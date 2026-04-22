@@ -726,7 +726,7 @@ Expected:
 - Modify: `src/components/astro/Infrastructure.astro`
 - Test: `tests/sprint-8-visual-contract.test.mjs`
 
-- [ ] **Step 1: Add operational flow model**
+- [x] **Step 1: Add operational flow model**
 
 In `src/components/astro/Infrastructure.astro`, define an array named `systemFlow` with these exact titles:
 
@@ -760,7 +760,7 @@ const systemFlow = [
 ];
 ```
 
-- [ ] **Step 2: Render the flow visually**
+- [x] **Step 2: Render the flow visually**
 
 Render `systemFlow` with:
 
@@ -770,7 +770,7 @@ Render `systemFlow` with:
 - connecting visual line or separator between nodes
 - copy that presents infrastructure as evidence, not as the primary commercial offer
 
-- [ ] **Step 3: Reduce repeated compact blocks**
+- [x] **Step 3: Reduce repeated compact blocks**
 
 Keep these topics but remove duplicate-feeling sections where possible:
 
@@ -785,7 +785,7 @@ Acceptance:
 - cards are used only where repeated technical items need structure
 - CI/CD, VPS and IPv6 are visible without reading every paragraph
 
-- [ ] **Step 4: Run focused contract**
+- [x] **Step 4: Run focused contract**
 
 Run:
 
@@ -800,7 +800,7 @@ Expected:
 # fail 0
 ```
 
-- [ ] **Step 5: Run Astro validation**
+- [x] **Step 5: Run Astro validation**
 
 Run:
 
@@ -816,7 +816,7 @@ Expected:
 - 0 hints
 ```
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 
 Run:
 

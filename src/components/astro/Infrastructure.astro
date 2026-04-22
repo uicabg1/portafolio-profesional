@@ -1,795 +1,276 @@
 ---
-const architectureLayers = [
+const systemFlow = [
   {
-    title: 'Astro (SSG)',
-    description:
-      'Generacion estatica en build-time para salida determinista sin runtime de aplicacion en produccion.',
+    title: 'Astro Build',
+    status: 'Static output',
+    detail: 'Genera HTML, CSS y JS en build-time para una salida determinista.',
   },
   {
-    title: 'Vite Pipeline',
-    description:
-      'Compilacion optimizada de assets y modulos para entrega eficiente y controlada.',
+    title: 'GitHub Actions CI/CD',
+    status: 'Deploy automatizado',
+    detail: 'Compila y publica artefactos por SSH/rsync hacia el VPS.',
   },
   {
-    title: 'Tailwind v4',
-    description:
-      'Sistema de UI conectado a tokens para consistencia visual y mantenimiento predecible.',
+    title: 'VPS Linux',
+    status: 'Servidor propio',
+    detail: 'Opera el sitio en infraestructura controlada con usuario de deploy.',
   },
   {
-    title: 'Content Layer (MDX)',
-    description:
-      'Contenido tecnico versionado con soporte para componentes interactivos por isla.',
+    title: 'Nginx + HTTPS',
+    status: 'Entrega segura',
+    detail: 'Sirve el sitio estático con TLS y superficie reducida.',
   },
   {
-    title: 'Deployment (VPS / Nginx)',
-    description:
-      'Entrega estatica sobre infraestructura controlada con reglas explicitas de publicacion.',
+    title: 'IPv4 / IPv6',
+    status: 'Dual-stack validado',
+    detail: 'Permite validar conectividad pública por ambos stacks.',
   },
 ];
 
-const technicalStack = ['Astro', 'TypeScript', 'Tailwind v4', 'MDX', 'VPS / Nginx'];
+const evidenceTracks = [
+  {
+    title: 'Static-first',
+    detail:
+      'El sitio evita runtime de aplicacion en produccion y convierte contenido, estilos y rutas en artefactos estaticos verificables.',
+  },
+  {
+    title: 'Networking e IPv6',
+    detail:
+      'La capa dual-stack permite hablar de direccionamiento, DNS, reachability y transicion IPv6 desde una implementacion concreta.',
+  },
+  {
+    title: 'Criterio NOC',
+    detail:
+      'La narrativa operacional prioriza monitoreo, trazabilidad, diagnostico inicial y recuperacion controlada ante cambios.',
+  },
+  {
+    title: 'Seguridad y performance',
+    detail:
+      'Menos superficie de ataque, cacheabilidad, HTTPS y JavaScript limitado a islas con valor real.',
+  },
+];
 ---
 
-<section id="infraestructura" style="border-top: 1px solid var(--color-bg-muted); padding-block: var(--space-24);">
-  <div class="container">
-    <header class="infra-header">
-      <p class="infra-label">Infraestructura</p>
-      <h2 class="infra-title">Arquitectura static-first sin runtime orientada a control operativo</h2>
-      <div class="infra-description">
-        <p>
-          Esta plataforma sigue una filosofia static-first: cada pagina se genera en build-time con salida
-          determinista, sin depender de un backend de aplicacion en tiempo de ejecucion.
-        </p>
-        <p>
-          El despliegue prioriza control operativo, trazabilidad de cambios y performance desde el origen,
-          con una superficie tecnica reducida y decisiones de infraestructura explicitamente documentadas.
-        </p>
-        <p>
-          En la oferta actual esta capa funciona como respaldo tecnico para proyectos web. Hosting propio y
-          despliegue administrado se habilitan cuando el VPS real exista y quede documentado con evidencia.
-        </p>
-      </div>
-      <div class="infra-actions" role="group" aria-label="Acciones relacionadas con infraestructura">
-        <a href="/#contacto" class="infra-contact-link">Llevar esta conversacion a contacto</a>
-        <a href="/#proyectos" class="infra-secondary-link">Ver casos de estudio</a>
-      </div>
-    </header>
+<section
+	id="infraestructura"
+	aria-labelledby="infra-heading"
+	class="infra-section editorial-section"
+>
+	<div class="container infra-shell">
+		<header class="infra-header motion-rise">
+			<p class="section-kicker">Infraestructura</p>
+			<h2 id="infra-heading" class="editorial-title infra-title">
+				Una cadena operacional que respalda la propuesta web.
+			</h2>
+			<p>
+				Esta capa no se vende como el producto principal del portafolio. Funciona como evidencia tecnica:
+				muestra que el trabajo web puede pensarse desde build, despliegue, entrega segura y conectividad
+				IPv4 / IPv6.
+			</p>
+		</header>
 
-    <section class="infra-block" aria-labelledby="infra-filosofia">
-      <h3 id="infra-filosofia" class="infra-block-title">Filosofia tecnica</h3>
-      <ul class="infra-principles" role="list">
-        <li>Static-first por defecto para minimizar complejidad operacional</li>
-        <li>Sin runtime Node de aplicación en producción</li>
-        <li>Renderizado en build-time con artefactos versionables</li>
-        <li>Salida determinista para despliegues repetibles y verificables</li>
-      </ul>
-    </section>
+		<div class="infra-system-flow" role="list" aria-label="Flujo operacional del sistema">
+			{systemFlow.map((node, index) => (
+				<article class="infra-system-node" role="listitem">
+					<div class="infra-system-index" aria-hidden="true">
+						{String(index + 1).padStart(2, '0')}
+					</div>
 
-    <section class="infra-block infra-block--divided" aria-labelledby="infra-arquitectura">
-      <h3 id="infra-arquitectura" class="infra-block-title">Arquitectura del sistema</h3>
-      <div class="infra-layers" role="list">
-        {architectureLayers.map((layer) => (
-          <article class="infra-layer" role="listitem">
-            <h4>{layer.title}</h4>
-            <p>{layer.description}</p>
-          </article>
-        ))}
-      </div>
-    </section>
+					<div class="infra-system-copy">
+						<h3>{node.title}</h3>
+						<p class="infra-system-status">{node.status}</p>
+						<p>{node.detail}</p>
+					</div>
+				</article>
+			))}
+		</div>
 
-    <section class="infra-block infra-block--divided" aria-labelledby="infra-pipeline">
-      <h3 id="infra-pipeline" class="infra-block-title">Pipeline de construcción y despliegue</h3>
-      <ul class="infra-pipeline" role="list">
-        <li class="pipeline-node" role="listitem">
-          <h4>Astro Build</h4>
-          <p>Generación estática en build-time sin runtime</p>
-        </li>
-        <li class="pipeline-node" role="listitem">
-          <h4>Vite + Tailwind v4</h4>
-          <p>Pipeline de compilación y estilos optimizados</p>
-        </li>
-        <li class="pipeline-node" role="listitem">
-          <h4>Static Output</h4>
-          <p>HTML, CSS y JS listos para producción</p>
-        </li>
-        <li class="pipeline-node" role="listitem">
-          <h4>VPS Deployment</h4>
-          <p>Publicación controlada en servidor Linux</p>
-        </li>
-        <li class="pipeline-node" role="listitem">
-          <h4>Nginx Delivery</h4>
-          <p>Servido eficiente sin backend de aplicación</p>
-        </li>
-      </ul>
-    </section>
+		<div class="infra-evidence-grid" role="list" aria-label="Criterios tecnicos que demuestra la infraestructura">
+			{evidenceTracks.map((track) => (
+				<article class="infra-evidence-item" role="listitem">
+					<h3>{track.title}</h3>
+					<p>{track.detail}</p>
+				</article>
+			))}
+		</div>
 
-    <section class="infra-block infra-block--divided infra-networking" aria-labelledby="infra-networking">
-      <h3 id="infra-networking" class="infra-block-title">Networking e infraestructura de red</h3>
-
-      <div class="infra-network-intro">
-        <h4>IPv6 como capacidad demostrable</h4>
-        <p>
-          IPv6 forma parte de decisiones reales de infraestructura en entornos dual-stack. Se utiliza para
-          validar conectividad, organización de red y despliegues verificables en cada iteración técnica.
-        </p>
-      </div>
-
-      <div class="infra-network-grid" role="list">
-        <article class="infra-network-card" role="listitem">
-          <h4>Direccionamiento IPv6</h4>
-          <p>
-            Diseño de prefijos y segmentación lógica para organizar dominios de red y sostener escalabilidad
-            de conectividad sin rediseños disruptivos.
-          </p>
-        </article>
-
-        <article class="infra-network-card" role="listitem">
-          <h4>Neighbor Discovery Protocol (NDP)</h4>
-          <p>
-            Resolución de presencia en red IPv6 mediante NDP, asegurando continuidad de conectividad sin
-            dependencia de ARP clásico.
-          </p>
-        </article>
-
-        <article class="infra-network-card" role="listitem">
-          <h4>SLAAC / Autoconfiguración</h4>
-          <p>
-            Aprovisionamiento automático de direcciones para reducir configuración manual y mantener
-            consistencia operativa en despliegues.
-          </p>
-        </article>
-      </div>
-
-      <div class="infra-observability" aria-labelledby="infra-observability-title">
-        <h4 id="infra-observability-title">Visibilidad operativa y criterio NOC</h4>
-        <p>
-          La operación se basa en observabilidad del comportamiento de red para detectar degradación y
-          sostener decisiones con evidencia operativa trazable.
-        </p>
-
-        <ul class="infra-observability-list" role="list">
-          <li class="infra-observability-item">
-            <h5>Monitoreo</h5>
-            <p>Monitoreo de enlaces, servicios y disponibilidad de hosts para mantener estabilidad operativa.</p>
-          </li>
-          <li class="infra-observability-item">
-            <h5>Observabilidad</h5>
-            <p>
-              Correlación de latencia, comportamiento y estado de red mediante métricas y eventos para
-              identificar patrones de degradación.
-            </p>
-          </li>
-          <li class="infra-observability-item">
-            <h5>Diagnóstico técnico inicial</h5>
-            <p>
-              Diagnóstico inicial de incidencias de conectividad, rutas y configuración con enfoque en causa
-              raíz y recuperación controlada.
-            </p>
-          </li>
-        </ul>
-      </div>
-
-      <aside class="infra-network-note" aria-label="Aplicación real">
-        <p class="infra-network-note-label">Aplicación real</p>
-        <p class="infra-network-note-copy">
-          Este portafolio opera como sistema real, con validación reproducible de conectividad extremo a
-          extremo y decisiones de infraestructura basadas en evidencia verificable.
-        </p>
-      </aside>
-    </section>
-
-    <section class="infra-block infra-block--divided infra-ops" aria-labelledby="infra-ops">
-      <h3 id="infra-ops" class="infra-block-title">Prácticas operativas y criterio NOC</h3>
-
-      <div class="infra-ops-intro">
-        <p>
-          La infraestructura no se limita al despliegue. También requiere observación continua, lectura
-          técnica del estado de red y capacidad de respuesta basada en evidencia operativa.
-        </p>
-      </div>
-
-      <div class="infra-ops-grid" role="list">
-        <article class="infra-ops-card" role="listitem">
-          <h4>Monitoreo</h4>
-          <p>
-            Visibilidad continua sobre disponibilidad, latencia, tráfico y estado de servicios para detectar
-            degradación operativa antes de que afecte a usuarios o procesos críticos.
-          </p>
-        </article>
-
-        <article class="infra-ops-card" role="listitem">
-          <h4>Logs y telemetría</h4>
-          <p>
-            Registro de eventos y comportamiento técnico para correlacionar fallos, validar hipótesis y
-            sostener trazabilidad sobre el estado del sistema y la red.
-          </p>
-        </article>
-
-        <article class="infra-ops-card" role="listitem">
-          <h4>Alertas</h4>
-          <p>
-            Definición de umbrales y condiciones de evento que priorizan incidentes reales, reducen ruido
-            operativo y permiten intervención sobre señales relevantes.
-          </p>
-        </article>
-
-        <article class="infra-ops-card" role="listitem">
-          <h4>Diagnóstico técnico</h4>
-          <p>
-            Análisis de conectividad, rutas, configuración y comportamiento de servicios para identificar
-            causa raíz y ejecutar recuperación con control operativo.
-          </p>
-        </article>
-      </div>
-
-      <div class="infra-ops-flow" aria-labelledby="infra-ops-flow-title">
-        <h4 id="infra-ops-flow-title">Flujo operativo</h4>
-        <p>
-          Evento detectado → lectura de métricas y logs → validación de alerta → diagnóstico técnico →
-          acción correctiva controlada.
-        </p>
-      </div>
-
-      <aside class="infra-ops-note" aria-label="Aplicación operativa real">
-        <p class="infra-ops-note-label">Aplicación operativa</p>
-        <p class="infra-ops-note-copy">
-          Este enfoque permite operar la infraestructura del portafolio como un sistema observable,
-          verificable y diagnosticable, no solo como un sitio estático publicado.
-        </p>
-      </aside>
-    </section>
-
-    <section class="infra-block infra-block--divided" aria-labelledby="infra-stack">
-      <h3 id="infra-stack" class="infra-block-title">Stack tecnico</h3>
-      <ul class="infra-stack" role="list">
-        {technicalStack.map((tech) => (
-          <li>{tech}</li>
-        ))}
-      </ul>
-    </section>
-
-    <section class="infra-block infra-block--divided" aria-labelledby="infra-seguridad-rendimiento">
-      <h3 id="infra-seguridad-rendimiento" class="infra-block-title">Seguridad y rendimiento</h3>
-      <div class="infra-split">
-        <article>
-          <h4>Seguridad</h4>
-          <ul>
-            <li>Sin backend expuesto para logica de aplicacion.</li>
-            <li>Superficie de ataque reducida por despliegue estatico.</li>
-            <li>Publicacion controlada sobre artefactos inmutables.</li>
-          </ul>
-        </article>
-
-        <article>
-          <h4>Performance</h4>
-          <ul>
-            <li>JavaScript minimo con enfoque en islands puntuales.</li>
-            <li>TTFB rapido por entrega directa de contenido estatico.</li>
-            <li>Salida cacheable y compatible con estrategias CDN.</li>
-          </ul>
-        </article>
-      </div>
-    </section>
-  </div>
+		<aside class="infra-note" aria-label="Alcance comercial actual">
+			<p class="section-kicker">Lectura comercial honesta</p>
+			<p>
+				CI/CD, VPS, Nginx, HTTPS e IPv6 aumentan confianza tecnica. La oferta activa sigue siendo web-first:
+				sitios, landing pages y mejoras visuales que se pueden sostener hoy con evidencia.
+			</p>
+		</aside>
+	</div>
 </section>
 
 <style>
-  .infra-header {
-    max-width: var(--container-prose);
-    margin-inline: auto;
-  }
-
-  .infra-label {
-    margin-bottom: var(--space-3);
-    font-size: var(--text-sm);
-    font-family: var(--font-mono);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--color-text-secondary);
-  }
-
-  .infra-title {
-    font-size: var(--text-6xl);
-    line-height: 1.1;
-    color: var(--color-text-primary);
-  }
-
-  .infra-description {
-    margin-top: var(--space-8);
-    display: grid;
-    gap: var(--space-6);
-  }
-
-  .infra-description p {
-    color: var(--color-text-secondary);
-    line-height: 1.8;
-  }
-
-  .infra-actions {
-    margin-top: var(--space-8);
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-4);
-  }
-
-  .infra-contact-link,
-  .infra-secondary-link {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 48px;
-    padding: var(--space-3) var(--space-6);
-    border-radius: var(--radius-md);
-    text-decoration: none;
-    transition: transform 150ms ease, border-color 150ms ease, background 150ms ease;
-  }
-
-  .infra-contact-link:hover,
-  .infra-secondary-link:hover {
-    transform: translateY(-1px);
-  }
-
-  .infra-contact-link {
-    background: var(--color-accent);
-    color: var(--color-accent-contrast);
-  }
-
-  .infra-contact-link:hover {
-    background: var(--color-accent-hover);
-  }
-
-  .infra-secondary-link {
-    border: 1px solid var(--color-bg-muted);
-    color: var(--color-text-primary);
-    background: var(--color-bg);
-  }
-
-  .infra-secondary-link:hover {
-    border-color: var(--color-text-secondary);
-    background: var(--color-bg-subtle);
-  }
-
-  .infra-block {
-    max-width: var(--container-prose);
-    margin-inline: auto;
-    margin-top: var(--space-16);
-  }
-
-  .infra-block--divided {
-    padding-top: var(--space-16);
-    border-top: 1px solid var(--color-bg-muted);
-  }
-
-  .infra-block-title {
-    margin-bottom: var(--space-6);
-    font-size: var(--text-xl);
-    font-family: var(--font-body);
-    font-weight: 500;
-    color: var(--color-text-secondary);
-  }
-
-  .infra-copy {
-    display: grid;
-    gap: var(--space-4);
-  }
-
-  .infra-copy p {
-    color: var(--color-text-primary);
-    line-height: 1.8;
-  }
-
-  .infra-principles {
-    display: grid;
-    gap: var(--space-3);
-    padding-left: var(--space-6);
-    color: var(--color-text-primary);
-    line-height: 1.8;
-  }
-
-  .infra-principles li {
-    position: relative;
-  }
-
-  .infra-principles li::marker {
-    color: var(--color-accent);
-  }
-
-  .infra-layers {
-    display: grid;
-    gap: var(--space-6);
-  }
-
-  .infra-layer {
-    border: 1px solid var(--color-bg-muted);
-    border-radius: var(--radius-md);
-    padding: var(--space-6);
-    background: var(--color-bg-subtle);
-  }
-
-  .infra-layer h4 {
-    margin-bottom: var(--space-3);
-    font-size: var(--text-base);
-    font-family: var(--font-mono);
-    color: var(--color-text-primary);
-  }
-
-  .infra-layer p {
-    color: var(--color-text-secondary);
-    line-height: 1.7;
-  }
-
-  .infra-networking {
-    display: grid;
-    gap: var(--space-10);
-  }
-
-  .infra-network-intro {
-    display: grid;
-    gap: var(--space-3);
-  }
-
-  .infra-network-intro h4 {
-    font-size: var(--text-base);
-    font-family: var(--font-mono);
-    color: var(--color-text-primary);
-  }
-
-  .infra-network-intro p {
-    color: var(--color-text-secondary);
-    line-height: 1.8;
-  }
-
-  .infra-network-grid {
-    display: grid;
-    gap: var(--space-6);
-  }
-
-  .infra-network-card {
-    background: var(--color-bg-subtle);
-    border: 1px solid var(--color-bg-muted);
-    border-radius: var(--radius-md);
-    padding: var(--space-6);
-  }
-
-  .infra-network-card h4 {
-    margin-bottom: var(--space-3);
-    font-size: var(--text-sm);
-    font-family: var(--font-mono);
-    color: var(--color-text-primary);
-  }
-
-  .infra-network-card p {
-    color: var(--color-text-secondary);
-    line-height: 1.7;
-  }
-
-  .infra-observability {
-    display: grid;
-    gap: var(--space-4);
-  }
-
-  .infra-observability h4 {
-    font-size: var(--text-base);
-    font-family: var(--font-mono);
-    color: var(--color-text-primary);
-  }
-
-  .infra-observability > p {
-    color: var(--color-text-secondary);
-    line-height: 1.8;
-  }
-
-  .infra-observability-list {
-    display: grid;
-    gap: var(--space-4);
-    list-style: none;
-  }
-
-  .infra-observability-item {
-    background: var(--color-bg-subtle);
-    border: 1px solid var(--color-bg-muted);
-    border-radius: var(--radius-md);
-    padding: var(--space-5);
-  }
-
-  .infra-observability-item h5 {
-    margin-bottom: var(--space-2);
-    font-size: var(--text-sm);
-    font-family: var(--font-mono);
-    color: var(--color-text-primary);
-  }
-
-  .infra-observability-item p {
-    color: var(--color-text-secondary);
-    line-height: 1.7;
-  }
-
-  .infra-network-note {
-    display: grid;
-    gap: var(--space-3);
-    background: var(--color-bg-subtle);
-    border: 1px solid var(--color-bg-muted);
-    border-radius: var(--radius-md);
-    padding: var(--space-6);
-  }
-
-  .infra-network-note-label {
-    font-size: var(--text-xs);
-    font-family: var(--font-mono);
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--color-text-secondary);
-  }
-
-  .infra-network-note-copy {
-    color: var(--color-text-secondary);
-    line-height: 1.8;
-  }
-
-  .infra-ops {
-    display: grid;
-    gap: var(--space-10);
-  }
-
-  .infra-ops-intro {
-    display: grid;
-    gap: var(--space-3);
-  }
-
-  .infra-ops-intro p {
-    color: var(--color-text-secondary);
-    line-height: 1.8;
-  }
-
-  .infra-ops-grid {
-    display: grid;
-    gap: var(--space-6);
-  }
-
-  .infra-ops-card {
-    background: var(--color-bg-subtle);
-    border: 1px solid var(--color-bg-muted);
-    border-radius: var(--radius-md);
-    padding: var(--space-6);
-  }
-
-  .infra-ops-card h4 {
-    margin-bottom: var(--space-3);
-    font-size: var(--text-sm);
-    font-family: var(--font-mono);
-    color: var(--color-text-primary);
-  }
-
-  .infra-ops-card p {
-    color: var(--color-text-secondary);
-    line-height: 1.7;
-  }
-
-  .infra-ops-flow {
-    border: 1px solid var(--color-bg-muted);
-    background: var(--color-bg-subtle);
-    border-radius: var(--radius-md);
-    padding: var(--space-6);
-    display: grid;
-    gap: var(--space-3);
-  }
-
-  .infra-ops-flow h4 {
-    font-family: var(--font-mono);
-    font-size: var(--text-base);
-    color: var(--color-text-primary);
-  }
-
-  .infra-ops-flow p {
-    color: var(--color-text-secondary);
-    line-height: 1.8;
-  }
-
-  .infra-ops-note {
-    display: grid;
-    gap: var(--space-3);
-    background: var(--color-bg-subtle);
-    border: 1px solid var(--color-bg-muted);
-    border-radius: var(--radius-md);
-    padding: var(--space-6);
-  }
-
-  .infra-ops-note-label {
-    font-size: var(--text-xs);
-    font-family: var(--font-mono);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: var(--color-text-secondary);
-  }
-
-  .infra-ops-note-copy {
-    color: var(--color-text-secondary);
-    line-height: 1.8;
-  }
-
-  .infra-stack {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-3);
-    list-style: none;
-  }
-
-  .infra-stack li {
-    background: var(--color-bg-subtle);
-    border: 1px solid var(--color-bg-muted);
-    color: var(--color-text-secondary);
-    font-family: var(--font-mono);
-    font-size: var(--text-xs);
-    border-radius: var(--radius-full);
-    padding: var(--space-1) var(--space-3);
-  }
-
-  .infra-split {
-    display: grid;
-    gap: var(--space-8);
-  }
-
-  .infra-split article h4 {
-    margin-bottom: var(--space-4);
-    font-size: var(--text-base);
-    font-family: var(--font-mono);
-    color: var(--color-text-primary);
-  }
-
-  .infra-split article ul {
-    display: grid;
-    gap: var(--space-3);
-    padding-left: var(--space-6);
-    color: var(--color-text-secondary);
-    line-height: 1.7;
-  }
-
-  @media (min-width: 768px) {
-    .infra-layers {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .infra-network-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .infra-ops-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .infra-split {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .infra-network-grid {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-  }
-
-  /* Pipeline de construcción y despliegue */
-  .infra-pipeline {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-8);
-    list-style: none;
-  }
-
-  .pipeline-node {
-    background: var(--color-bg-subtle);
-    border: 1px solid var(--color-bg-muted);
-    border-radius: var(--radius-md);
-    padding: var(--space-6);
-    transition: transform 150ms ease, border-color 150ms ease, background-color 150ms ease;
-    position: relative;
-    text-align: center;
-    margin: 0;
-  }
-
-  .pipeline-node:first-child {
-    border-color: var(--color-accent);
-    background: var(--color-accent-subtle);
-  }
-
-  .pipeline-node:first-child p {
-    color: var(--color-text-primary);
-  }
-
-  .pipeline-node:last-child {
-    border-color: var(--color-success, var(--color-accent));
-  }
-
-  .pipeline-node:not(:last-child)::after {
-    content: '';
-    position: absolute;
-    width: 2px;
-    height: var(--space-6);
-    bottom: calc(-1 * var(--space-6));
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--color-bg-muted);
-  }
-
-  .pipeline-node:last-child::after {
-    display: none;
-  }
-
-  .pipeline-node h4 {
-    margin-bottom: var(--space-2);
-    font-size: var(--text-base);
-    font-family: var(--font-mono);
-    color: var(--color-text-primary);
-    font-weight: 500;
-  }
-
-  .pipeline-node p {
-    color: var(--color-text-secondary);
-    line-height: 1.6;
-    font-size: var(--text-sm);
-  }
-
-  .pipeline-node:hover {
-    transform: translateY(-2px);
-    border-color: var(--color-accent);
-  }
-
-  @media (min-width: 768px) {
-    .infra-pipeline {
-      flex-direction: row;
-      align-items: stretch;
-      justify-content: space-between;
-      gap: var(--space-6);
-    }
-
-    .pipeline-node {
-      flex: 1 1 0;
-      min-width: 0;
-      max-width: 220px;
-      display: flex;
-      flex-direction: column;
-      text-align: center;
-    }
-
-    .pipeline-node:not(:last-child)::after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 100%;
-      margin-left: calc(var(--space-6) / 2);
-      width: calc(var(--space-6) / 2);
-      height: 2px;
-      bottom: auto;
-      transform: translateY(-50%);
-      background: var(--color-bg-muted);
-    }
-
-    .pipeline-node:not(:last-child)::before {
-      content: '';
-      position: absolute;
-      right: calc(-1 * var(--space-6) / 2);
-      top: 50%;
-      transform: translateY(-50%) rotate(45deg);
-      width: 6px;
-      height: 6px;
-      border-top: 2px solid var(--color-bg-muted);
-      border-right: 2px solid var(--color-bg-muted);
-    }
-
-    .pipeline-node:last-child::after {
-      display: none;
-    }
-
-    .pipeline-node:last-child::before {
-      display: none;
-    }
-
-    .pipeline-node h4 {
-      margin-bottom: var(--space-3);
-    }
-
-    .pipeline-node p {
-      flex: 1;
-    }
-  }
+	.infra-section {
+		position: relative;
+		overflow: hidden;
+		border-top: 1px solid var(--color-bg-muted);
+		background:
+			radial-gradient(circle at 80% 0%, color-mix(in srgb, var(--color-signal-green) 14%, transparent), transparent 34%),
+			var(--color-bg);
+	}
+
+	.infra-shell {
+		display: grid;
+		gap: var(--space-16);
+	}
+
+	.infra-header {
+		display: grid;
+		gap: var(--space-6);
+		max-width: 860px;
+	}
+
+	.infra-header p:not(.section-kicker) {
+		max-width: 66ch;
+		font-size: var(--text-lg);
+		line-height: 1.85;
+		color: var(--color-text-secondary);
+	}
+
+	.infra-system-flow {
+		position: relative;
+		display: grid;
+		gap: var(--space-6);
+	}
+
+	.infra-system-flow::before {
+		content: '';
+		position: absolute;
+		top: 24px;
+		bottom: 24px;
+		left: 23px;
+		width: 1px;
+		background: linear-gradient(var(--color-signal-cyan), var(--color-signal-green), var(--color-signal-amber));
+		opacity: 0.62;
+	}
+
+	.infra-system-node {
+		position: relative;
+		display: grid;
+		grid-template-columns: auto minmax(0, 1fr);
+		gap: var(--space-5, calc(var(--space-4) + var(--space-1)));
+		align-items: start;
+	}
+
+	.infra-system-index {
+		position: relative;
+		z-index: 1;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 48px;
+		height: 48px;
+		border: 1px solid var(--color-bg-muted);
+		border-radius: var(--radius-full);
+		background: var(--color-surface);
+		color: var(--color-signal-cyan);
+		font-family: var(--font-mono);
+		font-size: var(--text-xs);
+	}
+
+	.infra-system-copy {
+		display: grid;
+		gap: var(--space-3);
+		padding-bottom: var(--space-8);
+		border-bottom: 1px solid var(--color-bg-muted);
+	}
+
+	.infra-system-copy h3 {
+		font-size: var(--text-2xl);
+		line-height: 1.12;
+	}
+
+	.infra-system-copy p {
+		max-width: 48ch;
+		color: var(--color-text-secondary);
+		line-height: 1.75;
+	}
+
+	.infra-system-status {
+		width: fit-content;
+		border-radius: var(--radius-full);
+		background: color-mix(in srgb, var(--color-signal-cyan) 12%, var(--color-surface));
+		color: var(--color-signal-cyan);
+		padding: var(--space-1) var(--space-3);
+		font-family: var(--font-mono);
+		font-size: var(--text-xs);
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+	}
+
+	.infra-evidence-grid {
+		display: grid;
+		gap: var(--space-4);
+	}
+
+	.infra-evidence-item {
+		display: grid;
+		gap: var(--space-3);
+		padding-top: var(--space-5, calc(var(--space-4) + var(--space-1)));
+		border-top: 1px solid var(--color-bg-muted);
+	}
+
+	.infra-evidence-item h3 {
+		font-size: var(--text-lg);
+		font-family: var(--font-body);
+		font-weight: 500;
+		color: var(--color-text-primary);
+	}
+
+	.infra-evidence-item p,
+	.infra-note p:not(.section-kicker) {
+		color: var(--color-text-secondary);
+		line-height: 1.8;
+	}
+
+	.infra-note {
+		display: grid;
+		gap: var(--space-4);
+		padding: var(--space-8);
+		border-left: 4px solid var(--color-signal-green);
+		background: color-mix(in srgb, var(--color-surface) 88%, transparent);
+		box-shadow: 0 24px 80px color-mix(in srgb, var(--color-text-primary) 8%, transparent);
+	}
+
+	@media (min-width: 900px) {
+		.infra-system-flow {
+			grid-template-columns: repeat(5, minmax(0, 1fr));
+			gap: 0;
+		}
+
+		.infra-system-flow::before {
+			top: 24px;
+			bottom: auto;
+			left: 24px;
+			right: 24px;
+			width: auto;
+			height: 1px;
+			background: linear-gradient(90deg, var(--color-signal-cyan), var(--color-signal-green), var(--color-signal-amber));
+		}
+
+		.infra-system-node {
+			grid-template-columns: 1fr;
+			gap: var(--space-6);
+			padding-right: var(--space-6);
+		}
+
+		.infra-system-copy {
+			padding-top: var(--space-2);
+			padding-bottom: 0;
+			border-bottom: none;
+		}
+
+		.infra-system-copy h3 {
+			font-size: var(--text-xl);
+		}
+
+		.infra-evidence-grid {
+			grid-template-columns: repeat(4, minmax(0, 1fr));
+		}
+	}
 </style>
