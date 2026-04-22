@@ -57,11 +57,15 @@ const services = [
 				Web primero. La infraestructura suma confianza, no ruido.
 			</h2>
 
-			<p class="services-description">
-				La oferta principal hoy es construir sitios web claros, rapidos y publicables. La base tecnica
-				aparece como evidencia de criterio: ayuda a decidir mejor, pero no desplaza el objetivo comercial
-				del cliente.
-			</p>
+			<div class="services-description">
+				<p>
+					La oferta principal hoy es construir sitios web claros, rapidos y publicables.
+				</p>
+				<p>
+					La base tecnica aparece como evidencia de criterio para decidir mejor, sin desplazar el objetivo
+					comercial del cliente.
+				</p>
+			</div>
 		</header>
 
 		<div class="services-list">
@@ -135,10 +139,21 @@ const services = [
 		max-width: 860px;
 	}
 
+	.services-title {
+		max-width: min(18ch, 100%);
+		text-align: left;
+	}
+
 	.services-description {
-		max-width: 62ch;
+		display: grid;
+		gap: var(--space-4);
+		max-width: 64ch;
+	}
+
+	.services-description p {
+		max-width: none;
 		font-size: var(--text-lg);
-		line-height: 1.85;
+		line-height: 1.82;
 		color: var(--color-text-secondary);
 	}
 
