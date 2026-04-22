@@ -329,7 +329,7 @@ Expected:
 - Modify: `docs/architecture/design-system.md`
 - Test: `tests/sprint-8-visual-contract.test.mjs`
 
-- [ ] **Step 1: Update global tokens**
+- [x] **Step 1: Update global tokens**
 
 In `src/styles/global.css`, extend `@theme` with:
 
@@ -357,7 +357,7 @@ In `[data-theme="dark"]`, add:
   --color-ink-soft:          #D4D4D8;
 ```
 
-- [ ] **Step 2: Add shared composition utilities**
+- [x] **Step 2: Add shared composition utilities**
 
 Add these utilities after `.container` in `src/styles/global.css`:
 
@@ -413,7 +413,7 @@ Inside `@media (min-width: 1024px)`, add:
   }
 ```
 
-- [ ] **Step 3: Update design system documentation**
+- [x] **Step 3: Update design system documentation**
 
 In `docs/architecture/design-system.md`, add a section named `## Sprint 8 visual direction` with:
 
@@ -429,7 +429,7 @@ El rediseño usa una dirección `portfolio editorial técnico + laboratorio inte
 - Las tarjetas dejan de ser estructura principal; se usan solo para elementos repetidos, controles, formularios o demos.
 ```
 
-- [ ] **Step 4: Run verification**
+- [x] **Step 4: Run verification**
 
 Run:
 
@@ -445,7 +445,7 @@ Expected:
 - 0 hints
 ```
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 Run:
 

@@ -31,6 +31,16 @@ El sistema visual base vive en `src/styles/global.css` y se apoya en tokens CSS 
 - Body: `Geist`
 - Mono: `Geist Mono`
 
+## Sprint 8 visual direction
+
+El rediseño usa una dirección `portfolio editorial técnico + laboratorio interactivo`.
+
+- `--color-signal-*` se reserva para estados técnicos, flujos, nodos y señales operativas.
+- `.editorial-section` y `.editorial-title` dan ritmo amplio a secciones principales.
+- `.section-kicker` unifica etiquetas editoriales sin repetir estilos scoped.
+- `.motion-rise` permite motion de entrada reutilizable y respeta `prefers-reduced-motion`.
+- Las tarjetas dejan de ser estructura principal; se usan solo para elementos repetidos, controles, formularios o demos.
+
 ## Dónde extender el sistema
 
 - Si la regla aplica a más de una vista, evaluar `global.css`.
