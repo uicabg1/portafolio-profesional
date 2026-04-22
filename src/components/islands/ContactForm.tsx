@@ -190,7 +190,8 @@ export default function ContactForm() {
           gap: var(--space-4);
         }
 
-        .contact-form-field {
+        .contact-form-field,
+        .brief-field {
           display: grid;
           gap: var(--space-2);
         }
@@ -346,7 +347,7 @@ export default function ContactForm() {
           </div>
 
           <div class="contact-form-grid">
-            <div class="contact-form-field">
+            <div class="contact-form-field brief-field">
               <label htmlFor="contact-name">Nombre</label>
               <input
                 id="contact-name"
@@ -364,7 +365,7 @@ export default function ContactForm() {
               />
             </div>
 
-            <div class="contact-form-field">
+            <div class="contact-form-field brief-field">
               <label htmlFor="contact-company">Empresa</label>
               <input
                 id="contact-company"
@@ -382,7 +383,7 @@ export default function ContactForm() {
               />
             </div>
 
-            <div class="contact-form-field">
+            <div class="contact-form-field brief-field">
               <label htmlFor="contact-email">Correo electrónico</label>
               <input
                 id="contact-email"
@@ -407,7 +408,7 @@ export default function ContactForm() {
               )}
             </div>
 
-            <div class="contact-form-field">
+            <div class="contact-form-field brief-field">
               <label htmlFor="contact-project-type">Tipo de proyecto</label>
               <select
                 id="contact-project-type"
@@ -432,7 +433,7 @@ export default function ContactForm() {
               </select>
             </div>
 
-            <div class="contact-form-field contact-form-field--full">
+            <div class="contact-form-field brief-field contact-form-field--full">
               <label htmlFor="contact-message">Mensaje</label>
               <textarea
                 id="contact-message"

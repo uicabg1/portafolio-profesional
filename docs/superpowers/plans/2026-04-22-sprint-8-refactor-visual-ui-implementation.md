@@ -841,7 +841,7 @@ Expected:
 - Test: `tests/contact-form.test.mjs`
 - Test: `tests/sprint-8-visual-contract.test.mjs`
 
-- [ ] **Step 1: Update contact section layout**
+- [x] **Step 1: Update contact section layout**
 
 In `src/components/astro/Contact.astro`:
 
@@ -851,7 +851,7 @@ In `src/components/astro/Contact.astro`:
 - keep Formspree-driven form island unchanged at the integration boundary
 - remove copy that makes infrastructure the closing focus
 
-- [ ] **Step 2: Update form visual classes**
+- [x] **Step 2: Update form visual classes**
 
 In `src/components/islands/ContactForm.tsx`:
 
@@ -861,7 +861,7 @@ In `src/components/islands/ContactForm.tsx`:
 - keep honeypot behavior unchanged
 - keep fallback to WhatsApp on submission failure
 
-- [ ] **Step 3: Run contact logic tests**
+- [x] **Step 3: Run contact logic tests**
 
 Run:
 
@@ -875,7 +875,7 @@ Expected:
 # fail 0
 ```
 
-- [ ] **Step 4: Run contact visual contract**
+- [x] **Step 4: Run contact visual contract**
 
 Run:
 
@@ -890,7 +890,7 @@ Expected:
 # fail 0
 ```
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 Run:
 
