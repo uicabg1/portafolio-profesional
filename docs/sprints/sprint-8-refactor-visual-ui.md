@@ -37,6 +37,13 @@ El plan ejecutable por tareas vive en:
 
 - [../superpowers/plans/2026-04-22-sprint-8-refactor-visual-ui-implementation.md](../superpowers/plans/2026-04-22-sprint-8-refactor-visual-ui-implementation.md)
 
+## Avance de implementación
+
+- [x] Task 0: rama `feat/sprint-8-visual-refactor`, baseline técnico y commit documental creados.
+- [x] Task 1: contratos visuales de Sprint 8 agregados como baseline TDD.
+
+Nota de Task 1: el contrato del hero falla de forma esperada porque la UI actual aún no contiene la superficie `hero-visual`; ese rojo guía la implementación de la Task 3.
+
 Resumen de dirección:
 
 - estilo principal: portfolio editorial técnico

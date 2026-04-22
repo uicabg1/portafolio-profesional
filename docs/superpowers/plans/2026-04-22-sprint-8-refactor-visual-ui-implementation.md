@@ -90,7 +90,7 @@
 - Read: `docs/superpowers/specs/2026-04-22-sprint-8-refactor-visual-ui-design.md`
 - Read: `docs/quality/verification.md`
 
-- [ ] **Step 1: Check current worktree**
+- [x] **Step 1: Check current worktree**
 
 Run:
 
@@ -113,7 +113,7 @@ Expected:
 
 If additional unrelated files appear, keep them untouched and note them in the task handoff before editing shared files.
 
-- [ ] **Step 2: Create or switch to a sprint branch**
+- [x] **Step 2: Create or switch to a sprint branch**
 
 Run:
 
@@ -139,7 +139,7 @@ If the branch already exists, run:
 git switch feat/sprint-8-visual-refactor
 ```
 
-- [ ] **Step 3: Run baseline tests**
+- [x] **Step 3: Run baseline tests**
 
 Run:
 
@@ -154,7 +154,7 @@ Expected:
 # fail 0
 ```
 
-- [ ] **Step 4: Run baseline Astro validation**
+- [x] **Step 4: Run baseline Astro validation**
 
 Run:
 
@@ -171,7 +171,7 @@ Result (30 files):
 - 0 hints
 ```
 
-- [ ] **Step 5: Run baseline production build**
+- [x] **Step 5: Run baseline production build**
 
 Run:
 
@@ -187,7 +187,7 @@ completed in
 
 The exact duration can vary. The command must exit with code `0`.
 
-- [ ] **Step 6: Commit documentation baseline if not already committed**
+- [x] **Step 6: Commit documentation baseline if not already committed**
 
 Run:
 
@@ -212,7 +212,7 @@ Do not add `AGENTS.md`, `CHANGELOG.md`, `CONTRIBUTING.md` or `SECURITY.md` unles
 - Create: `tests/sprint-8-visual-contract.test.mjs`
 - Test: `tests/sprint-8-visual-contract.test.mjs`
 
-- [ ] **Step 1: Create the failing visual contract test**
+- [x] **Step 1: Create the failing visual contract test**
 
 Create `tests/sprint-8-visual-contract.test.mjs` with this exact content:
 
@@ -289,12 +289,12 @@ test('Sprint 8 interactive demos expose clearer visual states', () => {
 });
 ```
 
-- [ ] **Step 2: Run the hero contract and verify it fails**
+- [x] **Step 2: Run the hero contract and verify it fails**
 
 Run:
 
 ```bash
-node --test --experimental-strip-types tests/sprint-8-visual-contract.test.mjs --test-name-pattern "hero"
+node --test --experimental-strip-types --test-name-pattern "hero" tests/sprint-8-visual-contract.test.mjs
 ```
 
 Expected:
@@ -305,7 +305,7 @@ not ok
 
 The failure must mention a missing Sprint 8 marker such as `hero-visual` or `hero-signal`.
 
-- [ ] **Step 3: Commit the failing contract**
+- [x] **Step 3: Commit the failing contract**
 
 Run:
 
@@ -507,7 +507,7 @@ hero-signal-map
 Run:
 
 ```bash
-node --test --experimental-strip-types tests/sprint-8-visual-contract.test.mjs --test-name-pattern "hero"
+node --test --experimental-strip-types --test-name-pattern "hero" tests/sprint-8-visual-contract.test.mjs
 ```
 
 Expected:
@@ -679,7 +679,7 @@ Implement:
 Run:
 
 ```bash
-node --test --experimental-strip-types tests/sprint-8-visual-contract.test.mjs --test-name-pattern "projects"
+node --test --experimental-strip-types --test-name-pattern "projects" tests/sprint-8-visual-contract.test.mjs
 ```
 
 Expected:
@@ -790,7 +790,7 @@ Acceptance:
 Run:
 
 ```bash
-node --test --experimental-strip-types tests/sprint-8-visual-contract.test.mjs --test-name-pattern "infrastructure"
+node --test --experimental-strip-types --test-name-pattern "infrastructure" tests/sprint-8-visual-contract.test.mjs
 ```
 
 Expected:
@@ -880,7 +880,7 @@ Expected:
 Run:
 
 ```bash
-node --test --experimental-strip-types tests/sprint-8-visual-contract.test.mjs --test-name-pattern "contact"
+node --test --experimental-strip-types --test-name-pattern "contact" tests/sprint-8-visual-contract.test.mjs
 ```
 
 Expected:
@@ -950,7 +950,7 @@ In `src/components/astro/ProjectInteractiveSection.astro`:
 Run:
 
 ```bash
-node --test --experimental-strip-types tests/sprint-8-visual-contract.test.mjs --test-name-pattern "project detail"
+node --test --experimental-strip-types --test-name-pattern "project detail" tests/sprint-8-visual-contract.test.mjs
 ```
 
 Expected:
@@ -1025,7 +1025,7 @@ In `src/islands/IPv6MigrationMap.tsx`:
 Run:
 
 ```bash
-node --test --experimental-strip-types tests/sprint-8-visual-contract.test.mjs --test-name-pattern "interactive demos"
+node --test --experimental-strip-types --test-name-pattern "interactive demos" tests/sprint-8-visual-contract.test.mjs
 ```
 
 Expected:
