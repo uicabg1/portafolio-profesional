@@ -50,19 +50,19 @@ Este documento resume el estado funcional del portafolio con foco en trabajo pen
 
 - Documentación canónica del proyecto y separación de histórico
 - Organización de la evidencia LACNIC/TIDE dentro de la documentación canónica
-- Planeación del siguiente ciclo visual/comercial
+- Planeación del Sprint 8 de refactor visual UI y evidencia interactiva
 
 ### Pendiente
 
 - Versionado de configuración de servidor o plantillas asociadas
 - Decidir si se realiza una prueba destructiva/controlada de restore real en producción
 - Profundizar observabilidad con monitoreo externo si el proyecto lo requiere
-- Rediseño visual mayor de UI en un sprint posterior al cierre técnico
+- Ejecutar el rediseño visual mayor definido para Sprint 8
 
 ## Próximas prioridades
 
 1. Publicar el release base desde GitHub Actions y confirmar producción.
-2. Planear el sprint posterior de rediseño UI completo.
+2. Ejecutar Sprint 8: refactor visual UI y evidencia interactiva.
 3. Versionar configuración de servidor o plantillas asociadas.
 4. Profundizar observabilidad con monitoreo externo si el proyecto lo requiere.
 
@@ -71,4 +71,5 @@ Este documento resume el estado funcional del portafolio con foco en trabajo pen
 - Fuente de requisitos: [requisitos.md](requisitos.md)
 - Último sprint cerrado: [../sprints/sprint-7-qa-release-y-cierre.md](../sprints/sprint-7-qa-release-y-cierre.md)
 - Sprint anterior cerrado: [../sprints/sprint-6-cicd-operacion-y-servicios-complementarios.md](../sprints/sprint-6-cicd-operacion-y-servicios-complementarios.md)
+- Sprint visual planeado: [../sprints/sprint-8-refactor-visual-ui.md](../sprints/sprint-8-refactor-visual-ui.md)
 - El backlog debe mantenerse alineado con el estado del código, no con los runbooks históricos.

@@ -21,4 +21,5 @@ Esta carpeta concentra la planificación operativa vigente del proyecto.
 - Sprint 5 cerrado: [sprint-5-vps-real-ipv6-y-publicacion.md](sprint-5-vps-real-ipv6-y-publicacion.md)
 - Sprint 6 cerrado: [sprint-6-cicd-operacion-y-servicios-complementarios.md](sprint-6-cicd-operacion-y-servicios-complementarios.md)
 - Sprint 7 cerrado: [sprint-7-qa-release-y-cierre.md](sprint-7-qa-release-y-cierre.md)
-- Siguiente bloque sugerido: rediseño UI completo y evolución comercial post-release.
+- Sprint 8 planeado: [sprint-8-refactor-visual-ui.md](sprint-8-refactor-visual-ui.md)
+- Siguiente bloque sugerido después de Sprint 8: publicación del rediseño, medición post-release y ajustes visuales finos.
