@@ -264,7 +264,7 @@ export default function RSASimulator() {
           gap: 1rem;
         }
 
-        .rsa-stats {
+        .rsa-result-grid {
           display: grid;
           gap: 1rem;
         }
@@ -334,7 +334,7 @@ export default function RSASimulator() {
             grid-template-columns: repeat(2, minmax(0, 1fr));
           }
 
-          .rsa-stats {
+          .rsa-result-grid {
             grid-template-columns: repeat(4, minmax(0, 1fr));
           }
 
@@ -419,7 +419,7 @@ export default function RSASimulator() {
           </div>
         ) : (
           <div class="rsa-output">
-            <div class="rsa-stats">
+            <div class="rsa-result-grid">
               <div class="rsa-stat">
                 <span>n = p × q</span>
                 <strong>{analysis.values?.n.toString()}</strong>

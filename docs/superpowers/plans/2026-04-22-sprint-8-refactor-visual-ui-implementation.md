@@ -689,7 +689,7 @@ Expected:
 # fail 0
 ```
 
-- [ ] **Step 5: Run full tests**
+- [x] **Step 5: Run full tests**
 
 Run:
 
@@ -703,7 +703,7 @@ Expected:
 # fail 0
 ```
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 
 Run:
 
@@ -1000,7 +1000,7 @@ Expected:
 - Modify: `src/islands/IPv6MigrationMap.tsx`
 - Test: `tests/sprint-8-visual-contract.test.mjs`
 
-- [ ] **Step 1: Upgrade RSA visual hierarchy**
+- [x] **Step 1: Upgrade RSA visual hierarchy**
 
 In `src/islands/RSASimulator.tsx`:
 
@@ -1010,7 +1010,7 @@ In `src/islands/RSASimulator.tsx`:
 - keep error messages in Spanish
 - ensure input labels remain visible and associated with fields
 
-- [ ] **Step 2: Upgrade IPv6 map hierarchy**
+- [x] **Step 2: Upgrade IPv6 map hierarchy**
 
 In `src/islands/IPv6MigrationMap.tsx`:
 
@@ -1020,7 +1020,7 @@ In `src/islands/IPv6MigrationMap.tsx`:
 - keep selected phase state driven by `activePhaseId`
 - make active phase visually distinct without relying only on color
 
-- [ ] **Step 3: Run focused contract**
+- [x] **Step 3: Run focused contract**
 
 Run:
 
@@ -1035,7 +1035,7 @@ Expected:
 # fail 0
 ```
 
-- [ ] **Step 4: Run full tests**
+- [x] **Step 4: Run full tests**
 
 Run:
 
@@ -1049,7 +1049,7 @@ Expected:
 # fail 0
 ```
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 Run:
 

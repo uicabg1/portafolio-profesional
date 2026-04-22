@@ -177,6 +177,7 @@ export default function IPv6MigrationMap() {
         }
 
         .ipv6-phase-button {
+          position: relative;
           border: 1px solid var(--color-bg-muted);
           border-radius: var(--radius-md);
           background: var(--color-bg);
@@ -196,6 +197,22 @@ export default function IPv6MigrationMap() {
           background: var(--color-accent-subtle);
           border-color: var(--color-accent);
           color: var(--color-accent-text);
+          box-shadow: inset 0 -4px 0 var(--color-accent);
+        }
+
+        .ipv6-phase-button[data-active="true"]::after {
+          content: 'Activo';
+          display: inline-flex;
+          width: fit-content;
+          margin-top: 0.65rem;
+          border-radius: var(--radius-full);
+          background: var(--color-bg);
+          color: var(--color-text-primary);
+          padding: 0.2rem 0.55rem;
+          font-family: var(--font-mono);
+          font-size: 0.68rem;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
         }
 
         .ipv6-phase-label {
@@ -246,6 +263,7 @@ export default function IPv6MigrationMap() {
           border: 1px solid var(--color-bg-muted);
         }
 
+        .ipv6-system-map,
         .ipv6-grid {
           display: grid;
           gap: 1rem;
@@ -339,7 +357,7 @@ export default function IPv6MigrationMap() {
           ))}
         </div>
 
-        <div class="ipv6-grid">
+        <div class="ipv6-system-map ipv6-grid">
           <section class="ipv6-summary" aria-labelledby="ipv6-summary-title">
             <h3 id="ipv6-summary-title">{activePhase.title}</h3>
             <p>{activePhase.summary}</p>
