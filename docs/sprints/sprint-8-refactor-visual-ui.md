@@ -41,8 +41,9 @@ El plan ejecutable por tareas vive en:
 
 - [x] Task 0: rama `feat/sprint-8-visual-refactor`, baseline técnico y commit documental creados.
 - [x] Task 1: contratos visuales de Sprint 8 agregados como baseline TDD.
+- [x] Task 3: hero rediseñado como entrada editorial técnica, con identidad visible y mapa de señales.
 
-Nota de Task 1: el contrato del hero falla de forma esperada porque la UI actual aún no contiene la superficie `hero-visual`; ese rojo guía la implementación de la Task 3.
+Nota: la Task 3 se ejecutó antes de la Task 2 por solicitud directa. La Task 2 sigue pendiente para refrescar tokens globales y documentar el sistema visual base.
 
 Resumen de dirección:
 

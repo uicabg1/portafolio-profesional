@@ -468,7 +468,7 @@ Expected:
 - Modify: `src/components/astro/Hero.astro`
 - Test: `tests/sprint-8-visual-contract.test.mjs`
 
-- [ ] **Step 1: Update hero content model**
+- [x] **Step 1: Update hero content model**
 
 In `src/components/astro/Hero.astro`:
 
@@ -479,7 +479,7 @@ In `src/components/astro/Hero.astro`:
 - add a technical visual wrapper with class `hero-visual`
 - add at least three technical signal elements with class names containing `hero-signal`
 
-- [ ] **Step 2: Replace compact proof layout with a technical visual**
+- [x] **Step 2: Replace compact proof layout with a technical visual**
 
 Implement the hero as:
 
@@ -502,7 +502,7 @@ hero-signal
 hero-signal-map
 ```
 
-- [ ] **Step 3: Run focused contract**
+- [x] **Step 3: Run focused contract**
 
 Run:
 
@@ -517,7 +517,7 @@ Expected:
 # fail 0
 ```
 
-- [ ] **Step 4: Run Astro validation**
+- [x] **Step 4: Run Astro validation**
 
 Run:
 
@@ -533,7 +533,7 @@ Expected:
 - 0 hints
 ```
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 Run:
 
