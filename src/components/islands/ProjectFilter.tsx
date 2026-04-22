@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'preact/hooks';
-import { FolderCode, Shield, Router, Activity, Globe } from 'lucide-preact';
+import { Activity, ArrowUpRight, FolderCode, Globe, Router, Shield } from 'lucide-preact';
 import {
   resolveSlug,
   projectCategories,
@@ -47,177 +47,296 @@ export default function ProjectFilter({ projects }: Props) {
   }, [activeCategory, projects]);
 
   return (
-    <section
-      id="proyectos"
-      aria-labelledby="projects-heading"
-      class="border-t"
-      style={{ borderColor: 'var(--color-bg-muted)' }}
-    >
-      <div class="container py-32 md:py-36">
-        <div class="max-w-3xl">
-          <p
-            class="mb-3 font-mono text-sm uppercase tracking-[0.12em]"
-            style={{ color: 'var(--color-text-secondary)' }}
-          >
-            Casos de estudio
-          </p>
+    <>
+      <style>{`
+        .project-showcase {
+          border-top: 1px solid var(--color-bg-muted);
+          background:
+            radial-gradient(circle at 12% 12%, color-mix(in srgb, var(--color-signal-cyan) 12%, transparent), transparent 32%),
+            linear-gradient(180deg, var(--color-bg-subtle) 0%, var(--color-bg) 100%);
+        }
 
-          <h2
-            id="projects-heading"
-            class="text-4xl md:text-6xl"
-            style={{ color: 'var(--color-text-primary)' }}
-          >
-            Casos de estudio para ver lo que ya puedo construir hoy y la base tecnica que lo respalda.
-          </h2>
+        .project-showcase-shell {
+          display: grid;
+          gap: var(--space-16);
+        }
 
-          <p
-            class="mt-5 max-w-2xl text-base md:text-lg"
-            style={{ color: 'var(--color-text-secondary)' }}
-          >
-            Empieza por <strong style={{ color: 'var(--color-text-primary)' }}>Web Dev</strong> si quieres ver la
-            oferta principal. Las demas categorias muestran el criterio tecnico que acompaña ese trabajo sin
-            desplazar la oferta web-first.
-          </p>
+        .project-showcase-header {
+          display: grid;
+          gap: var(--space-6);
+          max-width: 900px;
+        }
 
-          <div class="mt-6 flex flex-wrap gap-4">
-            <a
-              href="/#contacto"
-              class="inline-flex min-h-12 items-center justify-center rounded-[var(--radius-md)] px-6 py-3 text-sm font-medium transition-transform duration-150 hover:-translate-y-px"
-              style={{
-                background: 'var(--color-accent)',
-                color: 'var(--color-accent-contrast)',
-              }}
-            >
-              Ir a contacto
-            </a>
-            <a
-              href="/#servicios"
-              class="inline-flex min-h-12 items-center justify-center rounded-[var(--radius-md)] border px-6 py-3 text-sm font-medium transition-colors duration-150"
-              style={{
-                borderColor: 'var(--color-bg-muted)',
-                color: 'var(--color-text-primary)',
-                background: 'var(--color-bg)',
-              }}
-            >
-              Ver oferta activa
-            </a>
+        .project-showcase-copy {
+          max-width: 64ch;
+          font-size: var(--text-lg);
+          line-height: 1.85;
+          color: var(--color-text-secondary);
+        }
+
+        .project-showcase-actions,
+        .project-category-controls {
+          display: flex;
+          flex-wrap: wrap;
+          gap: var(--space-4);
+        }
+
+        .project-showcase-action,
+        .project-category-button,
+        .project-link {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: var(--space-2);
+          min-height: 48px;
+          text-decoration: none;
+          transition: transform 160ms ease, border-color 160ms ease, background 160ms ease, color 160ms ease;
+        }
+
+        .project-showcase-action {
+          border-radius: var(--radius-md);
+          padding: var(--space-3) var(--space-6);
+          font-size: var(--text-sm);
+          font-weight: 500;
+        }
+
+        .project-showcase-action--primary {
+          background: var(--color-accent);
+          color: var(--color-accent-contrast);
+        }
+
+        .project-showcase-action--secondary {
+          border: 1px solid var(--color-bg-muted);
+          background: var(--color-surface);
+          color: var(--color-text-primary);
+        }
+
+        .project-showcase-action:hover,
+        .project-category-button:hover,
+        .project-link:hover {
+          transform: translateY(-1px);
+        }
+
+        .project-category-controls {
+          align-items: center;
+        }
+
+        .project-category-button {
+          min-height: 48px;
+          border: 1px solid var(--color-bg-muted);
+          border-radius: var(--radius-full);
+          background: var(--color-surface);
+          color: var(--color-text-secondary);
+          padding: var(--space-3) calc(var(--space-4) + var(--space-1));
+          font: inherit;
+          font-size: var(--text-sm);
+          cursor: pointer;
+        }
+
+        .project-category-button[data-active="true"] {
+          border-color: var(--color-accent);
+          background: color-mix(in srgb, var(--color-accent-subtle) 72%, var(--color-surface));
+          color: var(--color-accent-text);
+          box-shadow: inset 0 -3px 0 var(--color-accent);
+        }
+
+        .project-grid {
+          display: grid;
+          gap: var(--space-8);
+        }
+
+        .project-item {
+          display: grid;
+          gap: var(--space-6);
+          padding-block: var(--space-8);
+          border-top: 1px solid var(--color-bg-muted);
+        }
+
+        .project-item-main,
+        .project-item-detail {
+          display: grid;
+          gap: var(--space-5, calc(var(--space-4) + var(--space-1)));
+        }
+
+        .project-feature {
+          position: relative;
+          padding: var(--space-8);
+          border: 1px solid var(--color-bg-muted);
+          border-radius: var(--radius-lg);
+          background:
+            linear-gradient(135deg, color-mix(in srgb, var(--color-surface) 92%, transparent), color-mix(in srgb, var(--color-surface-strong) 84%, transparent)),
+            var(--color-surface);
+          box-shadow: 0 28px 90px color-mix(in srgb, var(--color-text-primary) 10%, transparent);
+        }
+
+        .project-item-kicker {
+          display: flex;
+          flex-wrap: wrap;
+          gap: var(--space-3);
+          align-items: center;
+          font-family: var(--font-mono);
+          font-size: var(--text-xs);
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          color: var(--color-text-secondary);
+        }
+
+        .project-feature .project-item-kicker {
+          color: var(--color-signal-cyan);
+        }
+
+        .project-item-title {
+          max-width: 16ch;
+          font-size: var(--text-2xl);
+          line-height: 1.1;
+        }
+
+        .project-item-summary {
+          max-width: 62ch;
+          line-height: 1.85;
+          color: var(--color-text-secondary);
+        }
+
+        .project-result {
+          max-width: 60ch;
+          padding-left: var(--space-4);
+          border-left: 3px solid var(--color-signal-green);
+          color: var(--color-ink-soft);
+          font-size: var(--text-lg);
+          line-height: 1.75;
+        }
+
+        .project-stack {
+          display: flex;
+          flex-wrap: wrap;
+          gap: var(--space-2);
+          list-style: none;
+        }
+
+        .project-stack li {
+          border: 1px solid var(--color-bg-muted);
+          border-radius: var(--radius-full);
+          background: color-mix(in srgb, var(--color-surface) 82%, transparent);
+          color: var(--color-text-secondary);
+          padding: var(--space-1) var(--space-3);
+          font-family: var(--font-mono);
+          font-size: var(--text-xs);
+        }
+
+        .project-link {
+          width: fit-content;
+          color: var(--color-accent);
+          font-size: var(--text-sm);
+          font-weight: 500;
+        }
+
+        @media (min-width: 900px) {
+          .project-item {
+            grid-template-columns: minmax(0, 0.85fr) minmax(360px, 1.15fr);
+            align-items: start;
+          }
+
+          .project-feature {
+            grid-template-columns: minmax(0, 0.72fr) minmax(360px, 1.28fr);
+          }
+
+          .project-item-title {
+            font-size: var(--text-4xl);
+          }
+        }
+      `}</style>
+
+      <section
+        id="proyectos"
+        aria-labelledby="projects-heading"
+        class="project-showcase editorial-section"
+      >
+        <div class="container project-showcase-shell">
+          <header class="project-showcase-header motion-rise">
+            <p class="section-kicker">Casos de estudio</p>
+
+            <h2 id="projects-heading" class="editorial-title">
+              Evidencia navegable, no solo capturas bonitas.
+            </h2>
+
+            <p class="project-showcase-copy">
+              Empieza por <strong>Web Dev</strong> si quieres ver la oferta principal. Las demas categorias
+              muestran el criterio tecnico que acompana ese trabajo sin desplazar la propuesta web-first.
+            </p>
+
+            <div class="project-showcase-actions">
+              <a href="/#contacto" class="project-showcase-action project-showcase-action--primary">
+                Ir a contacto
+              </a>
+              <a href="/#servicios" class="project-showcase-action project-showcase-action--secondary">
+                Ver oferta activa
+              </a>
+            </div>
+          </header>
+
+          <div class="project-category-controls" aria-label="Filtrar proyectos por categoria">
+            {categories.map((category) => {
+              const Icon = getCategoryIcon(category);
+              const isActive = activeCategory === category;
+
+              return (
+                <button
+                  type="button"
+                  onClick={() => setActiveCategory(category)}
+                  class="project-category-button"
+                  data-active={isActive}
+                  aria-pressed={isActive}
+                >
+                  <Icon size={16} />
+                  <span>{getCategoryLabel(category)}</span>
+                </button>
+              );
+            })}
+          </div>
+
+          <div class="project-grid">
+            {filteredProjects.map((project, index) => {
+              const slug = resolveSlug(project);
+              const isFeature = index === 0;
+
+              return (
+                <article
+                  key={slug}
+                  class={`project-item${isFeature ? ' project-feature' : ''}`}
+                >
+                  <div class="project-item-main">
+                    <p class="project-item-kicker">
+                      <span>{project.data.category}</span>
+                      {project.data.featured && <span>Destacado</span>}
+                    </p>
+
+                    <h3 class="project-item-title">{project.data.title}</h3>
+                  </div>
+
+                  <div class="project-item-detail">
+                    <p class="project-item-summary">{project.data.summary}</p>
+
+                    <p class="project-result">
+                      <strong>Resultado:</strong> {project.data.result}
+                    </p>
+
+                    <ul class="project-stack" role="list" aria-label={`Stack usado en ${project.data.title}`}>
+                      {(project.data.stack ?? []).map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+
+                    <a href={`/proyectos/${slug}`} class="project-link">
+                      Ver caso de estudio
+                      <ArrowUpRight size={16} />
+                    </a>
+                  </div>
+                </article>
+              );
+            })}
           </div>
         </div>
-
-        <div class="mt-12 flex flex-wrap gap-5">
-          {categories.map((category) => {
-            const Icon = getCategoryIcon(category);
-            const isActive = activeCategory === category;
-
-            return (
-              <button
-                type="button"
-                onClick={() => setActiveCategory(category)}
-                class="inline-flex min-h-12 min-w-12 items-center gap-2 rounded-full border px-6 py-3 text-sm transition-colors duration-200"
-                style={{
-                  borderColor: isActive ? 'var(--color-accent)' : 'var(--color-bg-muted)',
-                  background: isActive ? 'var(--color-accent-subtle)' : 'var(--color-bg)',
-                  color: isActive ? 'var(--color-accent-text)' : 'var(--color-text-secondary)',
-                }}
-                aria-pressed={isActive}
-              >
-                <Icon size={16} />
-                <span>{getCategoryLabel(category)}</span>
-              </button>
-            );
-          })}
-        </div>
-
-        <div class="mt-14 grid gap-8 lg:grid-cols-2">
-          {filteredProjects.map((project) => (
-            <article
-              key={resolveSlug(project)}
-              class="flex h-full flex-col rounded-[var(--radius-lg)] border p-6"
-              style={{
-                background: 'var(--color-bg-subtle)',
-                borderColor: 'var(--color-bg-muted)',
-              }}
-            >
-              <div class="mb-5 flex items-center justify-between gap-3">
-                <span
-                  class="inline-flex rounded-full px-3 py-1 text-xs font-medium"
-                  style={{
-                    background: 'var(--color-accent-subtle)',
-                    color: 'var(--color-accent-text)',
-                  }}
-                >
-                  {project.data.category}
-                </span>
-
-                {project.data.featured && (
-                  <span
-                    class="inline-flex rounded-full px-3 py-1 text-xs font-medium"
-                    style={{
-                      background: 'var(--color-bg)',
-                      color: 'var(--color-text-secondary)',
-                      border: '1px solid var(--color-bg-muted)',
-                    }}
-                  >
-                    Destacado
-                  </span>
-                )}
-              </div>
-
-              <h3
-                class="text-xl font-medium"
-                style={{ color: 'var(--color-text-primary)' }}
-              >
-                {project.data.title}
-              </h3>
-
-              <p
-                class="mt-3 text-sm leading-6"
-                style={{ color: 'var(--color-text-secondary)' }}
-              >
-                {project.data.summary}
-              </p>
-
-              <p
-                class="mt-5 rounded-[var(--radius-md)] border px-4 py-4 text-sm leading-6"
-                style={{
-                  borderColor: 'var(--color-bg-muted)',
-                  color: 'var(--color-text-secondary)',
-                  background: 'var(--color-bg)',
-                }}
-              >
-                <strong style={{ color: 'var(--color-text-primary)' }}>Resultado:</strong>{' '}
-                {project.data.result}
-              </p>
-
-              <div class="mt-5 flex flex-wrap gap-2">
-                {(project.data.stack ?? []).map((item) => (
-                  <span
-                    key={item}
-                    class="rounded-full px-3 py-1 text-xs"
-                    style={{
-                      background: 'var(--color-bg)',
-                      color: 'var(--color-text-secondary)',
-                      border: '1px solid var(--color-bg-muted)',
-                    }}
-                  >
-                    {item}
-                  </span>
-                ))}
-              </div>
-
-              <div class="mt-6">
-                <a
-                  href={`/proyectos/${resolveSlug(project)}`}
-                  class="inline-flex items-center gap-2 text-sm font-medium"
-                  style={{ color: 'var(--color-accent)' }}
-                >
-                  Ver caso de estudio
-                </a>
-              </div>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }

@@ -642,7 +642,7 @@ Stop the dev server before moving to the next task.
 - Modify: `src/components/islands/ProjectFilter.tsx`
 - Test: `tests/sprint-8-visual-contract.test.mjs`
 
-- [ ] **Step 1: Refactor project section classes and structure**
+- [x] **Step 1: Refactor project section classes and structure**
 
 In `src/components/islands/ProjectFilter.tsx`:
 
@@ -653,7 +653,7 @@ In `src/components/islands/ProjectFilter.tsx`:
 - add class `project-result` to the visible result/outcome text
 - keep stack badges secondary to result and summary
 
-- [ ] **Step 2: Preserve project filtering behavior**
+- [x] **Step 2: Preserve project filtering behavior**
 
 Keep this behavior unchanged:
 
@@ -664,7 +664,7 @@ return projects.filter((project) => project.data.category === activeCategory);
 
 Keep category labels through `getCategoryLabel(category)`.
 
-- [ ] **Step 3: Improve category control visual feedback**
+- [x] **Step 3: Improve category control visual feedback**
 
 Implement:
 
@@ -674,7 +674,7 @@ Implement:
 - focus state is visible through existing global `:focus-visible`
 - no category button becomes smaller than `48px` high
 
-- [ ] **Step 4: Run focused contract**
+- [x] **Step 4: Run focused contract**
 
 Run:
 
