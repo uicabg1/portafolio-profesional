@@ -1329,7 +1329,7 @@ Expected:
 - Test: `npm run astro -- check`
 - Test: `npm run build`
 
-- [ ] **Step 1: Inspect final changed files**
+- [x] **Step 1: Inspect final changed files**
 
 Run:
 
@@ -1351,7 +1351,7 @@ git diff --check
 
 `git diff --check` must return no output.
 
-- [ ] **Step 2: Run final tests**
+- [x] **Step 2: Run final tests**
 
 Run:
 
@@ -1365,7 +1365,7 @@ Expected:
 # fail 0
 ```
 
-- [ ] **Step 3: Run final Astro check**
+- [x] **Step 3: Run final Astro check**
 
 Run:
 
@@ -1381,7 +1381,7 @@ Expected:
 - 0 hints
 ```
 
-- [ ] **Step 4: Run final build**
+- [x] **Step 4: Run final build**
 
 Run:
 
@@ -1397,7 +1397,7 @@ completed in
 
 The command must exit with code `0`.
 
-- [ ] **Step 5: Summarize final state**
+- [x] **Step 5: Summarize final state**
 
 Prepare final handoff with:
 
