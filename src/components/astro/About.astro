@@ -1,29 +1,41 @@
 ---
 import { Award, BadgeCheck, GraduationCap, Network } from 'lucide-preact';
 
-const profileSignals = [
+const timeline = [
 	{
 		title: 'UADY',
-		status: 'En formacion',
-		description: 'Segundo semestre de Ingenieria de Software, con foco en estructura, claridad y bases tecnicas solidas.',
+		status: 'Ingenieria de Software',
+		description:
+			'Base universitaria para pensar en estructura, mantenibilidad y claridad antes de escribir interfaz.',
+		decision:
+			'Se refleja en rutas, componentes pequenos y contenido documentado en lugar de improvisar cada pagina.',
 		icon: GraduationCap,
 	},
 	{
 		title: 'TIDE Fellows 2026',
-		status: 'Activo',
-		description: 'Entorno de alto desempeño que fortalece criterio tecnico, disciplina de trabajo y proyeccion profesional.',
+		status: 'Programa activo',
+		description:
+			'Ritmo de trabajo, exposicion tecnica y disciplina para convertir aprendizaje en entregables visibles.',
+		decision:
+			'Ayuda a presentar proyectos como evidencia: problema, solucion, resultado y siguiente criterio tecnico.',
 		icon: Award,
 	},
 	{
 		title: 'IPv6 basico',
-		status: 'Certificado',
-		description: 'Certificacion obtenida en LACNIC como base formal para direccionamiento, autoconfiguracion y transicion.',
+		status: 'Certificado LACNIC',
+		description:
+			'Fundamentos de direccionamiento, autoconfiguracion y transicion IPv6 ya respaldados con certificacion.',
+		decision:
+			'Informa demos, arquitectura dual-stack y decisiones de infraestructura documentadas sin inflar la oferta.',
 		icon: BadgeCheck,
 	},
 	{
 		title: 'LACNIC en progreso',
-		status: 'En curso',
-		description: 'IPv6 avanzado y gestion de redes como capacidad en progreso con evidencia, no como especializacion cerrada.',
+		status: 'IPv6 avanzado y gestion de redes',
+		description:
+			'Formacion en curso para profundizar operacion, diagnostico y lectura de redes con evidencia.',
+		decision:
+			'Se comunica como capacidad en crecimiento: prometo lo que puedo sostener y documento lo que sigo validando.',
 		icon: Network,
 	},
 ];
@@ -32,194 +44,176 @@ const profileSignals = [
 <section
 	id="sobre-mi"
 	aria-labelledby="about-heading"
-	class="about-section"
+	class="about-section editorial-section"
 >
 	<div class="container about-shell">
-		<div class="about-copy">
-			<p class="about-eyebrow">Sobre mi</p>
+		<header class="about-copy motion-rise">
+			<p class="section-kicker">Sobre mi</p>
 
-				<h2 id="about-heading" class="about-title">
-					Trabajo web con una base tecnica en crecimiento que ayuda a construir con mas criterio.
-				</h2>
+			<h2 id="about-heading" class="editorial-title about-title">
+				Aprendizaje tecnico convertido en decisiones de producto.
+			</h2>
 
 			<div class="about-text">
 				<p>
-					Hoy me enfoco en construir sitios web claros, rapidos y mantenibles para negocio.
-					No intento vender una consultoria mas grande de la que puedo sostener: mi propuesta actual
-					es web-first, con una capa tecnica que respalda mejor cada decision.
+					Me enfoco en construir sitios web claros, rapidos y mantenibles para negocio. No intento vender
+					una consultoria mas grande de la que puedo sostener: mi propuesta actual es web-first, con una
+					capa tecnica que respalda mejor cada decision.
 				</p>
 
-					<p>
-						Esa base viene de estudiar Ingenieria de Software en la UADY, participar en TIDE Fellows 2026
-						y complementar la parte web con formacion LACNIC en IPv6 y gestion de redes. El objetivo no es
-						llenar la pagina de jerga, sino construir mejor hoy y preparar con honestidad la parte de VPS
-						y despliegue administrado que llegara cuando exista infraestructura real documentada.
-					</p>
+				<p>
+					La trayectoria combina Ingenieria de Software en la UADY, TIDE Fellows 2026 y formacion LACNIC
+					en IPv6 y gestion de redes. Esa mezcla no aparece como jerga: aparece en como priorizo contenido,
+					performance, estructura, accesibilidad y despliegues verificables.
+				</p>
 			</div>
+		</header>
+
+		<div class="about-timeline" aria-label="Progresion de formacion tecnica">
+			{timeline.map(({ title, status, description, decision, icon: Icon }) => (
+				<article class="about-timeline-item">
+					<div class="about-timeline-marker">
+						<Icon size={18} />
+					</div>
+
+					<div class="about-timeline-body">
+						<div class="about-timeline-top">
+							<h3>{title}</h3>
+							<span>{status}</span>
+						</div>
+
+						<p>{description}</p>
+						<p class="about-decision">{decision}</p>
+					</div>
+				</article>
+			))}
 		</div>
-
-		<aside class="about-panel" aria-labelledby="about-panel-title">
-			<div class="about-panel-header">
-				<p class="about-panel-label">Evidencia actual</p>
-				<h3 id="about-panel-title" class="about-panel-title">
-					Señales concretas de aprendizaje y criterio.
-				</h3>
-			</div>
-
-			<div class="about-signal-list">
-				{profileSignals.map(({ title, status, description, icon: Icon }) => (
-					<article class="about-signal">
-						<div class="about-signal-icon">
-							<Icon size={18} />
-						</div>
-
-						<div class="about-signal-body">
-							<div class="about-signal-top">
-								<p class="about-signal-title">{title}</p>
-								<span class="about-signal-status">{status}</span>
-							</div>
-
-							<p class="about-signal-description">{description}</p>
-						</div>
-					</article>
-				))}
-			</div>
-		</aside>
 	</div>
 </section>
 
 <style>
 	.about-section {
+		position: relative;
+		overflow: hidden;
 		border-top: 1px solid var(--color-bg-muted);
-		padding: var(--space-24) 0;
 		background: var(--color-bg);
 	}
 
+	.about-section::before {
+		content: '';
+		position: absolute;
+		inset: var(--space-12) 0 auto;
+		height: 1px;
+		background: linear-gradient(90deg, transparent, var(--color-signal-cyan), transparent);
+		opacity: 0.45;
+	}
+
 	.about-shell {
+		position: relative;
 		display: grid;
-		gap: var(--space-12);
+		gap: var(--space-16);
 		align-items: start;
 	}
 
 	.about-copy,
-	.about-panel {
-		display: grid;
-		gap: var(--space-6);
-	}
-
-	.about-eyebrow,
-	.about-panel-label {
-		font-family: var(--font-mono);
-		font-size: var(--text-xs);
-		text-transform: uppercase;
-		letter-spacing: 0.08em;
-		color: var(--color-text-secondary);
-	}
-
-	.about-title {
-		max-width: 13ch;
-		font-size: var(--text-4xl);
-		line-height: 1.05;
-	}
-
-	.about-text {
+	.about-text,
+	.about-timeline-body {
 		display: grid;
 		gap: var(--space-6);
 	}
 
 	.about-text p {
-		max-width: 58ch;
+		max-width: 62ch;
 		font-size: var(--text-lg);
 		line-height: 1.85;
 		color: var(--color-text-secondary);
 	}
 
-	.about-panel {
-		padding: var(--space-8);
-		border: 1px solid var(--color-bg-muted);
-		border-radius: var(--radius-lg);
-		background: var(--color-bg-subtle);
-	}
-
-	.about-panel-title {
-		font-size: var(--text-2xl);
-		line-height: 1.15;
-	}
-
-	.about-signal-list {
+	.about-timeline {
+		position: relative;
 		display: grid;
-		gap: var(--space-5);
+		gap: var(--space-8);
 	}
 
-	.about-signal {
+	.about-timeline::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 21px;
+		width: 1px;
+		background: var(--color-bg-muted);
+	}
+
+	.about-timeline-item {
+		position: relative;
 		display: grid;
-		grid-template-columns: auto 1fr;
-		gap: var(--space-4);
+		grid-template-columns: auto minmax(0, 1fr);
+		gap: var(--space-6);
 		align-items: start;
-		padding-top: var(--space-5);
-		border-top: 1px solid color-mix(in srgb, var(--color-bg-muted) 78%, transparent);
 	}
 
-	.about-signal:first-child {
-		padding-top: 0;
-		border-top: none;
-	}
-
-	.about-signal-icon {
-		display: flex;
+	.about-timeline-marker {
+		position: relative;
+		z-index: 1;
+		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		width: 40px;
-		height: 40px;
-		border-radius: var(--radius-md);
-		background: var(--color-accent-subtle);
-		color: var(--color-accent-text);
+		width: 42px;
+		height: 42px;
+		border-radius: var(--radius-full);
+		border: 1px solid var(--color-bg-muted);
+		background: var(--color-surface);
+		color: var(--color-signal-cyan);
+		box-shadow: 0 0 0 8px var(--color-bg);
 	}
 
-	.about-signal-body {
-		display: grid;
-		gap: var(--space-3);
+	.about-timeline-body {
+		padding-bottom: var(--space-8);
+		border-bottom: 1px solid var(--color-bg-muted);
 	}
 
-	.about-signal-top {
+	.about-timeline-top {
 		display: flex;
 		flex-wrap: wrap;
 		gap: var(--space-3);
-		align-items: center;
+		align-items: baseline;
+		justify-content: space-between;
 	}
 
-	.about-signal-title {
-		font-size: var(--text-base);
-		font-weight: 500;
-		color: var(--color-text-primary);
+	.about-timeline-top h3 {
+		font-size: var(--text-2xl);
+		line-height: 1.1;
 	}
 
-	.about-signal-status {
-		display: inline-flex;
-		align-items: center;
-		min-height: 28px;
-		padding: 0 var(--space-3);
-		border-radius: var(--radius-full);
-		background: var(--color-bg);
-		border: 1px solid var(--color-bg-muted);
+	.about-timeline-top span {
 		font-family: var(--font-mono);
 		font-size: var(--text-xs);
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
 		color: var(--color-text-secondary);
 	}
 
-	.about-signal-description {
-		max-width: 42ch;
+	.about-timeline-body p {
+		max-width: 58ch;
 		line-height: 1.8;
 		color: var(--color-text-secondary);
 	}
 
+	.about-decision {
+		padding-left: var(--space-4);
+		border-left: 2px solid var(--color-signal-green);
+		color: var(--color-ink-soft);
+	}
+
 	@media (min-width: 960px) {
 		.about-shell {
-			grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+			grid-template-columns: minmax(0, 0.9fr) minmax(420px, 1.1fr);
 		}
 
-		.about-title {
-			font-size: var(--text-6xl);
+		.about-copy {
+			position: sticky;
+			top: var(--space-24);
 		}
 	}
 </style>

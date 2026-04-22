@@ -557,7 +557,7 @@ Expected:
 - Modify: `src/components/astro/About.astro`
 - Test: `npm run astro -- check`
 
-- [ ] **Step 1: Refactor services structure**
+- [x] **Step 1: Refactor services structure**
 
 In `src/components/astro/Services.astro`:
 
@@ -569,7 +569,7 @@ In `src/components/astro/Services.astro`:
 - use class `service-future-scope` for complementary infrastructure capability
 - remove repeated card-like visual treatment where the section can work as an editorial row
 
-- [ ] **Step 2: Refactor about structure**
+- [x] **Step 2: Refactor about structure**
 
 In `src/components/astro/About.astro`:
 
@@ -579,7 +579,7 @@ In `src/components/astro/About.astro`:
 - keep the wording honest about training in progress
 - connect the learning evidence to project decisions
 
-- [ ] **Step 3: Run Astro validation**
+- [x] **Step 3: Run Astro validation**
 
 Run:
 
@@ -595,7 +595,7 @@ Expected:
 - 0 hints
 ```
 
-- [ ] **Step 4: Manual visual check**
+- [x] **Step 4: Manual visual check**
 
 Run:
 
@@ -617,7 +617,7 @@ Acceptance:
 - active offer and future/complementary capability are visually distinct
 - about section reads as progression, not a dense evidence panel
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 Run:
 
