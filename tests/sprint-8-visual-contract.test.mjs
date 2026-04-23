@@ -32,6 +32,7 @@ test('Home hero and services use summary-first copy with progressive disclosure'
   assert.match(services, /<details/);
   assert.match(services, /Ver alcance/);
   assert.match(services, /Operacion real como evidencia tecnica para proyectos web\./);
+  assert.doesNotMatch(services, /Ver evidencia operacional/);
   assert.doesNotMatch(services, /La base tecnica aparece como evidencia de criterio para decidir mejor/);
   assert.doesNotMatch(services, /La capa operativa refuerza confianza tecnica, pero la oferta activa sigue siendo web-first\./);
 });

@@ -29,7 +29,7 @@ Avance implementado en esta iteracion:
 
 - `Hero.astro` conserva disclosure `Ver contexto tecnico`, pero recupera mas contexto visible en la primera pantalla, incluyendo senal academica y credencial activa.
 - `Services.astro` ya cambio a resumen visible + `details/summary` por servicio con `Ver alcance`.
-- La capacidad complementaria de servicios ahora deja una sola linea visible de evidencia operacional y mueve el detalle a un disclosure que ya no se superpone con el copy en desktop.
+- La capacidad complementaria de servicios ya no usa disclosure: toda la evidencia operacional queda visible en texto fijo para evitar superposicion visual.
 - `ProjectFilter.tsx` ya movio el resumen largo de las cards a `Ver resumen` y dejo visible primero el resultado.
 - `About.astro` ya resume credenciales visibles y mueve el criterio extendido a `Ver criterio`, preservando el cambio local previo.
 - `Infrastructure.astro` ya conserva el flujo visible y mueve la explicacion extendida a `Ver evidencia`.
@@ -41,7 +41,7 @@ Estado actual:
 
 - La home ya aplica disclosure progresivo en hero, servicios, proyectos, sobre mi e infraestructura.
 - La primera pantalla ya no queda demasiado recortada: mantiene lectura breve, pero con mas contexto visible.
-- La capacidad complementaria ya no mezcla copy fijo y disclosure en la misma linea visual.
+- La capacidad complementaria queda completamente visible, sin hide thing, para evitar cualquier superposicion.
 - Contacto se mantiene directo, sin colapsables, pero con mas contexto y una nota de respaldo mas discreta.
 - La iteracion documental y de implementacion para la home queda actualizada tras el pase de feedback.
 
