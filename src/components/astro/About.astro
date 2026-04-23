@@ -1,6 +1,8 @@
 ---
 import { Award, BadgeCheck, GraduationCap, Network } from 'lucide-preact';
 
+const credentialChips = ['UADY', 'TIDE Fellows 2026', 'LACNIC IPv6', 'Redes en progreso'];
+
 const timeline = [
 	{
 		title: 'UADY',
@@ -8,7 +10,7 @@ const timeline = [
 		description:
 			'Base universitaria para pensar en estructura, mantenibilidad y claridad antes de escribir interfaz.',
 		decision:
-			'Se refleja en rutas, componentes pequenos y contenido documentado en lugar de improvisar cada pagina.',
+			'Se refleja en rutas, componentes pequeños y contenido documentado en lugar de improvisar cada pagina.',
 		icon: GraduationCap,
 	},
 	{
@@ -56,17 +58,16 @@ const timeline = [
 
 			<div class="about-text">
 				<p>
-					Me enfoco en construir sitios web claros, rapidos y mantenibles para negocio. No intento vender
-					una consultoria mas grande de la que puedo sostener: mi propuesta actual es web-first, con una
-					capa tecnica que respalda mejor cada decision.
-				</p>
-
-				<p>
-					La trayectoria combina Ingenieria de Software en la UADY, TIDE Fellows 2026 y formacion LACNIC
-					en IPv6 y gestion de redes. Esa mezcla no aparece como jerga: aparece en como priorizo contenido,
-					performance, estructura, accesibilidad y despliegues verificables.
+					Web-first con una base tecnica visible en contenido, estructura, accesibilidad y despliegues
+					verificables.
 				</p>
 			</div>
+
+			<ul class="about-credential-chips" role="list" aria-label="Credenciales visibles">
+				{credentialChips.map((item) => (
+					<li>{item}</li>
+				))}
+			</ul>
 		</header>
 
 		<div class="about-timeline" aria-label="Progresion de formacion tecnica">
@@ -83,7 +84,10 @@ const timeline = [
 						</div>
 
 						<p>{description}</p>
-						<p class="about-decision">{decision}</p>
+						<details class="about-disclosure">
+							<summary>Ver criterio</summary>
+							<p class="about-decision">{decision}</p>
+						</details>
 					</div>
 				</article>
 			))}
@@ -117,6 +121,7 @@ const timeline = [
 
 	.about-copy,
 	.about-text,
+	.about-disclosure,
 	.about-timeline-body {
 		display: grid;
 		gap: var(--space-6);
@@ -126,6 +131,23 @@ const timeline = [
 		max-width: 62ch;
 		font-size: var(--text-lg);
 		line-height: 1.85;
+		color: var(--color-text-secondary);
+	}
+
+	.about-credential-chips {
+		list-style: none;
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-3);
+	}
+
+	.about-credential-chips li {
+		padding: var(--space-2) var(--space-3);
+		border: 1px solid var(--color-bg-muted);
+		border-radius: var(--radius-full);
+		background: color-mix(in srgb, var(--color-surface) 82%, transparent);
+		font-family: var(--font-mono);
+		font-size: var(--text-xs);
 		color: var(--color-text-secondary);
 	}
 
@@ -198,6 +220,18 @@ const timeline = [
 		max-width: 58ch;
 		line-height: 1.8;
 		color: var(--color-text-secondary);
+	}
+
+	.about-disclosure summary {
+		cursor: pointer;
+		width: fit-content;
+		font-size: var(--text-sm);
+		font-weight: 500;
+		color: var(--color-text-primary);
+	}
+
+	.about-disclosure summary::-webkit-details-marker {
+		display: none;
 	}
 
 	.about-decision {

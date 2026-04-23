@@ -63,9 +63,7 @@ const evidenceTracks = [
 				Una cadena operacional que respalda la propuesta web.
 			</h2>
 			<p>
-				Esta capa no se vende como el producto principal del portafolio. Funciona como evidencia tecnica:
-				muestra que el trabajo web puede pensarse desde build, despliegue, entrega segura y conectividad
-				IPv4 / IPv6.
+				Evidencia tecnica visible de build, despliegue, entrega segura y conectividad publica.
 			</p>
 		</header>
 
@@ -79,7 +77,10 @@ const evidenceTracks = [
 					<div class="infra-system-copy">
 						<h3>{node.title}</h3>
 						<p class="infra-system-status">{node.status}</p>
-						<p>{node.detail}</p>
+						<details class="infra-disclosure">
+							<summary>Ver evidencia</summary>
+							<p>{node.detail}</p>
+						</details>
 					</div>
 				</article>
 			))}
@@ -89,7 +90,10 @@ const evidenceTracks = [
 			{evidenceTracks.map((track) => (
 				<article class="infra-evidence-item" role="listitem">
 					<h3>{track.title}</h3>
-					<p>{track.detail}</p>
+					<details class="infra-disclosure">
+						<summary>Ver evidencia</summary>
+						<p>{track.detail}</p>
+					</details>
 				</article>
 			))}
 		</div>
@@ -189,6 +193,23 @@ const evidenceTracks = [
 		max-width: 48ch;
 		color: var(--color-text-secondary);
 		line-height: 1.75;
+	}
+
+	.infra-disclosure {
+		display: grid;
+		gap: var(--space-3);
+	}
+
+	.infra-disclosure summary {
+		cursor: pointer;
+		width: fit-content;
+		font-size: var(--text-sm);
+		font-weight: 500;
+		color: var(--color-text-primary);
+	}
+
+	.infra-disclosure summary::-webkit-details-marker {
+		display: none;
 	}
 
 	.infra-system-status {

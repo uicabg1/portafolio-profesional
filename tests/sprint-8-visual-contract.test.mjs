@@ -60,6 +60,15 @@ test('Sprint 8 infrastructure section presents an operational flow', () => {
   assert.match(infrastructure, /IPv6/);
 });
 
+test('About and infrastructure use compact visible proof with disclosures', () => {
+  const about = readRepoFile('src/components/astro/About.astro');
+  const infrastructure = readRepoFile('src/components/astro/Infrastructure.astro');
+
+  assert.match(about, /about-credential-chips|about-disclosure/);
+  assert.match(infrastructure, /infra-disclosure/);
+  assert.match(infrastructure, /Ver evidencia/);
+});
+
 test('Sprint 8 contact section presents a professional brief surface', () => {
   const contact = readRepoFile('src/components/astro/Contact.astro');
   const contactForm = readRepoFile('src/components/islands/ContactForm.tsx');
