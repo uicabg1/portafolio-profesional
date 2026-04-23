@@ -261,7 +261,8 @@ Cerrar conversión con la menor fricción posible.
 Visible por defecto:
 
 - titular directo
-- una línea corta
+- un párrafo comercial que explique qué tipo de proyectos sí entran
+- un párrafo práctico que diga qué conviene compartir para cotizar mejor
 - WhatsApp
 - correo
 - formulario
@@ -269,6 +270,15 @@ Visible por defecto:
 Decisión:
 
 Contacto no necesita disclosure como patrón principal. Aquí conviene claridad inmediata.
+
+Para esta iteración, el enriquecimiento de copy ocurre solo en la columna izquierda de `Contact.astro`. El formulario se mantiene intacto.
+
+La función del texto visible debe combinar dos cosas:
+
+- confianza comercial: dejar claro que Gadiel trabaja en sitios para negocio, landing pages y portafolios profesionales
+- claridad para cotizar: pedir de forma natural idea, objetivo, referencia o contexto inicial para responder con mejor alcance
+
+El tono debe seguir siendo directo y profesional. No debe sonar como instrucciones largas ni como texto decorativo.
 
 ## Comportamiento esperado
 
