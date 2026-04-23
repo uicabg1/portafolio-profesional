@@ -1,0 +1,393 @@
+---
+const kpis = [
+	{
+		label: 'Disponibilidad',
+		value: '99.92%',
+		trend: 'Servicios arriba',
+		tone: 'good',
+	},
+	{
+		label: 'Alertas criticas',
+		value: '03',
+		trend: 'Prioridad alta',
+		tone: 'alert',
+	},
+	{
+		label: 'MTTD',
+		value: '04m',
+		trend: 'Deteccion media',
+		tone: 'info',
+	},
+	{
+		label: 'Capacidad',
+		value: '72%',
+		trend: 'Enlaces troncales',
+		tone: 'warn',
+	},
+];
+
+const services = [
+	{
+		name: 'Core routing',
+		state: 'Operativo',
+		latency: '12 ms',
+	},
+	{
+		name: 'DNS publico',
+		state: 'Degradado',
+		latency: '31 ms',
+	},
+	{
+		name: 'Backbone',
+		state: 'Operativo',
+		latency: '18 ms',
+	},
+	{
+		name: 'Acceso cliente',
+		state: 'Atencion',
+		latency: '46 ms',
+	},
+];
+
+const incidents = [
+	{
+		time: '08:14',
+		label: 'Incidente',
+		detail: 'Perdida intermitente en enlace WAN',
+		severity: 'P1',
+	},
+	{
+		time: '08:19',
+		label: 'Correlacion',
+		detail: 'Alertas agrupadas por servicio critico',
+		severity: 'P2',
+	},
+	{
+		time: '08:26',
+		label: 'Escalamiento',
+		detail: 'Equipo NOC coordina respuesta operativa',
+		severity: 'P2',
+	},
+];
+---
+
+<div class="noc-visual" aria-label="Panel operativo NOC con salud, alertas y capacidad de red">
+	<div class="noc-visual__header">
+		<div>
+			<p>Centro de operacion</p>
+			<strong>Salud de red en tiempo operativo</strong>
+		</div>
+		<span>Live NOC</span>
+	</div>
+
+	<div class="noc-visual__kpi-grid">
+		{kpis.map((kpi) => (
+			<article class="noc-visual__kpi" data-tone={kpi.tone}>
+				<span>{kpi.label}</span>
+				<strong>{kpi.value}</strong>
+				<p>{kpi.trend}</p>
+			</article>
+		))}
+	</div>
+
+	<div class="noc-visual__operations">
+		<section class="noc-visual__services" aria-label="Servicios criticos">
+			<div class="noc-visual__section-head">
+				<span>Servicios criticos</span>
+				<strong>Prioridad por impacto</strong>
+			</div>
+
+			<div class="noc-visual__service-list">
+				{services.map((service) => (
+					<div class="noc-visual__service">
+						<span>{service.name}</span>
+						<strong>{service.state}</strong>
+						<small>{service.latency}</small>
+					</div>
+				))}
+			</div>
+		</section>
+
+		<section class="noc-visual__capacity" aria-label="Capacidad y trafico">
+			<div class="noc-visual__section-head">
+				<span>Capacidad</span>
+				<strong>Uso por dominio</strong>
+			</div>
+
+			<div class="noc-visual__bars" aria-hidden="true">
+				<span style="--bar-size: 64%;"></span>
+				<span style="--bar-size: 82%;"></span>
+				<span style="--bar-size: 48%;"></span>
+				<span style="--bar-size: 72%;"></span>
+				<span style="--bar-size: 56%;"></span>
+				<span style="--bar-size: 88%;"></span>
+				<span style="--bar-size: 69%;"></span>
+				<span style="--bar-size: 76%;"></span>
+			</div>
+		</section>
+	</div>
+
+	<div class="noc-visual__timeline" aria-label="Linea de respuesta a incidente">
+		{incidents.map((incident) => (
+			<article class="noc-visual__incident">
+				<span>{incident.time}</span>
+				<strong>{incident.label}</strong>
+				<p>{incident.detail}</p>
+				<small>{incident.severity}</small>
+			</article>
+		))}
+	</div>
+</div>
+
+<style>
+	.noc-visual {
+		display: grid;
+		gap: var(--space-6);
+		min-height: 100%;
+		padding: var(--space-6);
+		background:
+			linear-gradient(90deg, color-mix(in srgb, var(--color-bg-muted) 28%, transparent) 1px, transparent 1px),
+			linear-gradient(180deg, color-mix(in srgb, var(--color-bg-muted) 28%, transparent) 1px, transparent 1px),
+			linear-gradient(135deg, color-mix(in srgb, var(--color-surface-strong) 46%, transparent), transparent 54%),
+			linear-gradient(180deg, var(--color-surface), var(--color-bg-subtle));
+		background-size: 36px 36px, 36px 36px, auto, auto;
+	}
+
+	.noc-visual__header,
+	.noc-visual__kpi-grid,
+	.noc-visual__operations,
+	.noc-visual__timeline {
+		position: relative;
+		z-index: 1;
+	}
+
+	.noc-visual__header {
+		display: flex;
+		justify-content: space-between;
+		gap: var(--space-4);
+		padding-bottom: var(--space-4);
+		border-bottom: 1px solid var(--color-bg-muted);
+	}
+
+	.noc-visual__header div,
+	.noc-visual__section-head {
+		display: grid;
+		gap: var(--space-2);
+	}
+
+	.noc-visual__header p,
+	.noc-visual__header > span,
+	.noc-visual__kpi span,
+	.noc-visual__section-head span,
+	.noc-visual__service span,
+	.noc-visual__service small,
+	.noc-visual__incident span,
+	.noc-visual__incident small {
+		font-family: var(--font-mono);
+		font-size: var(--text-xs);
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--color-text-secondary);
+	}
+
+	.noc-visual__header strong {
+		font-family: var(--font-display);
+		font-size: clamp(1.8rem, 4vw, var(--text-4xl));
+		font-weight: 400;
+		line-height: 1.05;
+		color: var(--color-text-primary);
+	}
+
+	.noc-visual__header > span {
+		height: fit-content;
+		padding: var(--space-2) var(--space-3);
+		border: 1px solid var(--color-bg-muted);
+		background: color-mix(in srgb, var(--color-surface) 88%, transparent);
+		color: var(--color-signal-green);
+		white-space: nowrap;
+	}
+
+	.noc-visual__kpi-grid {
+		display: grid;
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		gap: var(--space-3);
+	}
+
+	.noc-visual__kpi,
+	.noc-visual__services,
+	.noc-visual__capacity,
+	.noc-visual__incident {
+		border: 1px solid var(--color-bg-muted);
+		background: color-mix(in srgb, var(--color-surface) 90%, transparent);
+	}
+
+	.noc-visual__kpi {
+		display: grid;
+		gap: var(--space-2);
+		padding: var(--space-4);
+		border-top-width: 4px;
+	}
+
+	.noc-visual__kpi[data-tone='good'] {
+		border-top-color: var(--color-signal-green);
+	}
+
+	.noc-visual__kpi[data-tone='alert'] {
+		border-top-color: var(--color-error);
+	}
+
+	.noc-visual__kpi[data-tone='info'] {
+		border-top-color: var(--color-signal-cyan);
+	}
+
+	.noc-visual__kpi[data-tone='warn'] {
+		border-top-color: var(--color-signal-amber);
+	}
+
+	.noc-visual__kpi strong {
+		font-family: var(--font-display);
+		font-size: var(--text-2xl);
+		font-weight: 400;
+		color: var(--color-text-primary);
+	}
+
+	.noc-visual__kpi p,
+	.noc-visual__incident p {
+		color: var(--color-text-secondary);
+		line-height: 1.55;
+	}
+
+	.noc-visual__operations {
+		display: grid;
+		grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+		gap: var(--space-4);
+	}
+
+	.noc-visual__services,
+	.noc-visual__capacity {
+		display: grid;
+		gap: var(--space-4);
+		padding: var(--space-4);
+	}
+
+	.noc-visual__section-head strong {
+		font-size: var(--text-sm);
+		color: var(--color-text-primary);
+	}
+
+	.noc-visual__service-list {
+		display: grid;
+		gap: var(--space-2);
+	}
+
+	.noc-visual__service {
+		display: grid;
+		grid-template-columns: 1fr auto auto;
+		gap: var(--space-3);
+		align-items: center;
+		padding-block: var(--space-2);
+		border-top: 1px solid var(--color-bg-muted);
+	}
+
+	.noc-visual__service strong {
+		font-family: var(--font-mono);
+		font-size: var(--text-xs);
+		color: var(--color-accent-text);
+	}
+
+	.noc-visual__service small {
+		color: var(--color-signal-green);
+	}
+
+	.noc-visual__bars {
+		display: grid;
+		grid-template-columns: repeat(8, minmax(0, 1fr));
+		align-items: end;
+		gap: var(--space-2);
+		min-height: 12rem;
+		padding-top: var(--space-4);
+		border-top: 1px solid var(--color-bg-muted);
+	}
+
+	.noc-visual__bars span {
+		display: block;
+		height: var(--bar-size);
+		min-height: 2.5rem;
+		background: linear-gradient(180deg, var(--color-accent), var(--color-signal-green));
+	}
+
+	.noc-visual__timeline {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: var(--space-3);
+	}
+
+	.noc-visual__incident {
+		position: relative;
+		display: grid;
+		gap: var(--space-2);
+		padding: var(--space-4);
+		border-left: 4px solid var(--color-accent);
+	}
+
+	.noc-visual__incident strong {
+		font-size: var(--text-sm);
+		color: var(--color-text-primary);
+	}
+
+	.noc-visual__incident small {
+		position: absolute;
+		top: var(--space-4);
+		right: var(--space-4);
+		color: var(--color-error);
+	}
+
+	@media (max-width: 900px) {
+		.noc-visual__kpi-grid,
+		.noc-visual__operations,
+		.noc-visual__timeline {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	@media (max-width: 760px) {
+		.noc-visual {
+			gap: var(--space-4);
+			padding: var(--space-4);
+		}
+
+		.noc-visual__header {
+			display: grid;
+		}
+
+		.noc-visual__kpi-grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		.noc-visual__kpi,
+		.noc-visual__services,
+		.noc-visual__capacity,
+		.noc-visual__incident {
+			padding: var(--space-3);
+		}
+
+		.noc-visual__service {
+			grid-template-columns: 1fr;
+			gap: var(--space-1);
+		}
+
+		.noc-visual__service-list {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		.noc-visual__service {
+			align-content: start;
+			padding: var(--space-3);
+			border: 1px solid var(--color-bg-muted);
+		}
+
+		.noc-visual__bars {
+			min-height: 7rem;
+		}
+	}
+</style>

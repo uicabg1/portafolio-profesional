@@ -1,0 +1,502 @@
+---
+const stackStates = [
+	{
+		label: 'IPv4',
+		status: 'Base estable',
+		detail: 'Inventario, NAT y dependencias visibles',
+		tone: 'legacy',
+	},
+	{
+		label: 'Dual-stack',
+		status: 'Piloto activo',
+		detail: 'IPv4 conserva continuidad mientras IPv6 se valida',
+		tone: 'bridge',
+	},
+	{
+		label: 'IPv6 operativo',
+		status: 'Corte controlado',
+		detail: 'Servicios priorizados con rollback disponible',
+		tone: 'target',
+	},
+];
+
+const domains = [
+	{
+		name: 'Borde',
+		stack: 'Dual-stack',
+		detail: 'Prefijos, ACLs y rutas simetricas',
+		metric: 'Reachability 99.9%',
+	},
+	{
+		name: 'DNS',
+		stack: 'AAAA controlado',
+		detail: 'Publicacion gradual por servicio',
+		metric: 'Resolucion estable',
+	},
+	{
+		name: 'VLANs',
+		stack: 'Segmentos piloto',
+		detail: 'SLAAC/DHCPv6 segun perfil de red',
+		metric: 'NDP verificado',
+	},
+	{
+		name: 'NOC',
+		stack: 'Telemetria activa',
+		detail: 'Comparativo IPv4 vs IPv6',
+		metric: 'Alertas sin ruido',
+	},
+];
+
+const phases = [
+	{
+		label: '01',
+		title: 'Assessment',
+		state: 'IPv4 observado',
+	},
+	{
+		label: '02',
+		title: 'Piloto',
+		state: 'Dual-stack limitado',
+	},
+	{
+		label: '03',
+		title: 'Validacion',
+		state: 'Servicios OK',
+	},
+	{
+		label: '04',
+		title: 'Corte',
+		state: 'IPv6 operativo',
+	},
+];
+
+const evidence = [
+	{
+		label: 'Rollback',
+		value: 'Ventana documentada',
+	},
+	{
+		label: 'Telemetria',
+		value: 'Latencia y perdida comparadas',
+	},
+	{
+		label: 'NDP',
+		value: 'Vecinos y reachability',
+	},
+	{
+		label: 'SLAAC/DHCPv6',
+		value: 'Asignacion validada',
+	},
+];
+---
+
+<div class="ipv6-visual" aria-label="Lamina operativa de migracion IPv6 con rutas, estados y validaciones">
+	<div class="ipv6-visual__header">
+		<div>
+			<p>Plano de migracion</p>
+			<strong>IPv4 -> dual-stack -> IPv6</strong>
+		</div>
+		<span>2001:db8::/48</span>
+	</div>
+
+	<div class="ipv6-visual__route-map">
+		<div class="ipv6-visual__core">
+			<span>CORE</span>
+			<strong>Prefijos publicados</strong>
+			<p>Rutas coexistentes y politica de salida lista para corte controlado.</p>
+		</div>
+
+		<div class="ipv6-visual__route-lines" aria-hidden="true">
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+
+		<div class="ipv6-visual__domains">
+			{domains.map((domain) => (
+				<article class="ipv6-visual__domain">
+					<div>
+						<span>{domain.name}</span>
+						<strong>{domain.stack}</strong>
+					</div>
+					<p>{domain.detail}</p>
+					<small>{domain.metric}</small>
+				</article>
+			))}
+		</div>
+	</div>
+
+	<div class="ipv6-visual__stack-state" aria-label="Estados de convivencia IPv4, dual-stack e IPv6">
+		{stackStates.map((state) => (
+			<div class="ipv6-visual__stack-card" data-tone={state.tone}>
+				<span>{state.label}</span>
+				<strong>{state.status}</strong>
+				<p>{state.detail}</p>
+			</div>
+		))}
+	</div>
+
+	<div class="ipv6-visual__phase-track" aria-label="Fases de migracion IPv6">
+		{phases.map((phase) => (
+			<div class="ipv6-visual__phase">
+				<span>{phase.label}</span>
+				<h3>{phase.title}</h3>
+				<p>{phase.state}</p>
+			</div>
+		))}
+	</div>
+
+	<div class="ipv6-visual__evidence">
+		{evidence.map((item) => (
+			<p>
+				<span>{item.label}</span>
+				<strong>{item.value}</strong>
+			</p>
+		))}
+	</div>
+</div>
+
+<style>
+	.ipv6-visual {
+		position: relative;
+		display: grid;
+		gap: var(--space-6);
+		min-height: 100%;
+		padding: var(--space-6);
+		overflow: hidden;
+		background:
+			linear-gradient(90deg, color-mix(in srgb, var(--color-bg-muted) 34%, transparent) 1px, transparent 1px),
+			linear-gradient(180deg, color-mix(in srgb, var(--color-bg-muted) 34%, transparent) 1px, transparent 1px),
+			linear-gradient(135deg, color-mix(in srgb, var(--color-surface-strong) 44%, transparent), transparent 52%),
+			linear-gradient(180deg, var(--color-surface), var(--color-bg-subtle));
+		background-size: 42px 42px, 42px 42px, auto, auto;
+	}
+
+	.ipv6-visual__header,
+	.ipv6-visual__route-map,
+	.ipv6-visual__stack-state,
+	.ipv6-visual__phase-track,
+	.ipv6-visual__evidence {
+		position: relative;
+		z-index: 1;
+	}
+
+	.ipv6-visual__header {
+		display: flex;
+		align-items: start;
+		justify-content: space-between;
+		gap: var(--space-4);
+		padding-bottom: var(--space-4);
+		border-bottom: 1px solid var(--color-bg-muted);
+	}
+
+	.ipv6-visual__header div {
+		display: grid;
+		gap: var(--space-2);
+	}
+
+	.ipv6-visual__header p,
+	.ipv6-visual__header span,
+	.ipv6-visual__core span,
+	.ipv6-visual__domain span,
+	.ipv6-visual__domain small,
+	.ipv6-visual__stack-card span,
+	.ipv6-visual__phase span,
+	.ipv6-visual__evidence span {
+		font-family: var(--font-mono);
+		font-size: var(--text-xs);
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--color-text-secondary);
+	}
+
+	.ipv6-visual__header strong {
+		font-family: var(--font-display);
+		font-size: clamp(1.7rem, 4vw, var(--text-4xl));
+		font-weight: 400;
+		line-height: 1.05;
+		color: var(--color-text-primary);
+		overflow-wrap: anywhere;
+	}
+
+	.ipv6-visual__header > span {
+		width: fit-content;
+		padding: var(--space-2) var(--space-3);
+		border: 1px solid var(--color-bg-muted);
+		background: color-mix(in srgb, var(--color-surface) 86%, transparent);
+		color: var(--color-accent-text);
+		white-space: nowrap;
+	}
+
+	.ipv6-visual__route-map {
+		display: grid;
+		grid-template-columns: minmax(12rem, 0.82fr) minmax(2.5rem, 0.18fr) minmax(0, 1.65fr);
+		gap: var(--space-4);
+		align-items: stretch;
+		min-height: 18rem;
+	}
+
+	.ipv6-visual__core,
+	.ipv6-visual__domain,
+	.ipv6-visual__stack-card,
+	.ipv6-visual__phase,
+	.ipv6-visual__evidence p {
+		border: 1px solid var(--color-bg-muted);
+		background: color-mix(in srgb, var(--color-surface) 90%, transparent);
+	}
+
+	.ipv6-visual__core {
+		display: grid;
+		align-content: center;
+		gap: var(--space-3);
+		padding: var(--space-6);
+		border-left: 5px solid var(--color-signal-cyan);
+	}
+
+	.ipv6-visual__core strong {
+		font-size: var(--text-xl);
+		font-weight: 600;
+		color: var(--color-text-primary);
+	}
+
+	.ipv6-visual__core p,
+	.ipv6-visual__domain p,
+	.ipv6-visual__stack-card p,
+	.ipv6-visual__phase p {
+		color: var(--color-text-secondary);
+		line-height: 1.55;
+	}
+
+	.ipv6-visual__route-lines {
+		display: grid;
+		gap: var(--space-3);
+		padding-block: var(--space-3);
+	}
+
+	.ipv6-visual__route-lines span {
+		align-self: center;
+		border-top: 2px solid color-mix(in srgb, var(--color-accent) 42%, transparent);
+	}
+
+	.ipv6-visual__route-lines span:nth-child(2),
+	.ipv6-visual__route-lines span:nth-child(3) {
+		border-color: color-mix(in srgb, var(--color-signal-green) 48%, transparent);
+	}
+
+	.ipv6-visual__route-lines span:nth-child(4) {
+		border-style: dashed;
+		border-color: color-mix(in srgb, var(--color-signal-amber) 48%, transparent);
+	}
+
+	.ipv6-visual__domains {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: var(--space-3);
+	}
+
+	.ipv6-visual__domain {
+		display: grid;
+		align-content: space-between;
+		gap: var(--space-3);
+		min-height: 8.25rem;
+		padding: var(--space-4);
+	}
+
+	.ipv6-visual__domain div {
+		display: flex;
+		align-items: start;
+		justify-content: space-between;
+		gap: var(--space-3);
+	}
+
+	.ipv6-visual__domain strong {
+		max-width: 9.5rem;
+		text-align: right;
+		font-family: var(--font-mono);
+		font-size: var(--text-xs);
+		line-height: 1.45;
+		color: var(--color-accent-text);
+	}
+
+	.ipv6-visual__domain small {
+		color: var(--color-signal-green);
+	}
+
+	.ipv6-visual__stack-state {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: var(--space-3);
+	}
+
+	.ipv6-visual__stack-card {
+		display: grid;
+		gap: var(--space-2);
+		padding: var(--space-4);
+		border-top-width: 4px;
+	}
+
+	.ipv6-visual__stack-card[data-tone='legacy'] {
+		border-top-color: var(--color-text-muted);
+	}
+
+	.ipv6-visual__stack-card[data-tone='bridge'] {
+		border-top-color: var(--color-signal-amber);
+	}
+
+	.ipv6-visual__stack-card[data-tone='target'] {
+		border-top-color: var(--color-signal-green);
+	}
+
+	.ipv6-visual__stack-card strong {
+		font-size: var(--text-sm);
+		color: var(--color-text-primary);
+	}
+
+	.ipv6-visual__phase-track {
+		display: grid;
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		gap: var(--space-3);
+	}
+
+	.ipv6-visual__phase {
+		display: grid;
+		gap: var(--space-2);
+		min-height: 7rem;
+		padding: var(--space-4);
+		border-bottom: 4px solid var(--color-accent);
+	}
+
+	.ipv6-visual__phase h3 {
+		font-family: var(--font-body);
+		font-size: var(--text-sm);
+		font-weight: 600;
+		color: var(--color-text-primary);
+	}
+
+	.ipv6-visual__phase p {
+		font-size: var(--text-sm);
+	}
+
+	.ipv6-visual__evidence {
+		display: grid;
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		gap: var(--space-3);
+	}
+
+	.ipv6-visual__evidence p {
+		display: grid;
+		gap: var(--space-1);
+		padding: var(--space-3);
+	}
+
+	.ipv6-visual__evidence strong {
+		font-size: var(--text-sm);
+		line-height: 1.45;
+		color: var(--color-text-primary);
+	}
+
+	@media (max-width: 900px) {
+		.ipv6-visual__route-map,
+		.ipv6-visual__stack-state,
+		.ipv6-visual__phase-track,
+		.ipv6-visual__evidence {
+			grid-template-columns: 1fr;
+		}
+
+		.ipv6-visual__route-map {
+			min-height: auto;
+		}
+
+		.ipv6-visual__route-lines {
+			display: none;
+		}
+
+		.ipv6-visual__domains {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	@media (max-width: 760px) {
+		.ipv6-visual {
+			gap: var(--space-4);
+			padding: var(--space-4);
+		}
+
+		.ipv6-visual__header {
+			display: grid;
+		}
+
+		.ipv6-visual__header > span {
+			white-space: normal;
+		}
+
+		.ipv6-visual__route-map {
+			gap: var(--space-3);
+		}
+
+		.ipv6-visual__core {
+			padding: var(--space-4);
+		}
+
+		.ipv6-visual__core strong {
+			font-size: var(--text-lg);
+		}
+
+		.ipv6-visual__domains,
+		.ipv6-visual__phase-track,
+		.ipv6-visual__evidence {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		.ipv6-visual__stack-state {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+
+		.ipv6-visual__domain,
+		.ipv6-visual__phase,
+		.ipv6-visual__stack-card,
+		.ipv6-visual__evidence p {
+			padding: var(--space-3);
+		}
+
+		.ipv6-visual__stack-card {
+			padding-inline: var(--space-2);
+		}
+
+		.ipv6-visual__stack-card p {
+			display: none;
+		}
+
+		.ipv6-visual__stack-card strong {
+			font-size: var(--text-xs);
+			line-height: 1.35;
+		}
+
+		.ipv6-visual__domain {
+			min-height: 7.2rem;
+		}
+
+		.ipv6-visual__domain div {
+			display: grid;
+		}
+
+		.ipv6-visual__domain strong {
+			max-width: none;
+			text-align: left;
+		}
+
+		.ipv6-visual__domain p {
+			display: none;
+		}
+
+		.ipv6-visual__phase {
+			min-height: auto;
+		}
+
+		.ipv6-visual__phase p,
+		.ipv6-visual__evidence strong {
+			font-size: var(--text-xs);
+		}
+	}
+</style>
