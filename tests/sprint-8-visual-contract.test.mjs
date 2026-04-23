@@ -90,7 +90,11 @@ test('Contact remains direct and avoids extra disclosure patterns', () => {
   assert.doesNotMatch(contact, /<details/);
   assert.match(contact, /Hablemos de tu sitio\./);
   assert.match(contact, /sitios para negocio, landing pages y portafolios profesionales/);
-  assert.match(contact, /formulario sirve para dejar un brief mas completo|formulario te permite dejar mas contexto/);
+  assert.match(contact, /necesitan verse[\s\S]*mejor/);
+  assert.match(contact, /explicar su oferta con claridad y convertir interes en conversaciones reales/);
+  assert.match(contact, /idea, una referencia o un objetivo concreto/);
+  assert.match(contact, /proponerte un alcance mas claro/);
+  assert.match(contact, /orientarte[\s\S]*mejor sobre tiempos y siguiente paso/);
   assert.doesNotMatch(contact, /antes de hablar de infraestructura/);
 });
 

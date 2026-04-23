@@ -33,7 +33,7 @@ Avance implementado en esta iteracion:
 - `ProjectFilter.tsx` ya movio el resumen largo de las cards a `Ver resumen` y dejo visible primero el resultado.
 - `About.astro` ya resume credenciales visibles y mueve el criterio extendido a `Ver criterio`, preservando el cambio local previo.
 - `Infrastructure.astro` ya conserva el flujo visible y mueve la explicacion extendida a `Ver evidencia`.
-- `Contact.astro` sigue sin disclosures, pero recupera contexto comercial visible y explica mejor la diferencia entre WhatsApp y el formulario.
+- `Contact.astro` sigue sin disclosures y ahora combina confianza comercial con claridad para cotizar desde la columna izquierda, sin tocar el formulario.
 - `ContactForm.tsx` elimina la etiqueta visible `Fallback` y deja una nota minima de continuidad por WhatsApp o correo.
 - Se agrego una prueba contractual en `tests/sprint-8-visual-contract.test.mjs` para proteger este comportamiento summary-first.
 
@@ -42,7 +42,7 @@ Estado actual:
 - La home ya aplica disclosure progresivo en hero, servicios, proyectos, sobre mi e infraestructura.
 - La primera pantalla ya no queda demasiado recortada: mantiene lectura breve, pero con mas contexto visible.
 - La capacidad complementaria queda completamente visible, sin hide thing, para evitar cualquier superposicion.
-- Contacto se mantiene directo, sin colapsables, pero con mas contexto y una nota de respaldo mas discreta.
+- Contacto se mantiene directo, sin colapsables, con mejor contexto comercial y mejor orientacion para mandar un primer brief.
 - La iteracion documental y de implementacion para la home queda actualizada tras el pase de feedback.
 
 ## Metodo de trabajo vigente
