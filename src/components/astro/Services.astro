@@ -54,18 +54,12 @@ const services = [
 			<p class="section-kicker">Servicios activos</p>
 
 			<h2 id="services-heading" class="editorial-title services-title">
-				Web primero. La infraestructura suma confianza, no ruido.
+				Web primero. Oferta clara y evidencia real.
 			</h2>
 
-			<div class="services-description">
-				<p>
-					La oferta principal hoy es construir sitios web claros, rapidos y publicables.
-				</p>
-				<p>
-					La base tecnica aparece como evidencia de criterio para decidir mejor, sin desplazar el objetivo
-					comercial del cliente.
-				</p>
-			</div>
+			<p class="services-description">
+				Sitios publicables, landing pages y mejoras tecnicas con una lectura comercial simple desde el primer scroll.
+			</p>
 		</header>
 
 		<div class="services-list">
@@ -80,10 +74,16 @@ const services = [
 						<p class="service-label">Oferta activa</p>
 						<h3>{title}</h3>
 						<p>{description}</p>
+
+						<ul class="service-signals" role="list" aria-label={`Senales visibles de ${title}`}>
+							{deliverables.slice(0, 2).map((item) => (
+								<li>{item}</li>
+							))}
+						</ul>
 					</div>
 
-					<div class="service-current-scope">
-						<p class="service-scope-title">Alcance actual</p>
+					<details class="service-disclosure">
+						<summary>Ver alcance</summary>
 						<p>{idealFor}</p>
 
 						<ul role="list">
@@ -91,7 +91,7 @@ const services = [
 								<li>{item}</li>
 							))}
 						</ul>
-					</div>
+					</details>
 				</article>
 			))}
 		</div>
@@ -104,12 +104,16 @@ const services = [
 			<div class="service-future-copy">
 				<p class="section-kicker">Capacidad complementaria</p>
 				<h3>VPS, IPv6, Nginx y CI/CD se presentan como evidencia operacional.</h3>
+				<p>La capa operativa refuerza confianza tecnica, pero la oferta activa sigue siendo web-first.</p>
+			</div>
+
+			<details class="service-disclosure service-disclosure--future">
+				<summary>Ver evidencia operacional</summary>
 				<p>
 					La capa de despliegue administrado entra como servicio activo solo cuando exista infraestructura
-					real documentada. Mientras tanto, funciona como demostracion tecnica para reforzar confianza en
-					proyectos web.
+					real documentada.
 				</p>
-			</div>
+			</details>
 
 			<a href="/#contacto" class="service-future-link">
 				Convertir una necesidad web en brief
@@ -145,13 +149,7 @@ const services = [
 	}
 
 	.services-description {
-		display: grid;
-		gap: var(--space-4);
 		max-width: 64ch;
-	}
-
-	.services-description p {
-		max-width: none;
 		font-size: var(--text-lg);
 		line-height: 1.82;
 		color: var(--color-text-secondary);
@@ -182,14 +180,13 @@ const services = [
 	}
 
 	.service-copy,
-	.service-current-scope,
-	.service-future-copy {
+	.service-future-copy,
+	.service-disclosure {
 		display: grid;
 		gap: var(--space-4);
 	}
 
-	.service-label,
-	.service-scope-title {
+	.service-label {
 		font-family: var(--font-mono);
 		font-size: var(--text-xs);
 		letter-spacing: 0.08em;
@@ -204,26 +201,59 @@ const services = [
 	}
 
 	.service-copy p,
-	.service-current-scope p,
+	.service-disclosure p,
 	.service-future-copy p {
 		color: var(--color-text-secondary);
 		line-height: 1.8;
 	}
 
-	.service-current-scope ul {
+	.service-signals {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-3);
+		list-style: none;
+	}
+
+	.service-signals li {
+		padding: var(--space-2) var(--space-3);
+		border: 1px solid var(--color-bg-muted);
+		border-radius: var(--radius-full);
+		background: color-mix(in srgb, var(--color-surface) 82%, transparent);
+		font-family: var(--font-mono);
+		font-size: var(--text-xs);
+		color: var(--color-text-secondary);
+	}
+
+	.service-disclosure {
+		padding-top: var(--space-1);
+	}
+
+	.service-disclosure summary {
+		cursor: pointer;
+		width: fit-content;
+		font-size: var(--text-sm);
+		font-weight: 500;
+		color: var(--color-text-primary);
+	}
+
+	.service-disclosure summary::-webkit-details-marker {
+		display: none;
+	}
+
+	.service-disclosure ul {
 		display: grid;
 		gap: var(--space-3);
 		list-style: none;
 	}
 
-	.service-current-scope li {
+	.service-disclosure li {
 		position: relative;
 		padding-left: calc(var(--space-4) + var(--space-1));
 		color: var(--color-text-secondary);
 		line-height: 1.7;
 	}
 
-	.service-current-scope li::before {
+	.service-disclosure li::before {
 		content: '';
 		position: absolute;
 		top: 0.72rem;
@@ -267,7 +297,7 @@ const services = [
 
 	@media (min-width: 900px) {
 		.service-proof-row {
-			grid-template-columns: 96px minmax(0, 1.05fr) minmax(280px, 0.95fr);
+			grid-template-columns: 96px minmax(0, 1.05fr) minmax(300px, 0.95fr);
 			align-items: start;
 		}
 

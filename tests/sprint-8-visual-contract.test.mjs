@@ -20,6 +20,20 @@ test('Sprint 8 hero exposes identity, offer, CTAs and a technical visual surface
   assert.match(hero, /wa\.me|#contacto/);
 });
 
+test('Home hero and services use summary-first copy with progressive disclosure', () => {
+  const hero = readRepoFile('src/components/astro/Hero.astro');
+  const services = readRepoFile('src/components/astro/Services.astro');
+
+  assert.match(hero, /hero-trust-chips/);
+  assert.match(hero, /Ver contexto tecnico/);
+  assert.doesNotMatch(hero, /La capa de infraestructura, redes y operacion no desplaza/);
+
+  assert.match(services, /service-disclosure/);
+  assert.match(services, /<details/);
+  assert.match(services, /Ver alcance/);
+  assert.doesNotMatch(services, /La base tecnica aparece como evidencia de criterio para decidir mejor/);
+});
+
 test('Sprint 8 projects section behaves as an evidence showcase', () => {
   const projects = readRepoFile('src/components/islands/ProjectFilter.tsx');
 
@@ -27,6 +41,14 @@ test('Sprint 8 projects section behaves as an evidence showcase', () => {
   assert.match(projects, /project-feature/);
   assert.match(projects, /project-result/);
   assert.match(projects, /aria-pressed/);
+});
+
+test('Projects section keeps compact cards and exposes expandable detail', () => {
+  const projects = readRepoFile('src/components/islands/ProjectFilter.tsx');
+
+  assert.match(projects, /project-disclosure/);
+  assert.match(projects, /Ver resumen/);
+  assert.match(projects, /problem|solution|result/);
 });
 
 test('Sprint 8 infrastructure section presents an operational flow', () => {

@@ -191,12 +191,6 @@ export default function ProjectFilter({ projects }: Props) {
           line-height: 1.1;
         }
 
-        .project-item-summary {
-          max-width: 62ch;
-          line-height: 1.85;
-          color: var(--color-text-secondary);
-        }
-
         .project-result {
           max-width: 60ch;
           padding-left: var(--space-4);
@@ -204,6 +198,29 @@ export default function ProjectFilter({ projects }: Props) {
           color: var(--color-ink-soft);
           font-size: var(--text-lg);
           line-height: 1.75;
+        }
+
+        .project-disclosure {
+          display: grid;
+          gap: var(--space-4);
+        }
+
+        .project-disclosure summary {
+          cursor: pointer;
+          width: fit-content;
+          font-size: var(--text-sm);
+          font-weight: 500;
+          color: var(--color-text-primary);
+        }
+
+        .project-disclosure summary::-webkit-details-marker {
+          display: none;
+        }
+
+        .project-story-line {
+          max-width: 60ch;
+          line-height: 1.8;
+          color: var(--color-text-secondary);
         }
 
         .project-stack {
@@ -260,8 +277,7 @@ export default function ProjectFilter({ projects }: Props) {
             </h2>
 
             <p class="project-showcase-copy">
-              Empieza por <strong>Web Dev</strong> si quieres ver la oferta principal. Las demas categorias
-              muestran el criterio tecnico que acompana ese trabajo sin desplazar la propuesta web-first.
+              <strong>Web Dev</strong> muestra la oferta principal. El resto funciona como prueba de criterio tecnico.
             </p>
 
             <div class="project-showcase-actions">
@@ -314,11 +330,25 @@ export default function ProjectFilter({ projects }: Props) {
                   </div>
 
                   <div class="project-item-detail">
-                    <p class="project-item-summary">{project.data.summary}</p>
-
                     <p class="project-result">
                       <strong>Resultado:</strong> {project.data.result}
                     </p>
+
+                    <details class="project-disclosure">
+                      <summary>Ver resumen</summary>
+                      <p class="project-story-line">
+                        <strong>Resumen:</strong> {project.data.summary}
+                      </p>
+                      <p class="project-story-line">
+                        <strong>Problema:</strong> {project.data.problem}
+                      </p>
+                      <p class="project-story-line">
+                        <strong>Solucion:</strong> {project.data.solution}
+                      </p>
+                      <p class="project-story-line">
+                        <strong>Resultado:</strong> {project.data.result}
+                      </p>
+                    </details>
 
                     <ul class="project-stack" role="list" aria-label={`Stack usado en ${project.data.title}`}>
                       {(project.data.stack ?? []).map((item) => (

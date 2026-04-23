@@ -25,6 +25,14 @@ El kit de patrones aprobado para esta iteracion es:
 
 Tabs quedan fuera como patron base. Solo se consideran si infraestructura sigue viendose pesada despues del primer recorte.
 
+Avance implementado en esta iteracion:
+
+- `Hero.astro` ya paso a un formato mas corto con titular compacto, chips visibles y disclosure `Ver contexto tecnico`.
+- `Services.astro` ya cambio a resumen visible + `details/summary` por servicio con `Ver alcance`.
+- La capacidad complementaria de servicios ya no usa un bloque largo fijo; ahora conserva detalle tecnico bajo demanda.
+- `ProjectFilter.tsx` ya movio el resumen largo de las cards a `Ver resumen` y dejo visible primero el resultado.
+- Se agrego una prueba contractual en `tests/sprint-8-visual-contract.test.mjs` para proteger este comportamiento summary-first.
+
 ## Metodo de trabajo vigente
 
 - Usar `docs/superpowers/contexto-minimo-documentado.md` como protocolo de continuidad.
@@ -39,19 +47,28 @@ Tabs quedan fuera como patron base. Solo se consideran si infraestructura sigue 
 
 ## Archivos modificados por esta tarea
 
+- `src/components/astro/Hero.astro`
+- `src/components/astro/Services.astro`
+- `src/components/islands/ProjectFilter.tsx`
+- `tests/sprint-8-visual-contract.test.mjs`
 - `docs/superpowers/specs/2026-04-23-home-progressive-disclosure-design.md`
 - `docs/architecture/adr/0007-home-progressive-disclosure.md`
+- `docs/superpowers/plans/2026-04-23-home-progressive-disclosure-implementation.md`
 - `docs/superpowers/current-context.md`
 
 ## Validacion ejecutada
 
 - Revision manual del spec para consistencia interna, alcance y ausencia de placeholders.
-- No se ejecutaron `npm test`, `npm run astro -- check` ni `npm run build` porque esta tarea solo agrega documentacion y no cambia codigo.
+- `node --test --experimental-strip-types tests/sprint-8-visual-contract.test.mjs --test-name-pattern="summary-first copy"`: PASS
+- `node --test --experimental-strip-types tests/sprint-8-visual-contract.test.mjs --test-name-pattern="expandable detail"`: PASS
+- `npm test`: 18 pruebas pasan, 0 fallan
+- `npm run astro -- check`: 0 errors, 0 warnings, 0 hints
+- Servidor local de revision: `http://127.0.0.1:4321/`
 
 ## Nota de alcance
 
-Se mantienen cambios previos no relacionados en documentos de sprint, archivos raiz y `src/components/astro/About.astro`. No se revirtieron ni se integraron dentro de esta tarea documental.
+Se mantienen cambios previos no relacionados en documentos de sprint, archivos raiz y `src/components/astro/About.astro`. No se revirtieron ni se integraron dentro de esta iteracion.
 
 ## Siguiente tarea sugerida
 
-Invocar `writing-plans` para convertir el spec aprobado en un plan de implementacion acotado a la home.
+Continuar con la Tarea 3 del plan: compactar `About.astro` e `Infrastructure.astro` con evidencia visible corta y disclosure bajo demanda, respetando el cambio local existente en `About.astro`.
