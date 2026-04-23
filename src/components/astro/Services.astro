@@ -103,15 +103,15 @@ const services = [
 
 			<div class="service-future-copy">
 				<p class="section-kicker">Capacidad complementaria</p>
-				<h3>VPS, IPv6, Nginx y CI/CD se presentan como evidencia operacional.</h3>
-				<p>La capa operativa refuerza confianza tecnica, pero la oferta activa sigue siendo web-first.</p>
+				<h3>VPS, IPv6, Nginx y CI/CD.</h3>
+				<p>Operacion real como evidencia tecnica para proyectos web.</p>
 			</div>
 
 			<details class="service-disclosure service-disclosure--future">
 				<summary>Ver evidencia operacional</summary>
 				<p>
-					La capa de despliegue administrado entra como servicio activo solo cuando exista infraestructura
-					real documentada.
+					Esta capa se activa cuando el proyecto necesita despliegue documentado, dual-stack, Nginx
+					y CI/CD con trazabilidad real.
 				</p>
 			</details>
 
@@ -307,8 +307,29 @@ const services = [
 		}
 
 		.service-future-scope {
-			grid-template-columns: auto minmax(0, 1fr) auto;
-			align-items: center;
+			grid-template-columns: auto minmax(0, 1fr);
+			align-items: start;
+		}
+
+		.service-future-icon {
+			grid-column: 1;
+			grid-row: 1;
+		}
+
+		.service-future-copy {
+			grid-column: 2;
+			grid-row: 1;
+		}
+
+		.service-disclosure--future {
+			grid-column: 2;
+			grid-row: 2;
+			max-width: 60ch;
+		}
+
+		.service-future-link {
+			grid-column: 2;
+			grid-row: 3;
 		}
 	}
 </style>

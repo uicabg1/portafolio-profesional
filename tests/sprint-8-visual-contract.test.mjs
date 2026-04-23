@@ -26,12 +26,14 @@ test('Home hero and services use summary-first copy with progressive disclosure'
 
   assert.match(hero, /hero-trust-chips/);
   assert.match(hero, /Ver contexto tecnico/);
-  assert.doesNotMatch(hero, /La capa de infraestructura, redes y operacion no desplaza/);
+  assert.match(hero, /UADY|TIDE Fellow 2026/);
 
   assert.match(services, /service-disclosure/);
   assert.match(services, /<details/);
   assert.match(services, /Ver alcance/);
+  assert.match(services, /Operacion real como evidencia tecnica para proyectos web\./);
   assert.doesNotMatch(services, /La base tecnica aparece como evidencia de criterio para decidir mejor/);
+  assert.doesNotMatch(services, /La capa operativa refuerza confianza tecnica, pero la oferta activa sigue siendo web-first\./);
 });
 
 test('Sprint 8 projects section behaves as an evidence showcase', () => {
@@ -77,6 +79,7 @@ test('Sprint 8 contact section presents a professional brief surface', () => {
   assert.match(contact, /WhatsApp/);
   assert.match(contactForm, /brief-field|contact-field/);
   assert.match(contactForm, /aria-describedby/);
+  assert.doesNotMatch(contactForm, /Fallback/);
 });
 
 test('Contact remains direct and avoids extra disclosure patterns', () => {
@@ -85,7 +88,8 @@ test('Contact remains direct and avoids extra disclosure patterns', () => {
   assert.match(contact, /contact-action--primary/);
   assert.doesNotMatch(contact, /<details/);
   assert.match(contact, /Hablemos de tu sitio\./);
-  assert.match(contact, /WhatsApp sigue siendo la via mas rapida para cotizar\./);
+  assert.match(contact, /sitios para negocio, landing pages y portafolios profesionales/);
+  assert.match(contact, /formulario sirve para dejar un brief mas completo|formulario te permite dejar mas contexto/);
   assert.doesNotMatch(contact, /antes de hablar de infraestructura/);
 });
 

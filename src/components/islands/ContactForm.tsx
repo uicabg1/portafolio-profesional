@@ -164,8 +164,7 @@ export default function ContactForm() {
           gap: var(--space-4);
         }
 
-        .contact-form-label,
-        .contact-form-note-label {
+        .contact-form-label {
           font-family: var(--font-mono);
           font-size: var(--text-xs);
           text-transform: uppercase;
@@ -282,8 +281,13 @@ export default function ContactForm() {
           color: var(--color-error);
         }
 
-        .contact-form-fallback {
+        .contact-form-note {
+          gap: var(--space-2);
+        }
+
+        .contact-form-note-copy {
           font-size: var(--text-sm);
+          line-height: 1.7;
           color: var(--color-text-secondary);
         }
 
@@ -482,14 +486,12 @@ export default function ContactForm() {
         </form>
 
         <div class="contact-form-note">
-          <p class="contact-form-note-label">Fallback</p>
           <p class="contact-form-note-copy">
-            Si el formulario falla o aún no está configurado en este entorno,
-            puedes continuar por{' '}
+            Si el formulario falla o sigue en configuración, puedes continuar por{' '}
             <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
               WhatsApp
             </a>{' '}
-            o por correo sin perder el contexto del proyecto.
+            o por correo.
           </p>
         </div>
       </div>

@@ -27,20 +27,23 @@ Tabs quedan fuera como patron base. Solo se consideran si infraestructura sigue 
 
 Avance implementado en esta iteracion:
 
-- `Hero.astro` ya paso a un formato mas corto con titular compacto, chips visibles y disclosure `Ver contexto tecnico`.
+- `Hero.astro` conserva disclosure `Ver contexto tecnico`, pero recupera mas contexto visible en la primera pantalla, incluyendo senal academica y credencial activa.
 - `Services.astro` ya cambio a resumen visible + `details/summary` por servicio con `Ver alcance`.
-- La capacidad complementaria de servicios ya no usa un bloque largo fijo; ahora conserva detalle tecnico bajo demanda.
+- La capacidad complementaria de servicios ahora deja una sola linea visible de evidencia operacional y mueve el detalle a un disclosure que ya no se superpone con el copy en desktop.
 - `ProjectFilter.tsx` ya movio el resumen largo de las cards a `Ver resumen` y dejo visible primero el resultado.
 - `About.astro` ya resume credenciales visibles y mueve el criterio extendido a `Ver criterio`, preservando el cambio local previo.
 - `Infrastructure.astro` ya conserva el flujo visible y mueve la explicacion extendida a `Ver evidencia`.
-- `Contact.astro` ya quedo directo: titulo corto, una sola linea de apoyo, CTA visibles y sin disclosures extra.
+- `Contact.astro` sigue sin disclosures, pero recupera contexto comercial visible y explica mejor la diferencia entre WhatsApp y el formulario.
+- `ContactForm.tsx` elimina la etiqueta visible `Fallback` y deja una nota minima de continuidad por WhatsApp o correo.
 - Se agrego una prueba contractual en `tests/sprint-8-visual-contract.test.mjs` para proteger este comportamiento summary-first.
 
 Estado actual:
 
 - La home ya aplica disclosure progresivo en hero, servicios, proyectos, sobre mi e infraestructura.
-- Contacto se mantuvo como cierre directo, sin colapsables.
-- La iteracion documental y de implementacion para la home quedo cerrada con validacion completa.
+- La primera pantalla ya no queda demasiado recortada: mantiene lectura breve, pero con mas contexto visible.
+- La capacidad complementaria ya no mezcla copy fijo y disclosure en la misma linea visual.
+- Contacto se mantiene directo, sin colapsables, pero con mas contexto y una nota de respaldo mas discreta.
+- La iteracion documental y de implementacion para la home queda actualizada tras el pase de feedback.
 
 ## Metodo de trabajo vigente
 
@@ -75,6 +78,7 @@ Estado actual:
 - `node --test --experimental-strip-types tests/sprint-8-visual-contract.test.mjs --test-name-pattern="expandable detail"`: PASS
 - `node --test --experimental-strip-types tests/sprint-8-visual-contract.test.mjs --test-name-pattern="compact visible proof"`: PASS
 - `node --test --experimental-strip-types tests/sprint-8-visual-contract.test.mjs --test-name-pattern="remains direct"`: PASS
+- `node --test --experimental-strip-types tests/sprint-8-visual-contract.test.mjs`: PASS
 - `npm test`: 20 pruebas pasan, 0 fallan
 - `npm run astro -- check`: 0 errors, 0 warnings, 0 hints
 - `npm run build`: 6 paginas generadas correctamente
