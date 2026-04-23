@@ -33,7 +33,14 @@ Avance implementado en esta iteracion:
 - `ProjectFilter.tsx` ya movio el resumen largo de las cards a `Ver resumen` y dejo visible primero el resultado.
 - `About.astro` ya resume credenciales visibles y mueve el criterio extendido a `Ver criterio`, preservando el cambio local previo.
 - `Infrastructure.astro` ya conserva el flujo visible y mueve la explicacion extendida a `Ver evidencia`.
+- `Contact.astro` ya quedo directo: titulo corto, una sola linea de apoyo, CTA visibles y sin disclosures extra.
 - Se agrego una prueba contractual en `tests/sprint-8-visual-contract.test.mjs` para proteger este comportamiento summary-first.
+
+Estado actual:
+
+- La home ya aplica disclosure progresivo en hero, servicios, proyectos, sobre mi e infraestructura.
+- Contacto se mantuvo como cierre directo, sin colapsables.
+- La iteracion documental y de implementacion para la home quedo cerrada con validacion completa.
 
 ## Metodo de trabajo vigente
 
@@ -54,6 +61,7 @@ Avance implementado en esta iteracion:
 - `src/components/islands/ProjectFilter.tsx`
 - `src/components/astro/About.astro`
 - `src/components/astro/Infrastructure.astro`
+- `src/components/astro/Contact.astro`
 - `tests/sprint-8-visual-contract.test.mjs`
 - `docs/superpowers/specs/2026-04-23-home-progressive-disclosure-design.md`
 - `docs/architecture/adr/0007-home-progressive-disclosure.md`
@@ -66,8 +74,10 @@ Avance implementado en esta iteracion:
 - `node --test --experimental-strip-types tests/sprint-8-visual-contract.test.mjs --test-name-pattern="summary-first copy"`: PASS
 - `node --test --experimental-strip-types tests/sprint-8-visual-contract.test.mjs --test-name-pattern="expandable detail"`: PASS
 - `node --test --experimental-strip-types tests/sprint-8-visual-contract.test.mjs --test-name-pattern="compact visible proof"`: PASS
-- `npm test`: 18 pruebas pasan, 0 fallan
+- `node --test --experimental-strip-types tests/sprint-8-visual-contract.test.mjs --test-name-pattern="remains direct"`: PASS
+- `npm test`: 20 pruebas pasan, 0 fallan
 - `npm run astro -- check`: 0 errors, 0 warnings, 0 hints
+- `npm run build`: 6 paginas generadas correctamente
 - Servidor local de revision: `http://127.0.0.1:4321/`
 
 ## Nota de alcance
@@ -76,4 +86,4 @@ Se mantienen cambios previos no relacionados en documentos de sprint, archivos r
 
 ## Siguiente tarea sugerida
 
-Continuar con la Tarea 4 del plan: simplificar `Contact.astro`, verificar que no introduzca disclosures y cerrar la validacion final de la home.
+Hacer QA visual manual de la home en desktop y mobile, y decidir si la siguiente iteracion sera ajuste fino de spacing/copy o publicacion.

@@ -1,5 +1,5 @@
 ---
-import { ArrowRight, Clock3, Mail } from 'lucide-preact';
+import { Mail } from 'lucide-preact';
 import ContactForm from '../islands/ContactForm.tsx';
 
 const WHATSAPP_NUMBER = '+529992197979';
@@ -32,13 +32,10 @@ const EMAIL_URL = `mailto:${EMAIL}?subject=${encodeURIComponent(EMAIL_SUBJECT)}&
 		<div class="contact-copy">
 			<p class="contact-eyebrow">Contacto</p>
 
-			<h2 id="contact-heading" class="contact-title">
-				Hablemos de tu sitio antes de hablar de infraestructura.
-			</h2>
+			<h2 id="contact-heading" class="contact-title">Hablemos de tu sitio.</h2>
 
 			<p class="contact-description">
-				Hoy mi oferta principal es web: sitios para negocio, landing pages y portafolios profesionales.
-				Si tu proyecto encaja en eso, el canal m&aacute;s r&aacute;pido sigue siendo WhatsApp.
+				WhatsApp sigue siendo la via mas rapida para cotizar.
 			</p>
 
 			<div class="contact-methods" role="group" aria-label="Canales de contacto">
@@ -70,17 +67,6 @@ const EMAIL_URL = `mailto:${EMAIL}?subject=${encodeURIComponent(EMAIL_SUBJECT)}&
 					<span>Enviar brief por correo</span>
 				</a>
 			</div>
-
-			<ul class="contact-signals" role="list">
-				<li>
-					<Clock3 size={16} />
-					<span>Canales activos hoy: WhatsApp y correo.</span>
-				</li>
-				<li>
-					<ArrowRight size={16} />
-					<span>Proyectos ideales: sitio web, landing page o portafolio profesional.</span>
-				</li>
-			</ul>
 		</div>
 
 		<div class="contact-brief contact-brief-surface" aria-labelledby="contact-brief-title">
@@ -219,28 +205,6 @@ const EMAIL_URL = `mailto:${EMAIL}?subject=${encodeURIComponent(EMAIL_SUBJECT)}&
 	.contact-action--secondary:hover {
 		border-color: var(--color-text-secondary);
 		background: var(--color-bg-subtle);
-	}
-
-	.contact-signals {
-		list-style: none;
-		display: grid;
-		gap: var(--space-4);
-		max-width: 58ch;
-	}
-
-	.contact-signals li {
-		display: flex;
-		align-items: flex-start;
-		gap: var(--space-3);
-		padding-top: var(--space-4);
-		border-top: 1px solid color-mix(in srgb, var(--color-bg-muted) 80%, transparent);
-		color: var(--color-text-secondary);
-	}
-
-	.contact-signals svg {
-		flex-shrink: 0;
-		margin-top: 0.2rem;
-		color: var(--color-accent);
 	}
 
 	@media (min-width: 960px) {

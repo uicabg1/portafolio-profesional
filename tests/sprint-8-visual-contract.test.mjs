@@ -79,6 +79,16 @@ test('Sprint 8 contact section presents a professional brief surface', () => {
   assert.match(contactForm, /aria-describedby/);
 });
 
+test('Contact remains direct and avoids extra disclosure patterns', () => {
+  const contact = readRepoFile('src/components/astro/Contact.astro');
+
+  assert.match(contact, /contact-action--primary/);
+  assert.doesNotMatch(contact, /<details/);
+  assert.match(contact, /Hablemos de tu sitio\./);
+  assert.match(contact, /WhatsApp sigue siendo la via mas rapida para cotizar\./);
+  assert.doesNotMatch(contact, /antes de hablar de infraestructura/);
+});
+
 test('Sprint 8 project detail pages use editorial and interactive proof surfaces', () => {
   const projectPage = readRepoFile('src/pages/proyectos/[slug].astro');
   const interactiveSection = readRepoFile('src/components/astro/ProjectInteractiveSection.astro');
